@@ -1021,7 +1021,7 @@ qboolean CG_AtmosphericKludge()
 		}
 		else if (cg_forceAtmosphericEffects.integer == 2)
 		{
-			CG_EffectParse("T=SNOW,B=5 10,C=0.5,G=0.3 2,BV=20 30,GV=25 40,W=3 5,D=2400");
+  	  	CG_EffectParse( "T=SNOW,B=5 10,C=0.5,G=0.3 2,BV=50 50,GV=30 80,W=1 2,D=25000" ); // strong snow
 			return(kludgeResult = qtrue);
 		}
 	}

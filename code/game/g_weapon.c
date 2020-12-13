@@ -1219,14 +1219,14 @@ gentity_t *weapon_grenadelauncher_fire( gentity_t *ent, int grenType ) {
 
 	// pineapples are not thrown as far as mashers
 	if ( grenType == WP_GRENADE_LAUNCHER ) {
-		upangle *= 800;     //									    0.0 / 800.0
+		upangle *= 1000;     //									    0.0 / 800.0
 	} else if ( grenType == WP_GRENADE_PINEAPPLE )                                {
 // JPW NERVE
 		if ( g_gametype.integer != GT_SINGLE_PLAYER ) {
-			upangle *= 800;
+			upangle *= 1000;
 		} else {
 // jpw
-			upangle *= 800;     //									    0.0 / 600.0
+			upangle *= 1000;     //									    0.0 / 600.0
 		}
 	}
 // JPW NERVE
@@ -1235,7 +1235,7 @@ gentity_t *weapon_grenadelauncher_fire( gentity_t *ent, int grenType ) {
 	}
 // jpw
 	else {      // WP_DYNAMITE
-		upangle *= 400;     //										0.0 / 100.0
+		upangle *= 1000;     //										0.0 / 100.0
 
 	}
 	/*
