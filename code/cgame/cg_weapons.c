@@ -54,17 +54,17 @@ static qboolean CG_WeaponHasAmmo( int i );
 static int maxWeapBanks = MAX_WEAP_BANKS, maxWeapsInBank = MAX_WEAPS_IN_BANK; // JPW NERVE
 
 int weapBanks[MAX_WEAP_BANKS][MAX_WEAPS_IN_BANK] = {
-	{0,                     0,                      0,            0,               0            },  //	0 (empty)
-	{WP_KNIFE,              0,                      0,            0,               0            },  //	1
-	{WP_LUGER,              WP_COLT,                WP_TT33,      WP_REVOLVER,     0            },  //	2
-	{WP_MP40,               WP_MP34,                WP_STEN,      WP_THOMPSON,     WP_PPSH      },  //	3
-	{WP_MAUSER,             WP_GARAND,              WP_MOSIN,     0,               0            },  //	4
-    {WP_G43,                WP_M1GARAND,            0,            0,               0            },  //	5
-	{WP_FG42,               WP_MP44,                WP_BAR,       0,               0            },  //	6
-	{WP_M97,                0,                      0,            0,               0            },  //	7
-	{WP_GRENADE_LAUNCHER,   WP_GRENADE_PINEAPPLE,   WP_DYNAMITE,  0,               0            },  //	8
-	{WP_PANZERFAUST,        WP_FLAMETHROWER,        WP_MG42M,     0,               0            },  //	9
-	{WP_VENOM,              WP_TESLA,               0,            0,               0            }  //	10
+	{0,                     0                          },  //	0 (empty)
+	{WP_KNIFE,              0                          },  //	1
+	{WP_LUGER,              0                          },  //	2
+	{WP_MP40,               WP_STEN                    },  //	3
+	{WP_MAUSER,             WP_FG42                    },  //	4
+    {WP_M97,                0                          },  //	5
+	{WP_GRENADE_LAUNCHER,   WP_DYNAMITE                },  //	6
+	{WP_PANZERFAUST,        WP_FLAMETHROWER            },  //	7
+	{WP_VENOM,              WP_TESLA                   },  //	8
+	{0,                     0                          },  //	9
+	{0,                     0                          }  //	10
 };
 
 // JPW NERVE -- in mutiplayer, characters get knife/special on button 1, pistols on 2, 2-handed on 3
@@ -3048,71 +3048,71 @@ void CG_AddViewWeapon( playerState_t *ps ) {
         // REALRTCWEXP
 	    switch ( cg.predictedPlayerState.weapon ) {
 		case WP_FLAMETHROWER:
-			 gunoff[0] = 10;
-		     gunoff[1] = 2;
+			 gunoff[0] = 3;
+		     gunoff[1] = 9;
 		     gunoff[2] = 0;
 		break;
 		case WP_LUGER:
 		case WP_SILENCER:
-			 gunoff[0] = 0;
-		     gunoff[1] = 2;
+			 gunoff[0] = -1;
+		     gunoff[1] = 8;
 		     gunoff[2] = 3;
 		break;
-		case WP_COLT:
-		case WP_AKIMBO:
+		case WP_KNIFE:
 			 gunoff[0] = 0;
-		     gunoff[1] = 2;
-		     gunoff[2] = 2;
+		     gunoff[1] = 4;
+		     gunoff[2] = 0;
 		break;
-		case WP_REVOLVER:
+		case WP_STEN:
 			 gunoff[0] = 0;
-		     gunoff[1] = 0;
-		     gunoff[2] = -1;
+		     gunoff[1] = 6;
+		     gunoff[2] = 0;
 		break;
-		case WP_MP34:
+		case WP_MAUSER:
+		case WP_SNIPERRIFLE:
 			 gunoff[0] = 0;
-		     gunoff[1] = 1;
+		     gunoff[1] = 7;
 		     gunoff[2] = 0;
 		break;
 		case WP_MP40:
-			 gunoff[0] = 0;
-		     gunoff[1] = 3;
-		     gunoff[2] = 1;
+			 gunoff[0] = 3;
+		     gunoff[1] = 8;
+		     gunoff[2] = 0;
 		break;
 		case WP_M97:
-			 gunoff[0] = -3;
-		     gunoff[1] = 0;
+			 gunoff[0] = -6;
+		     gunoff[1] = 7;
 		     gunoff[2] = -1;
 		break;
 		case WP_VENOM:
-			 gunoff[0] = -1;
-		     gunoff[1] = 2;
+			 gunoff[0] = -2;
+		     gunoff[1] = 9;
+		     gunoff[2] = -2;
+		break;
+		case WP_GRENADE_LAUNCHER:
+			 gunoff[0] = 0;
+		     gunoff[1] = 5;
 		     gunoff[2] = 0;
 		break;
-		case WP_MG42M:
+		case WP_DYNAMITE:
 			 gunoff[0] = 0;
-		     gunoff[1] = 3;
-		     gunoff[2] = 0;
-		break;
-		case WP_G43:
-			 gunoff[0] = 0;
-		     gunoff[1] = 1;
+		     gunoff[1] = 5;
 		     gunoff[2] = 1;
 		break;
-		case WP_MP44:
-			 gunoff[0] = 0;
-		     gunoff[1] = 1;
+		case WP_PANZERFAUST:
+			 gunoff[0] = -2;
+		     gunoff[1] = 5;
 		     gunoff[2] = 0;
 		break;
 		case WP_FG42:
 			 gunoff[0] = 0;
-		     gunoff[1] = 2;
-		     gunoff[2] = -1;
+		     gunoff[1] = 9;
+		     gunoff[2] = -4;
 		break;
-		case WP_BAR:
-			 gunoff[0] = -3;
-		     gunoff[1] = 3;
-		     gunoff[2] = -1;
+		case WP_TESLA:
+			 gunoff[0] = 1;
+		     gunoff[1] = 7;
+		     gunoff[2] = -3;
 		break;
 		default:
 		    gunoff[0] = cg_gun_x.value;

@@ -164,13 +164,13 @@ void AICast_Die( gentity_t *self, gentity_t *inflictor, gentity_t *attacker, int
 	qboolean nogib = qtrue;
 	char mapname[MAX_QPATH];
 	
-	qboolean modPanzerfaust = (meansOfDeath == MOD_ROCKET || meansOfDeath == MOD_ROCKET_SPLASH);
-	qboolean modKicked = (meansOfDeath == MOD_KICKED);
-	qboolean modKnife = (meansOfDeath == MOD_KNIFE);
-	qboolean modCrush = (meansOfDeath == MOD_CRUSH);
-	qboolean modFalling = (meansOfDeath == MOD_FALLING);
-	qboolean killerPlayer	 = attacker && attacker->client && !( attacker->aiCharacter );
-	qboolean killerEnv	 = attacker && !(attacker->client) && !( attacker->aiCharacter );
+	//qboolean modPanzerfaust = (meansOfDeath == MOD_ROCKET || meansOfDeath == MOD_ROCKET_SPLASH);
+	//qboolean modKicked = (meansOfDeath == MOD_KICKED);
+	//qboolean modKnife = (meansOfDeath == MOD_KNIFE);
+	//qboolean modCrush = (meansOfDeath == MOD_CRUSH);
+	//qboolean modFalling = (meansOfDeath == MOD_FALLING);
+	//qboolean killerPlayer	 = attacker && attacker->client && !( attacker->aiCharacter );
+	//qboolean killerEnv	 = attacker && !(attacker->client) && !( attacker->aiCharacter );
 	
 	/*{
 		char x[1000];
@@ -181,7 +181,7 @@ void AICast_Die( gentity_t *self, gentity_t *inflictor, gentity_t *attacker, int
 	}*/
 	
 	
-	if(self->aiCharacter == AICHAR_LOPER && killerPlayer && modPanzerfaust)
+	/*if(self->aiCharacter == AICHAR_LOPER && killerPlayer && modPanzerfaust)
 	{
 		if ( !g_cheats.integer )
 		{
@@ -221,6 +221,7 @@ void AICast_Die( gentity_t *self, gentity_t *inflictor, gentity_t *attacker, int
 		steamSetAchievement("ACH_HEIN_NOSHOT");
 		}
 	}
+	*/
 
 
 

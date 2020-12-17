@@ -829,7 +829,7 @@ char *AIFunc_Heinrich_MeleeStart( cast_state_t *cs ) {
 }
 
 #define HEINRICH_RAISEDEAD_DELAY        1000   // RealRTCW was 1200
-#define HEINRICH_RAISEDEAD_COUNT        3
+#define HEINRICH_RAISEDEAD_COUNT        9
 int lastRaise;
 
 char *AIFunc_Heinrich_RaiseDead( cast_state_t *cs ) {

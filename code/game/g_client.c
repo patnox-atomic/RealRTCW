@@ -1633,22 +1633,22 @@ void SetupWeaponsForSkill_MEDIUM() // Medium
 void SetupWeaponsForSkill_HARD() // Hard
 {
 	// 9mm
-	ammoTable[WP_LUGER].maxammo = 300;
-	ammoTable[WP_MP40].maxammo = 300;
-	ammoTable[WP_MP34].maxammo = 300;
-	ammoTable[WP_STEN].maxammo = 300;
-	ammoTable[WP_SILENCER].maxammo = 300;
+	ammoTable[WP_LUGER].maxammo = 400;
+	ammoTable[WP_MP40].maxammo = 400;
+	ammoTable[WP_MP34].maxammo = 400;
+	ammoTable[WP_STEN].maxammo = 400;
+	ammoTable[WP_SILENCER].maxammo = 400;
 	// 45cal
 	ammoTable[WP_COLT].maxammo = 300;
 	ammoTable[WP_AKIMBO].maxammo = 300;
 	ammoTable[WP_THOMPSON].maxammo = 300;
 	// mauserammo
-	ammoTable[WP_MAUSER].maxammo = 400;
-	ammoTable[WP_FG42].maxammo = 400;
-	ammoTable[WP_SNIPERRIFLE].maxammo = 400;
-	ammoTable[WP_FG42SCOPE].maxammo = 400;
-	ammoTable[WP_G43].maxammo = 400;
-	ammoTable[WP_MG42M].maxammo = 400;
+	ammoTable[WP_MAUSER].maxammo = 300;
+	ammoTable[WP_FG42].maxammo = 300;
+	ammoTable[WP_SNIPERRIFLE].maxammo = 300;
+	ammoTable[WP_FG42SCOPE].maxammo = 300;
+	ammoTable[WP_G43].maxammo = 300;
+	ammoTable[WP_MG42M].maxammo = 300;
 	// barammo
 	ammoTable[WP_BAR].maxammo = 300;
 	ammoTable[WP_M1GARAND].maxammo = 300;
@@ -1660,7 +1660,7 @@ void SetupWeaponsForSkill_HARD() // Hard
 	// mp44
 	ammoTable[WP_MP44].maxammo = 300;
 	// m97
-	ammoTable[WP_M97].maxammo = 50;
+	ammoTable[WP_M97].maxammo = 100;
     // revolver
 	ammoTable[WP_REVOLVER].maxammo = 50;
 	// throwables

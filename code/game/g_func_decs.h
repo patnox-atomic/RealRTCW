@@ -1284,12 +1284,12 @@ extern qboolean AICast_ScriptAction_Sight ( cast_state_t * cs , char * params ) 
 extern qboolean AICast_ScriptAction_NoSight ( cast_state_t * cs , char * params ) ;
 extern qboolean AICast_ScriptAction_FoundSecret ( cast_state_t * cs , char * params ) ;
 extern qboolean AICast_ScriptAction_ChangeLevel ( cast_state_t * cs , char * params ) ;
-extern qboolean AICast_ScriptAction_AchievementMap_W3D ( cast_state_t * cs , char * params ) ;
-extern qboolean AICast_ScriptAction_AchievementMap_W3DSEC ( cast_state_t * cs , char * params ) ;
-extern qboolean AICast_ScriptAction_Achievement_goldchest ( cast_state_t * cs , char * params ) ;
-extern qboolean AICast_ScriptAction_Achievement_warcrime ( cast_state_t * cs , char * params ) ;
-extern qboolean AICast_ScriptAction_Achievement_speedrun ( cast_state_t * cs , char * params ) ;
-extern qboolean AICast_ScriptAction_Achievement_training ( cast_state_t * cs , char * params ) ;
+extern qboolean AICast_ScriptAction_Achievement_booze ( cast_state_t * cs , char * params ) ;
+extern qboolean AICast_ScriptAction_Achievement_party ( cast_state_t * cs , char * params ) ;
+extern qboolean AICast_ScriptAction_Achievement_winterstein ( cast_state_t * cs , char * params ) ;
+//extern qboolean AICast_ScriptAction_Achievement_warcrime ( cast_state_t * cs , char * params ) ;
+extern qboolean AICast_ScriptAction_Achievement_speedrun_norway ( cast_state_t * cs , char * params ) ;
+/*extern qboolean AICast_ScriptAction_Achievement_training ( cast_state_t * cs , char * params ) ;
 extern qboolean AICast_ScriptAction_Achievement_strangelove ( cast_state_t * cs , char * params ) ;
 extern qboolean AICast_ScriptAction_Achievement_rocketstealth ( cast_state_t * cs , char * params ) ;
 extern qboolean AICast_ScriptAction_Achievement_crystal ( cast_state_t * cs , char * params ) ;
@@ -1311,7 +1311,7 @@ extern qboolean AICast_ScriptAction_Achievement_chapter6_hard ( cast_state_t * c
 extern qboolean AICast_ScriptAction_Achievement_chapter7_hard ( cast_state_t * cs , char * params ) ;
 extern qboolean AICast_ScriptAction_Achievement_boss1 ( cast_state_t * cs , char * params ) ;
 extern qboolean AICast_ScriptAction_Achievement_boss2 ( cast_state_t * cs , char * params ) ;
-extern qboolean AICast_ScriptAction_Achievement_boss3 ( cast_state_t * cs , char * params ) ;
+extern qboolean AICast_ScriptAction_Achievement_boss3 ( cast_state_t * cs , char * params ) ;*/
 extern qboolean AICast_ScriptAction_EndGame ( cast_state_t * cs , char * params ) ;
 extern qboolean AICast_ScriptAction_Teleport ( cast_state_t * cs , char * params ) ;
 extern qboolean AICast_ScriptAction_SavePersistant ( cast_state_t * cs , char * params ) ;
