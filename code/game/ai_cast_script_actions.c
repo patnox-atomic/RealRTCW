@@ -2447,7 +2447,7 @@ qboolean AICast_ScriptAction_Achievement_speedrun_norway( cast_state_t *cs, char
 	playtime = AICast_PlayTime( player->s.number );
 	}
 
-    if ( playtime <= 60000)
+    if ( playtime <= 90000)
 	{
 	if ( !g_cheats.integer ) 
 	{
