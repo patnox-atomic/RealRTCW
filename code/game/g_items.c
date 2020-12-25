@@ -218,7 +218,8 @@ UseHoldableItem
 void UseHoldableItem( gentity_t *ent, int item ) {
 	switch ( item ) {
 	case HI_WINE:           // 1921 Chateu Lafite - gives 25 pts health up to max health
-		ent->health += 25;
+		ent->client->ps.powerups[PW_NOFATIGUE] = 60000;
+		ent->health += 50;
 		if ( ent->health > ent->client->ps.stats[STAT_MAX_HEALTH] ) {
 			ent->health = ent->client->ps.stats[STAT_MAX_HEALTH];
 		}
@@ -233,14 +234,14 @@ void UseHoldableItem( gentity_t *ent, int item ) {
 			ent->health = ent->client->ps.stats[STAT_MAX_HEALTH] * 3.0;
 		}
 		} else if ( ent->health > ent->client->ps.stats[STAT_MAX_HEALTH] ) {
-			ent->health = ent->client->ps.stats[STAT_MAX_HEALTH] * 1.25;
+			ent->health = ent->client->ps.stats[STAT_MAX_HEALTH] * 2.0;
 		}
 		break;
 
 	case HI_BANDAGES:       
-		ent->health += 20;
-			if ( ent->health > ent->client->ps.stats[STAT_MAX_HEALTH] ) {
-			ent->health = ent->client->ps.stats[STAT_MAX_HEALTH];
+		ent->health += 30; 
+		if ( ent->health > ent->client->ps.stats[STAT_MAX_HEALTH] ) {
+		ent->health = ent->client->ps.stats[STAT_MAX_HEALTH];
 		}
 		break;
 

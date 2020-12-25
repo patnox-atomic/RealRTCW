@@ -396,15 +396,15 @@ static float PM_CmdScale( usercmd_t *cmd ) {
 	scale = (float)pm->ps->speed * max / ( 127.0 * total );
 
 if ( pm->ps->aiChar == AICHAR_ZOMBIE || pm->ps->aiChar == AICHAR_WARZOMBIE ) { // RealRTCW
-		scale *= 1.1;
+		scale *= 2.0;
 	}
 
 	if ( pm->ps->aiChar == AICHAR_ELITEGUARD ) {
-		scale *= 1.1;
+		scale *= 1.5;
 	}
 
 		if ( pm->ps->aiChar == AICHAR_HEINRICH ) {
-		scale *= 1.3;
+		scale *= 1.5;
 	}
 
 			if ( pm->ps->aiChar == AICHAR_SUPERSOLDIER ) {
@@ -412,7 +412,7 @@ if ( pm->ps->aiChar == AICHAR_ZOMBIE || pm->ps->aiChar == AICHAR_WARZOMBIE ) { /
 	}
 
 		if ( pm->ps->aiChar == AICHAR_HELGA ) {
-		scale *= 1.3;
+		scale *= 1.5;
 	}
 
 
@@ -449,13 +449,13 @@ if ( pm->ps->aiChar == AICHAR_ZOMBIE || pm->ps->aiChar == AICHAR_WARZOMBIE ) { /
 if ( ! (pm->ps->aiChar))  // RealRTCW weapon weight does not affect AI now
 	{ 
 		if ( ( pm->ps->weapon == WP_VENOM ) || ( pm->ps->weapon == WP_PANZERFAUST ) || ( pm->ps->weapon == WP_FLAMETHROWER ) || ( pm->ps->weapon == WP_TESLA ) || ( pm->ps->weapon == WP_MG42M ) ) {
-			scale *= 0.90; 
+			scale *= 1.4; 
         }
 		if ( ( pm->ps->weapon == WP_MP40 ) || ( pm->ps->weapon == WP_THOMPSON ) || ( pm->ps->weapon == WP_STEN ) || ( pm->ps->weapon == WP_MP34 ) || ( pm->ps->weapon == WP_FG42 ) || ( pm->ps->weapon == WP_MAUSER ) || ( pm->ps->weapon == WP_MP44 ) || ( pm->ps->weapon == WP_GARAND ) || ( pm->ps->weapon == WP_G43 ) || ( pm->ps->weapon == WP_BAR )  || ( pm->ps->weapon == WP_M1GARAND )  || ( pm->ps->weapon == WP_PPSH ) || ( pm->ps->weapon == WP_MOSIN ) || (pm->ps->weapon == WP_M97) )  {
-			scale *= 0.90; 
+			scale *= 1.4; 
 		}
-		if ( ( pm->ps->weapon == WP_LUGER ) || ( pm->ps->weapon == WP_COLT ) || ( pm->ps->weapon == WP_AKIMBO ) || ( pm->ps->weapon == WP_SILENCER ) || ( pm->ps->weapon == WP_DYNAMITE ) || ( pm->ps->weapon == WP_GRENADE_LAUNCHER ) || ( pm->ps->weapon == WP_GRENADE_PINEAPPLE )  || ( pm->ps->weapon == WP_TT33 ) || ( pm->ps->weapon == WP_REVOLVER ) ) {
-			scale *= 0.95; 
+		if ( ( pm->ps->weapon == WP_LUGER ) || ( pm->ps->weapon == WP_COLT ) || ( pm->ps->weapon == WP_AKIMBO ) || ( pm->ps->weapon == WP_SILENCER ) || ( pm->ps->weapon == WP_DYNAMITE ) || ( pm->ps->weapon == WP_GRENADE_LAUNCHER ) || ( pm->ps->weapon == WP_GRENADE_PINEAPPLE )  || ( pm->ps->weapon == WP_TT33 ) || ( pm->ps->weapon == WP_REVOLVER ) || ( pm->ps->weapon == WP_KNIFE )  ) {
+			scale *= 1.4; 
 		}
 		if ( ( pm->ps->weapon == WP_FG42SCOPE ) || ( pm->ps->weapon == WP_SNOOPERSCOPE ) || ( pm->ps->weapon == WP_SNIPERRIFLE )  ) {
 			scale *= 0.40; 
@@ -2747,10 +2747,6 @@ void PM_AdjustAimSpreadScale( void ) {
 			for ( i = 0; i < 2; i++ )
 				viewchange += fabs( pm->ps->velocity[i] );
 			break;
-		case WP_PANZERFAUST:        // don't take movement into account as much
-			for ( i = 0; i < 2; i++ )
-				viewchange += ( 0.01f * fabs( pm->ps->velocity[i] ) );
-			break;
 		default:
 			break;
 		}
@@ -3749,7 +3745,7 @@ case WP_MG42M:
          // Panzerfaust - Medium recoil
 	case WP_PANZERFAUST:
 		pm->pmext->weapRecoilTime = pm->cmd.serverTime;
-		pm->pmext->weapRecoilDuration = 60;
+		pm->pmext->weapRecoilDuration = 20;
 		if ( pm->ps->pm_flags & PMF_DUCKED ) {
 			pm->pmext->weapRecoilYaw = crandom() * .5f;
 			pm->pmext->weapRecoilPitch = .5f * random();
@@ -4258,7 +4254,7 @@ void PM_Sprint( void ) {
 			) {
 
 		if ( pm->ps->powerups[PW_NOFATIGUE] ) {    // take time from powerup before taking it from sprintTime
-			pm->ps->powerups[PW_NOFATIGUE] -= 25; // RealRTCW was 50
+			pm->ps->powerups[PW_NOFATIGUE] -= 15; // RealRTCW was 50
 
 			pm->ps->sprintTime += 10;           // (SA) go ahead and continue to recharge stamina at double rate with stamina powerup even when exerting
 			if ( pm->ps->sprintTime > 20000 ) {
@@ -4287,7 +4283,7 @@ void PM_Sprint( void ) {
 		// JPW NERVE adjusted for framerate independence
 
 		// regular recharge
-		pm->ps->sprintTime += 500 * pml.frametime;
+		pm->ps->sprintTime += 1000 * pml.frametime;
 
 		// additional (2x) recharge if in top 75% of sprint bar, or with stamina powerup
 		if ( pm->ps->sprintTime > 5000 || pm->ps->powerups[PW_NOFATIGUE] ) {

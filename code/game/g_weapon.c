@@ -687,7 +687,7 @@ float G_GetWeaponSpread( int weapon ) {
 			case WP_COLT:       return 400; 
 			case WP_AKIMBO:     return 500; 
 			case WP_VENOM:      return 1000;
-			case WP_MP40:       return 850; 
+			case WP_MP40:       return 700; 
 			case WP_MP34:       return 900; 
 			case WP_TT33:       return 450; 
 			case WP_PPSH:       return 1000; 
@@ -1219,14 +1219,14 @@ gentity_t *weapon_grenadelauncher_fire( gentity_t *ent, int grenType ) {
 
 	// pineapples are not thrown as far as mashers
 	if ( grenType == WP_GRENADE_LAUNCHER ) {
-		upangle *= 800;     //									    0.0 / 800.0
+		upangle *= 1000;     //									    0.0 / 800.0
 	} else if ( grenType == WP_GRENADE_PINEAPPLE )                                {
 // JPW NERVE
 		if ( g_gametype.integer != GT_SINGLE_PLAYER ) {
-			upangle *= 800;
+			upangle *= 1000;
 		} else {
 // jpw
-			upangle *= 800;     //									    0.0 / 600.0
+			upangle *= 1000;     //									    0.0 / 600.0
 		}
 	}
 // JPW NERVE
@@ -1235,7 +1235,7 @@ gentity_t *weapon_grenadelauncher_fire( gentity_t *ent, int grenType ) {
 	}
 // jpw
 	else {      // WP_DYNAMITE
-		upangle *= 400;     //										0.0 / 100.0
+		upangle *= 1000;     //										0.0 / 100.0
 
 	}
 	/*

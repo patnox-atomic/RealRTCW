@@ -932,7 +932,7 @@ qboolean CG_AtmosphericKludge()
   	kludgeChecked = qtrue;
   	kludgeResult = qfalse;
 
-  	if( !Q_stricmp( cgs.mapname, "maps/norway.bsp" ) )
+  	if( !Q_stricmp( cgs.mapname, "maps/cutscene1.bsp" ) )
   	{
   	  	CG_EffectParse( "T=SNOW,B=5 10,C=0.5,G=0.3 2,BV=50 50,GV=30 80,W=1 2,D=15000" ); // strong snow
   	  	return( kludgeResult = qtrue );
@@ -940,61 +940,139 @@ qboolean CG_AtmosphericKludge()
 	
 	  	if( !Q_stricmp( cgs.mapname, "maps/escape1.bsp" ) )
   	{
-  	  	CG_EffectParse( "T=SNOW,B=5 10,C=0.5,G=0.3 2,BV=20 30,GV=25 40,W=3 5,D=5000" ); // weak snow
+  	  	CG_EffectParse( "T=SNOW,B=5 10,C=0.5,G=0.3 2,BV=50 50,GV=30 80,W=1 2,D=15000" ); // weak snow
   	  	return( kludgeResult = qtrue );
   	}
 
 	  	if( !Q_stricmp( cgs.mapname, "maps/escape2.bsp" ) )
   	{
-  	  	CG_EffectParse( "T=SNOW,B=5 10,C=0.5,G=0.3 2,BV=20 30,GV=25 40,W=3 5,D=5000" ); // weak snow
+  	  	CG_EffectParse( "T=SNOW,B=5 10,C=0.5,G=0.3 2,BV=50 50,GV=30 80,W=1 2,D=15000" ); // weak snow
   	  	return( kludgeResult = qtrue );
   	}
 
 		if( !Q_stricmp( cgs.mapname, "maps/tram.bsp" ) )
   	{
-  	  	CG_EffectParse( "T=SNOW,B=5 10,C=0.5,G=0.3 2,BV=20 30,GV=25 40,W=3 5,D=5000" ); // weak snow
+  	  	CG_EffectParse( "T=SNOW,B=5 10,C=0.5,G=0.3 2,BV=50 50,GV=30 80,W=1 2,D=15000" ); // weak snow
   	  	return( kludgeResult = qtrue );
   	}
 
 		if( !Q_stricmp( cgs.mapname, "maps/village1.bsp" ) )
   	{
-  	  	CG_EffectParse( "T=SNOW,B=5 10,C=0.5,G=0.3 2,BV=20 30,GV=25 40,W=3 5,D=5000" ); // weak snow
+  	  	CG_EffectParse( "T=SNOW,B=5 10,C=0.5,G=0.3 2,BV=50 50,GV=30 80,W=1 2,D=15000" ); // weak snow
   	  	return( kludgeResult = qtrue );
   	}
 
-	  	if( !Q_stricmp( cgs.mapname, "maps/dark.bsp" ) )
+	  	if( !Q_stricmp( cgs.mapname, "maps/cutscene6.bsp" ) )
   	{
-  	  	CG_EffectParse( "T=RAIN,B=5 10,C=0.5,G=0.5 2,BV=50 50,GV=200 200,W=1 2,D=5000" ); // strong rain
+  	  	CG_EffectParse( "T=SNOW,B=5 10,C=0.5,G=0.3 2,BV=50 50,GV=30 80,W=1 2,D=15000" ); // weak snow
   	  	return( kludgeResult = qtrue );
   	}
 
-	  	if( !Q_stricmp( cgs.mapname, "maps/sp_ameland.bsp" ) )
+	  	if( !Q_stricmp( cgs.mapname, "maps/forest.bsp" ) )
   	{
-  	  	CG_EffectParse( "T=RAIN,B=5 10,C=0.5,G=0.5 2,BV=50 50,GV=200 200,W=1 2,D=5000" ); // strong rain
+  	  	CG_EffectParse( "T=SNOW,B=5 10,C=0.5,G=0.3 2,BV=50 50,GV=30 80,W=1 2,D=15000" ); // weak snow
   	  	return( kludgeResult = qtrue );
   	}
 
-	  	  	if( !Q_stricmp( cgs.mapname, "maps/castlekeep.bsp" ) )
+	if( !Q_stricmp( cgs.mapname, "maps/baseout.bsp" ) )
   	{
-  	  	CG_EffectParse( "T=RAIN,B=5 10,C=0.5,G=0.5 2,BV=50 50,GV=200 200,W=1 2,D=5000" ); // strong rain
+  	  	CG_EffectParse( "T=SNOW,B=5 10,C=0.5,G=0.3 2,BV=50 50,GV=30 80,W=1 2,D=15000" ); // weak snow
   	  	return( kludgeResult = qtrue );
   	}
 
-	  	if( !Q_stricmp( cgs.mapname, "maps/fstmis.bsp" ) )
+    if( !Q_stricmp( cgs.mapname, "maps/assault.bsp" ) )
   	{
-  	  	CG_EffectParse( "T=SNOW,B=5 10,C=0.5,G=0.3 2,BV=50 50,GV=30 80,W=1 2,D=15000" ); // strong snow
+  	  	CG_EffectParse( "T=SNOW,B=5 10,C=0.5,G=0.3 2,BV=50 50,GV=30 80,W=1 2,D=15000" ); // weak snow
   	  	return( kludgeResult = qtrue );
   	}
 
-	  	  	if( !Q_stricmp( cgs.mapname, "maps/dep_castle.bsp" ) )
+    if( !Q_stricmp( cgs.mapname, "maps/cutscene9.bsp" ) )
   	{
-  	  	CG_EffectParse( "T=SNOW,B=5 10,C=0.5,G=0.3 2,BV=50 50,GV=30 80,W=1 2,D=15000" ); // strong snow
+  	  	CG_EffectParse( "T=SNOW,B=5 10,C=0.5,G=0.3 2,BV=50 50,GV=30 80,W=1 2,D=15000" ); // weak snow
   	  	return( kludgeResult = qtrue );
   	}
 
-	  	  	  	if( !Q_stricmp( cgs.mapname, "maps/cargo.bsp" ) )
+    if( !Q_stricmp( cgs.mapname, "maps/sfm.bsp" ) )
   	{
-  	  	CG_EffectParse( "T=RAIN,B=5 10,C=0.5,G=0.5 2,BV=50 50,GV=200 200,W=1 2,D=5000" ); // strong rain
+  	  	CG_EffectParse( "T=SNOW,B=5 10,C=0.5,G=0.3 2,BV=50 50,GV=30 80,W=1 2,D=15000" ); // weak snow
+  	  	return( kludgeResult = qtrue );
+  	}
+
+    if( !Q_stricmp( cgs.mapname, "maps/factory.bsp" ) )
+  	{
+  	  	CG_EffectParse( "T=SNOW,B=5 10,C=0.5,G=0.3 2,BV=50 50,GV=30 80,W=1 2,D=15000" ); // weak snow
+  	  	return( kludgeResult = qtrue );
+  	}
+
+    if( !Q_stricmp( cgs.mapname, "maps/trainyard.bsp" ) )
+  	{
+  	  	CG_EffectParse( "T=SNOW,B=5 10,C=0.5,G=0.3 2,BV=50 50,GV=30 80,W=1 2,D=15000" ); // weak snow
+  	  	return( kludgeResult = qtrue );
+  	}
+
+    if( !Q_stricmp( cgs.mapname, "maps/cutscene11.bsp" ) )
+  	{
+  	  	CG_EffectParse( "T=SNOW,B=5 10,C=0.5,G=0.3 2,BV=50 50,GV=30 80,W=1 2,D=15000" ); // weak snow
+  	  	return( kludgeResult = qtrue );
+  	}
+
+    if( !Q_stricmp( cgs.mapname, "maps/norway.bsp" ) )
+  	{
+  	  	CG_EffectParse( "T=SNOW,B=5 10,C=0.5,G=0.3 2,BV=50 50,GV=30 80,W=1 2,D=15000" ); // weak snow
+  	  	return( kludgeResult = qtrue );
+  	}
+
+    if( !Q_stricmp( cgs.mapname, "maps/cutscene14.bsp" ) )
+  	{
+  	  	CG_EffectParse( "T=SNOW,B=5 10,C=0.5,G=0.3 2,BV=50 50,GV=30 80,W=1 2,D=15000" ); // weak snow
+  	  	return( kludgeResult = qtrue );
+  	}
+
+    if( !Q_stricmp( cgs.mapname, "maps/dam.bsp" ) )
+  	{
+  	  	CG_EffectParse( "T=SNOW,B=5 10,C=0.5,G=0.3 2,BV=50 50,GV=30 80,W=1 2,D=15000" ); // weak snow
+  	  	return( kludgeResult = qtrue );
+  	}
+
+    if( !Q_stricmp( cgs.mapname, "maps/village2.bsp" ) )
+  	{
+  	  	CG_EffectParse( "T=SNOW,B=5 10,C=0.5,G=0.3 2,BV=50 50,GV=30 80,W=1 2,D=15000" ); // weak snow
+  	  	return( kludgeResult = qtrue );
+  	}
+
+    if( !Q_stricmp( cgs.mapname, "maps/chateau.bsp" ) )
+  	{
+  	  	CG_EffectParse( "T=SNOW,B=5 10,C=0.5,G=0.3 2,BV=50 50,GV=30 80,W=1 2,D=15000" ); // weak snow
+  	  	return( kludgeResult = qtrue );
+  	}
+
+    if( !Q_stricmp( cgs.mapname, "maps/dark.bsp" ) )
+  	{
+  	  	CG_EffectParse( "T=SNOW,B=5 10,C=0.5,G=0.3 2,BV=50 50,GV=30 80,W=1 2,D=15000" ); // weak snow
+  	  	return( kludgeResult = qtrue );
+  	}
+
+    if( !Q_stricmp( cgs.mapname, "maps/castle.bsp" ) )
+  	{
+  	  	CG_EffectParse( "T=SNOW,B=5 10,C=0.5,G=0.3 2,BV=50 50,GV=30 80,W=1 2,D=15000" ); // weak snow
+  	  	return( kludgeResult = qtrue );
+  	}
+
+    if( !Q_stricmp( cgs.mapname, "maps/end.bsp" ) )
+  	{
+  	  	CG_EffectParse( "T=SNOW,B=5 10,C=0.5,G=0.3 2,BV=50 50,GV=30 80,W=1 2,D=15000" ); // weak snow
+  	  	return( kludgeResult = qtrue );
+  	}
+
+    if( !Q_stricmp( cgs.mapname, "maps/cutscene19.bsp" ) )
+  	{
+  	  	CG_EffectParse( "T=SNOW,B=5 10,C=0.5,G=0.3 2,BV=50 50,GV=30 80,W=1 2,D=15000" ); // weak snow
+  	  	return( kludgeResult = qtrue );
+  	}
+
+    if( !Q_stricmp( cgs.mapname, "maps/fr.bsp" ) )
+  	{
+  	  	CG_EffectParse( "T=SNOW,B=5 10,C=0.5,G=0.3 2,BV=50 50,GV=30 80,W=1 2,D=15000" ); // weak snow
   	  	return( kludgeResult = qtrue );
   	}
 
@@ -1021,7 +1099,7 @@ qboolean CG_AtmosphericKludge()
 		}
 		else if (cg_forceAtmosphericEffects.integer == 2)
 		{
-			CG_EffectParse("T=SNOW,B=5 10,C=0.5,G=0.3 2,BV=20 30,GV=25 40,W=3 5,D=2400");
+  	  	CG_EffectParse( "T=SNOW,B=5 10,C=0.5,G=0.3 2,BV=50 50,GV=30 80,W=1 2,D=25000" ); // strong snow
 			return(kludgeResult = qtrue);
 		}
 	}
