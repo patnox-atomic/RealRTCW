@@ -3617,8 +3617,8 @@ static void PM_Weapon( void ) {
 // real recoil
 	pm->pmext->lastRecoilDeltaTime = 0;
 
- 	/*switch ( pm->ps->weapon ) {
-case WP_MG42M:
+ 	switch ( pm->ps->weapon ) {
+/*case WP_MG42M:
 		pm->pmext->weapRecoilTime = pm->cmd.serverTime;
 		if ( pm->ps->pm_flags & PMF_DUCKED ) {
 			pm->pmext->weapRecoilDuration = 80;
