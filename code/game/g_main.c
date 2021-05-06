@@ -247,7 +247,7 @@ cvarTable_t gameCvarTable[] = {
 	{ &sk_plr_dmg_luger, "sk_plr_dmg_luger", "7", CVAR_CHEAT, 0, qfalse  },
 	{ &sk_plr_dmg_colt, "sk_plr_dmg_colt", "10", CVAR_CHEAT, 0, qfalse  },  
 	{ &sk_plr_dmg_mp40, "sk_plr_dmg_mp40", "6", CVAR_CHEAT, 0, qfalse  },
-	{ &sk_plr_dmg_thompson, "sk_plr_dmg_thompson", "9", CVAR_CHEAT, 0, qfalse  }, 
+	{ &sk_plr_dmg_thompson, "sk_plr_dmg_thompson", "11", CVAR_CHEAT, 0, qfalse  }, 
 	{ &sk_plr_dmg_sten, "sk_plr_dmg_sten", "7", CVAR_CHEAT, 0, qfalse  },
 	{ &sk_plr_dmg_mauser, "sk_plr_dmg_mauser", "35", CVAR_CHEAT, 0, qfalse  }, 
 	{ &sk_plr_dmg_sniperrifle, "sk_plr_dmg_sniperrifle", "35", CVAR_CHEAT, 0, qfalse  },

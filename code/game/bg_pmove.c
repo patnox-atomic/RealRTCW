@@ -3618,7 +3618,7 @@ static void PM_Weapon( void ) {
 	pm->pmext->lastRecoilDeltaTime = 0;
 
  	switch ( pm->ps->weapon ) {
-case WP_MG42M:
+/*case WP_MG42M:
 		pm->pmext->weapRecoilTime = pm->cmd.serverTime;
 		if ( pm->ps->pm_flags & PMF_DUCKED ) {
 			pm->pmext->weapRecoilDuration = 80;
@@ -3758,6 +3758,7 @@ case WP_MG42M:
 			pm->pmext->weapRecoilPitch = 1.0f * random();
 		}
 		break;	
+		*/
 	default:
 		pm->pmext->weapRecoilTime = 0;
 		pm->pmext->weapRecoilYaw = 0.f;
