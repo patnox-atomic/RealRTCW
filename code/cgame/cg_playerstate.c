@@ -84,19 +84,21 @@ void CG_CheckAmmo( void ) {
 		case WP_MAUSER:
 		case WP_GARAND:
 		// RealRTCW weapons
-		case WP_MP34:
-		case WP_PPSH:
-		case WP_TT33:
-		case WP_MOSIN:
+		case WP_P38:
 		case WP_G43:
 	    case WP_M1GARAND:
 		case WP_BAR:
 		case WP_MP44:
 		case WP_MG42M:
 		case WP_M97:
-		case WP_REVOLVER:
+		case WP_WELROD:
+		case WP_M30:
 		default:
 			total += cg.snap->ps.ammo[BG_FindAmmoForWeapon( i )] * 1000;
+//				break;
+//			default:
+//				total += cg.snap->ps.ammo[BG_FindAmmoForWeapon(i)] * 200;
+//				break;
 		}
 
 		if ( total >= 5000 ) {

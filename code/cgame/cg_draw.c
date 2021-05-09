@@ -2095,8 +2095,8 @@ CG_DrawWeapReticle
 static void CG_DrawWeapReticle( void ) {
 	int weap;
 	vec4_t color = {0, 0, 0, 1};
-	vec4_t snoopercolor = {0.7, .8, 0.7, 0};    // greenish
-	float snooperBrightness;
+	//vec4_t snoopercolor = {0.7, .8, 0.7, 0};    // greenish
+	//float snooperBrightness;
 	float x = 80, y, w = 240, h = 240;
 	float mask = 0, lb = 0;
 
@@ -2110,7 +2110,7 @@ static void CG_DrawWeapReticle( void ) {
 	}
 
 
-	if ( weap == WP_SNIPERRIFLE ) {
+	if ( weap == WP_SNIPERRIFLE || WP_SNOOPERSCOPE ) {
 		// sides
 		if ( cg_fixedAspect.integer ) {
 			if ( cgs.glconfig.vidWidth * 480.0 > cgs.glconfig.vidHeight * 640.0 ) {
@@ -2175,7 +2175,7 @@ static void CG_DrawWeapReticle( void ) {
 		CG_FillRect( 319, 300, 2, 178, color );  // center bot
 		CG_FillRect( 380, 239, 177, 2, color );  // right
 
-	}  else if ( weap == WP_SNOOPERSCOPE ) {
+	}  /*else if ( weap == WP_SNOOPERSCOPE ) {
 		// sides
 		if ( cg_fixedAspect.integer ) {
 			if ( cgs.glconfig.vidWidth * 480.0 > cgs.glconfig.vidHeight * 640.0 ) {
@@ -2247,7 +2247,7 @@ static void CG_DrawWeapReticle( void ) {
 		CG_FillRect( 319, 60, 1, 360, color );   // vert
 
 		CG_FillRect( 240, 220, 1, 40, color );   // r
-	} else if ( weap == WP_FG42SCOPE ) {
+	}*/ else if ( weap == WP_FG42SCOPE ) {
 		// sides
 		if ( cg_fixedAspect.integer ) {
 			if ( cgs.glconfig.vidWidth * 480.0 > cgs.glconfig.vidHeight * 640.0 ) {
@@ -3355,14 +3355,14 @@ static void CG_DrawFlashZoomTransition( void ) {
 	if ( frac < fadeTime ) {
 		frac = frac / (float)fadeTime;
 
-		if ( cg.weaponSelect == WP_SNOOPERSCOPE ) {
+		/*if ( cg.weaponSelect == WP_SNOOPERSCOPE ) {
 //			Vector4Set( color, 0.7f, 0.3f, 0.7f, 1.0f - frac );
 //			Vector4Set( color, 1, 0.5, 1, 1.0f - frac );
 //			Vector4Set( color, 0.5f, 0.3f, 0.5f, 1.0f - frac );
 			Vector4Set( color, 0.7f, 0.6f, 0.7f, 1.0f - frac );
-		} else {
+		} else {*/
 			Vector4Set( color, 0, 0, 0, 1.0f - frac );
-		}
+		
 
 		if ( cg_fixedAspect.integer ) {
 			CG_SetScreenPlacement(PLACE_STRETCH, PLACE_STRETCH);
@@ -3819,7 +3819,7 @@ static void CG_Draw2D(stereoFrame_t stereoFrame) {
 
 	if ( cg.cameraMode ) { //----(SA)	no 2d when in camera view
 		CG_DrawFlashBlend();    // (for fades)
-	//	return;
+		return;
 	}
 
 	if ( cg_draw2D.integer == 0 ) {
@@ -3844,7 +3844,7 @@ static void CG_Draw2D(stereoFrame_t stereoFrame) {
 		CG_DrawCrosshairNames();
 	} else {
 		// don't draw any status if dead
-		if ( cg.snap->ps.stats[STAT_HEALTH] > 0 && !cg.cameraMode) {
+		if ( cg.snap->ps.stats[STAT_HEALTH] > 0 ) {
 
 			if(stereoFrame == STEREO_CENTER)
 				CG_DrawCrosshair();
@@ -3869,7 +3869,7 @@ if ( !cg_oldWolfUI.integer ) {
 			CG_DrawCrosshairNames();
 			CG_DrawWeaponSelect();
 			CG_DrawHoldableSelect();
-			CG_DrawPickupItem();
+			//CG_DrawPickupItem();
 			CG_DrawReward();
 		}
 	}

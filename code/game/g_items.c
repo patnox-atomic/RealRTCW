@@ -220,11 +220,7 @@ UseHoldableItem
 void UseHoldableItem( gentity_t *ent, int item ) {
 	switch ( item ) {
 	case HI_WINE:           // 1921 Chateu Lafite - gives 25 pts health up to max health
-		ent->health += 25;
-		if ( !g_cheats.integer ) 
-		{
-		steamSetAchievement("ACH_WINE");
-		}
+		ent->health += 30;
 		if ( ent->health > ent->client->ps.stats[STAT_MAX_HEALTH] ) {
 			ent->health = ent->client->ps.stats[STAT_MAX_HEALTH];
 		}
@@ -232,39 +228,22 @@ void UseHoldableItem( gentity_t *ent, int item ) {
 
 	case HI_ADRENALINE:       
 		ent->client->ps.powerups[PW_NOFATIGUE] = 60000;
-		ent->health += 100;
-		if ( !g_cheats.integer ) 
-		{
-		steamSetAchievement("ACH_ADRENALINE");
+			ent->health += 99;
+			if ( ent->health > ent->client->ps.stats[STAT_MAX_HEALTH] ) {
+			ent->health = ent->client->ps.stats[STAT_MAX_HEALTH];
 		}
 		
-		if ( g_gameskill.integer == GSKILL_REALISM || g_gameskill.integer == GSKILL_MAX ) {
-			if ( ent->health > ent->client->ps.stats[STAT_MAX_HEALTH] ) {
-			ent->health = ent->client->ps.stats[STAT_MAX_HEALTH] * 3.0;
-		}
-		} else if ( ent->health > ent->client->ps.stats[STAT_MAX_HEALTH] ) {
-			ent->health = ent->client->ps.stats[STAT_MAX_HEALTH] * 1.25;
-		}
-		break;
 
 	case HI_BANDAGES:       
 		ent->health += 20;
-		if ( !g_cheats.integer ) 
-		{
-		steamSetAchievement("ACH_BANDAGES");
-		}
-		if ( ent->health > ent->client->ps.stats[STAT_MAX_HEALTH] ) {
-		ent->health = ent->client->ps.stats[STAT_MAX_HEALTH];
+			if ( ent->health > ent->client->ps.stats[STAT_MAX_HEALTH] ) {
+			ent->health = ent->client->ps.stats[STAT_MAX_HEALTH];
 		}
 		break;
 
 	case HI_BOOK1:
 	case HI_BOOK2:
 	case HI_BOOK3:
-	if ( !g_cheats.integer ) 
-	{
-	    steamSetAchievement("ACH_READ_BOOK");
-	}
 		G_AddEvent( ent, EV_POPUPBOOK, ( item - HI_BOOK1 ) + 1 );
 		break;
 	}
@@ -361,6 +340,7 @@ void Add_Ammo( gentity_t *ent, int weapon, int count, qboolean fillClip ) {
 		COM_BitSet( ent->client->ps.weapons, ammoweap );
 
 	case WP_TESLA:
+	case WP_WELROD:
 	case WP_FLAMETHROWER:
 		noPack = qtrue;
 		break;
@@ -465,30 +445,6 @@ int Pickup_Weapon( gentity_t *ent, gentity_t *other ) {
 //----(SA) end
 	}
 
-	if (( weapon == WP_PPSH ) && strstr (level.scriptAI, "Village1"))
-	{
-	if ( !g_cheats.integer ) 
-	{
-    steamSetAchievement("ACH_PPSH");
-	}
-	}
-
-	if (( weapon == WP_MOSIN ) && strstr (level.scriptAI, "chateau"))
-	{
-	if ( !g_cheats.integer ) 
-	{
-    steamSetAchievement("ACH_MOSIN");
-	}
-	}
-
-
-	//----(SA)	added
-	// check for special colt->akimbo add (if you've got a colt already, add the second now)
-	if ( weapon == WP_COLT ) {
-		if ( COM_BitCheck( other->client->ps.weapons, WP_COLT ) ) {
-			weapon = WP_AKIMBO;
-		}
-	}
 //----(SA)	end
 
 	// check if player already had the weapon

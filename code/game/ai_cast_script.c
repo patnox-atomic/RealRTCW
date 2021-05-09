@@ -94,59 +94,6 @@ qboolean AICast_ScriptAction_Mount( cast_state_t *cs, char *params );
 qboolean AICast_ScriptAction_Unmount( cast_state_t *cs, char *params );
 qboolean AICast_ScriptAction_SavePersistant( cast_state_t *cs, char *params );
 qboolean AICast_ScriptAction_ChangeLevel( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_AchievementMap_W3D( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_AchievementMap_W3DSEC( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_goldchest( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_warcrime( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_speedrun( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_training( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_strangelove( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_rocketstealth( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_crystal( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_stealth1( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_stealth2( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_chapter1( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_chapter2( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_chapter3( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_chapter4( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_chapter5( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_chapter6( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_chapter7( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_chapter1_hard( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_chapter2_hard( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_chapter3_hard( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_chapter4_hard( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_chapter5_hard( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_chapter6_hard( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_chapter7_hard( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_boss1( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_boss2( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_boss3( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_curse( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_stalingrad( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_timegate( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_pro51( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_sf( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_ra( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_ic( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_capuzzo( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_saucers( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_arkot( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_darkm( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_darkm_2( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_dm2( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_dm2_2( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_dm2_3( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_dm2_4( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_tda_day( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_tda_night( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_tda_dark( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_tda_plus( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_tda_arena( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_lion( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_parkour( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_manor1( cast_state_t *cs, char *params );
-qboolean AICast_ScriptAction_Achievement_manor1_2( cast_state_t *cs, char *params );
 qboolean AICast_ScriptAction_EndGame( cast_state_t *cs, char *params );			//----(SA)	added
 qboolean AICast_ScriptAction_Teleport( cast_state_t *cs, char *params );		//----(SA)	added
 qboolean AICast_ScriptAction_FoundSecret( cast_state_t *cs, char *params );
@@ -234,62 +181,6 @@ cast_script_stack_action_t scriptActions[] =
 	{"unmount",          AICast_ScriptAction_Unmount},
 	{"savepersistant",   AICast_ScriptAction_SavePersistant},
 	{"changelevel",      AICast_ScriptAction_ChangeLevel},
-	// Achievements
-	{"achievement_map_w3d",      AICast_ScriptAction_AchievementMap_W3D},
-	{"achievement_map_w3dsec",      AICast_ScriptAction_AchievementMap_W3DSEC},
-	{"achievement_goldchest",      AICast_ScriptAction_Achievement_goldchest},
-	{"achievement_warcrime",      AICast_ScriptAction_Achievement_warcrime},
-	{"achievement_speedrun",      AICast_ScriptAction_Achievement_speedrun},
-	{"achievement_training",      AICast_ScriptAction_Achievement_training},
-	{"achievement_strangelove",      AICast_ScriptAction_Achievement_strangelove},
-	{"achievement_rocketstealth",      AICast_ScriptAction_Achievement_rocketstealth},
-	{"achievement_crystal",      AICast_ScriptAction_Achievement_crystal},
-	{"achievement_stealth1",      AICast_ScriptAction_Achievement_stealth1},
-	{"achievement_stealth2",      AICast_ScriptAction_Achievement_stealth2},
-	{"achievement_chapter1",      AICast_ScriptAction_Achievement_chapter1},
-	{"achievement_chapter2",      AICast_ScriptAction_Achievement_chapter2},
-	{"achievement_chapter3",      AICast_ScriptAction_Achievement_chapter3},
-	{"achievement_chapter4",      AICast_ScriptAction_Achievement_chapter4},
-	{"achievement_chapter5",      AICast_ScriptAction_Achievement_chapter5},
-	{"achievement_chapter6",      AICast_ScriptAction_Achievement_chapter6},
-	{"achievement_chapter7",      AICast_ScriptAction_Achievement_chapter7},
-	{"achievement_chapter1_hard",      AICast_ScriptAction_Achievement_chapter1_hard},
-	{"achievement_chapter2_hard",      AICast_ScriptAction_Achievement_chapter2_hard},
-	{"achievement_chapter3_hard",      AICast_ScriptAction_Achievement_chapter3_hard},
-	{"achievement_chapter4_hard",      AICast_ScriptAction_Achievement_chapter4_hard},
-	{"achievement_chapter5_hard",      AICast_ScriptAction_Achievement_chapter5_hard},
-	{"achievement_chapter6_hard",      AICast_ScriptAction_Achievement_chapter6_hard},
-	{"achievement_chapter7_hard",      AICast_ScriptAction_Achievement_chapter7_hard},
-	{"achievement_boss1",      AICast_ScriptAction_Achievement_boss1},
-	{"achievement_boss2",      AICast_ScriptAction_Achievement_boss2},
-	{"achievement_boss3",      AICast_ScriptAction_Achievement_boss3},
-	// Addons achievements
-	{"achievement_curse",      AICast_ScriptAction_Achievement_curse},
-	{"achievement_stalingrad",      AICast_ScriptAction_Achievement_stalingrad},
-	{"achievement_timegate",      AICast_ScriptAction_Achievement_timegate},
-	{"achievement_pro51",      AICast_ScriptAction_Achievement_pro51},
-	{"achievement_sf",      AICast_ScriptAction_Achievement_sf},
-	{"achievement_ra",      AICast_ScriptAction_Achievement_ra},
-	{"achievement_ic",      AICast_ScriptAction_Achievement_ic},
-	{"achievement_capuzzo",      AICast_ScriptAction_Achievement_capuzzo},
-	{"achievement_saucers",      AICast_ScriptAction_Achievement_saucers},
-	{"achievement_arkot",      AICast_ScriptAction_Achievement_arkot},
-	{"achievement_darkm",      AICast_ScriptAction_Achievement_darkm},
-	{"achievement_darkm_2",      AICast_ScriptAction_Achievement_darkm_2},
-	{"achievement_dm2",      AICast_ScriptAction_Achievement_dm2},
-	{"achievement_dm2_2",      AICast_ScriptAction_Achievement_dm2_2},
-	{"achievement_dm2_3",      AICast_ScriptAction_Achievement_dm2_3},
-	{"achievement_dm2_4",      AICast_ScriptAction_Achievement_dm2_4},
-	{"achievement_tda_day",      AICast_ScriptAction_Achievement_tda_day},
-	{"achievement_tda_night",      AICast_ScriptAction_Achievement_tda_night},
-	{"achievement_tda_dark",      AICast_ScriptAction_Achievement_tda_dark},
-	{"achievement_tda_plus",      AICast_ScriptAction_Achievement_tda_plus},
-	{"achievement_tda_arena",      AICast_ScriptAction_Achievement_tda_arena},
-	{"achievement_lion",      AICast_ScriptAction_Achievement_lion},
-	{"achievement_parkour",      AICast_ScriptAction_Achievement_parkour},
-	{"achievement_manor1",      AICast_ScriptAction_Achievement_manor1},
-	{"achievement_manor1_2",      AICast_ScriptAction_Achievement_manor1_2},
-     // achievements end
 	{"endgame",          AICast_ScriptAction_EndGame},				//----(SA)	added
 	{"teleport",     AICast_ScriptAction_Teleport},					//----(SA)	added
 	{"foundsecret",      AICast_ScriptAction_FoundSecret},
@@ -484,9 +375,6 @@ void AICast_ScriptLoad( void ) {
 	}
 	else if ( g_gameskill.integer == GSKILL_MAX ) {
 	Q_strncpyz( filename, "maps/max/", sizeof( filename ) );
-	}
-	else if ( g_gameskill.integer == GSKILL_REALISM ) {
-	Q_strncpyz( filename, "maps/realism/", sizeof( filename ) );
 	}
 	Q_strcat( filename, sizeof( filename ), mapname.string );
 	Q_strcat( filename, sizeof( filename ), ".ai" );

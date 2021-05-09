@@ -263,25 +263,13 @@ static void CG_Obituary( entityState_t *ent ) {
 			message2 = "'s MP40";
 			break;
 			// RealRTCW weapons
-		case MOD_MP34:
+		case MOD_P38:
 			message = "was killed by";
-			message2 = "'s MP34";
+			message2 = "'s P38";
 			break;
-		case MOD_TT33:
+		case MOD_WELROD:
 			message = "was killed by";
-			message2 = "'s TT33";
-			break;
-		case MOD_REVOLVER:
-			message = "was killed by";
-			message2 = "'s REVOLVER";
-			break;
-		case MOD_PPSH:
-			message = "was killed by";
-			message2 = "'s PPSH";
-			break;
-		case MOD_MOSIN:
-			message = "was killed by";
-			message2 = "'s MOSIN";
+			message2 = "'s WELROD";
 			break;
 		case MOD_G43:
 			message = "was killed by";
@@ -344,6 +332,10 @@ static void CG_Obituary( entityState_t *ent ) {
 			message2 = "'s flamethrower";
 			break;
 		case MOD_TESLA:
+		case MOD_SPEARGUN:
+		case MOD_SPEARGUN_CO2:
+			message = "was killed by";
+			break;
 		case MOD_GRENADE_PINEAPPLE:
 			message = "was exploded by";
 			message2 = "'s grenade";
@@ -499,11 +491,6 @@ static void CG_ItemPickup( int itemNum ) {
 
 		weapon = itemid;
 
-		if ( weapon == WP_COLT ) {
-			if ( COM_BitCheck( cg.snap->ps.weapons, weapon ) ) {
-				weapon = WP_AKIMBO; // you have colt, now get akimbo (second)
-			}
-		}
 
 		if ( cg_autoswitch.integer && cg.predictedPlayerState.weaponstate != WEAPON_RELOADING ) {
 

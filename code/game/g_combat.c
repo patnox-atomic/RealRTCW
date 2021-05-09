@@ -35,6 +35,8 @@ If you have questions concerning this license or the applicable additional terms
 
 #include "g_local.h"
 
+extern vec3_t muzzleTrace;
+
 /*
 ============
 AddScore
@@ -92,7 +94,12 @@ void TossClientItems( gentity_t *self ) {
 	case AICHAR_ZOMBIE:
 	case AICHAR_WARZOMBIE:
 	case AICHAR_LOPER:
-		return;         //----(SA)	removed DK's special case
+	case AICHAR_STIMSOLDIER1:
+	case AICHAR_SUPERSOLDIER:
+	case AICHAR_STIMSOLDIER2:
+	case AICHAR_STIMSOLDIER3:
+	case AICHAR_PROTOSOLDIER:
+	return;         //----(SA)	removed DK's special case
 	default:
 		break;
 	}
@@ -291,6 +298,8 @@ char    *modNames[] = {
 	"MOD_VENOM_FULL",
 	"MOD_FLAMETHROWER",
 	"MOD_TESLA",
+	"MOD_SPEARGUN",
+	"MOD_SPEARGUN_CO2",
 	"MOD_GRENADE_PINEAPPLE",
 	"MOD_CROSS",
 	"MOD_MORTAR",
@@ -325,6 +334,7 @@ char    *modNames[] = {
 	"MOD_ENGINEER",  // not sure if we'll use
 	"MOD_MEDIC",     // these like this or not
 	"MOD_M97", // jaymod
+	"MOD_M30", 
 // jpw
 	"MOD_BAT"
 };
@@ -654,32 +664,30 @@ qboolean IsHeadShotWeapon( int mod, gentity_t *targ, gentity_t *attacker ) {
 	}
 
 	switch ( targ->aiCharacter ) {
-	// get out quick for ai's that don't take headshots
+		// get out quick for ai's that don't take headshots
 	case AICHAR_ZOMBIE:
 	case AICHAR_WARZOMBIE:
-	case AICHAR_HELGA:     
+	case AICHAR_HELGA:      // boss1 (beast)
 	case AICHAR_LOPER:
-	case AICHAR_VENOM:      
-	return qfalse;
+	case AICHAR_VENOM:      //----(SA)	added
+		return qfalse;
 	default:
-	break;
+		break;
 	}
 
 	switch ( mod ) {
-	// players are allowed headshots from these weapons
+		// players are allowed headshots from these weapons
 	case MOD_LUGER:
 	case MOD_COLT:
 	case MOD_AKIMBO:
 	case MOD_MP40:
-	case MOD_MP34:
-	case MOD_TT33:
-	case MOD_PPSH:
-	case MOD_MOSIN:
+	// RealRTCW weapons
+	case MOD_P38:
 	case MOD_G43:
 	case MOD_M1GARAND:
 	case MOD_BAR:
 	case MOD_MP44:
-	case MOD_REVOLVER:
+	case MOD_WELROD:
 	case MOD_THOMPSON:
 	case MOD_STEN:
 	case MOD_FG42:
@@ -689,8 +697,9 @@ qboolean IsHeadShotWeapon( int mod, gentity_t *targ, gentity_t *attacker ) {
 	case MOD_FG42SCOPE:
 	case MOD_SNOOPERSCOPE:
 	case MOD_SNIPERRIFLE:
-	return qtrue;
+		return qtrue;
 	}
+
 	return qfalse;
 }
 
@@ -897,8 +906,7 @@ dflags		these flags are used to control how T_Damage works
 ============
 */
 
-void G_Damage( gentity_t *targ, gentity_t *inflictor, gentity_t *attacker,
-			   vec3_t dir, vec3_t point, int damage, int dflags, int mod ) {
+void G_Damage( gentity_t *targ, gentity_t *inflictor, gentity_t *attacker, vec3_t dir, vec3_t point, int damage, int dflags, int mod ) {
 	gclient_t   *client;
 	int take;
 	int asave;
@@ -1205,6 +1213,48 @@ void G_Damage( gentity_t *targ, gentity_t *inflictor, gentity_t *attacker,
 			} else {
 				take *= 2; // sniper rifles can do full-kill (and knock into limbo)
 			}
+			if ( dflags & DAMAGE_DISTANCEFALLOFF ) {
+			vec_t dist;
+			vec3_t shotvec;
+			float scale;
+
+			VectorSubtract( point, muzzleTrace, shotvec );
+			dist = VectorLength( shotvec );
+
+#if DO_BROKEN_DISTANCEFALLOFF
+			// ~~~___---___
+			if ( dist > 1500.f ) {
+				if ( dist > 2500.f ) {
+					take *= 0.2f;
+				} else {
+					float scale = 1.f - 0.2f * ( 1000.f / ( dist - 1000.f ) );
+
+					take *= scale;
+				}
+			}
+#else
+			// ~~~---______
+			// zinx - start at 100% at 1500 units (and before),
+			// and go to 20% at 2500 units (and after)
+
+			// 1500 to 2500 -> 0.0 to 1.0
+			scale = ( dist - 1000.f ) / ( 2000.f - 1000.f );
+			// 0.0 to 1.0 -> 0.0 to 0.8
+			scale *= 0.8f;
+			// 0.0 to 0.8 -> 1.0 to 0.2
+			scale = 1.0f - scale;
+
+			// And, finally, cap it.
+			if ( scale > 1.0f ) {
+				scale = 1.0f;
+			} else if ( scale < 0.2f ) {
+				scale = 0.2f;
+			}
+
+			take *= scale;
+#endif
+		}
+
 			if ( !( targ->client->ps.eFlags & EF_HEADSHOT ) ) {  // only toss hat on first headshot
 				G_AddEvent( targ, EV_LOSE_HAT, DirToByte( dir ) );
 			}

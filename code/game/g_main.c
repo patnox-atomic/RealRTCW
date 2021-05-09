@@ -173,16 +173,14 @@ vmCvar_t		sk_plr_dmg_dynamite_radius;
 
 // RealRTCW weapons
 
-vmCvar_t		sk_plr_dmg_mp34;
-vmCvar_t		sk_plr_dmg_tt33;
-vmCvar_t		sk_plr_dmg_ppsh;
-vmCvar_t		sk_plr_dmg_mosin;
+vmCvar_t		sk_plr_dmg_p38;
 vmCvar_t		sk_plr_dmg_g43;
 vmCvar_t		sk_plr_dmg_m1garand;
 vmCvar_t		sk_plr_dmg_bar;
 vmCvar_t		sk_plr_dmg_mp44;
 vmCvar_t		sk_plr_dmg_m97;
-vmCvar_t		sk_plr_dmg_revolver;
+vmCvar_t		sk_plr_dmg_m30;
+vmCvar_t		sk_plr_dmg_welrod;
 vmCvar_t		sk_plr_dmg_mg42m;
 
 vmCvar_t		sk_ai_dmg_knife;
@@ -211,16 +209,14 @@ vmCvar_t		sk_ai_dmg_dynamite_radius;
 
 //RealRTCW weapons
 
-vmCvar_t		sk_ai_dmg_mp34;
-vmCvar_t		sk_ai_dmg_tt33;
-vmCvar_t		sk_ai_dmg_ppsh;
-vmCvar_t		sk_ai_dmg_mosin;
+vmCvar_t		sk_ai_dmg_p38;
 vmCvar_t		sk_ai_dmg_g43;
 vmCvar_t		sk_ai_dmg_m1garand;
 vmCvar_t		sk_ai_dmg_bar;
 vmCvar_t		sk_ai_dmg_mp44;
 vmCvar_t		sk_ai_dmg_m97;
-vmCvar_t		sk_ai_dmg_revolver;
+vmCvar_t		sk_ai_dmg_m30;
+vmCvar_t		sk_ai_dmg_welrod;
 vmCvar_t		sk_ai_dmg_mg42m;
 
 
@@ -240,81 +236,82 @@ cvarTable_t gameCvarTable[] = {
 	{ &g_gameskill, "g_gameskill", "2", CVAR_SERVERINFO | CVAR_LATCH, 0, qfalse  },   // (SA) new default '2' (was '1')
 	// done
 
-    // RealRTCW knightmare 1.42d changes
-    // Damage inflicted by Player
+     // RealRTCW knightmare 1.42d changes
+
 	{ &sk_plr_dmg_knife, "sk_plr_dmg_knife", "10", CVAR_CHEAT, 0, qfalse  },
-	{ &sk_plr_dmg_kick, "sk_plr_dmg_kick", "15", CVAR_CHEAT, 0, qfalse  },
+	{ &sk_plr_dmg_kick, "sk_plr_dmg_kick", "8", CVAR_CHEAT, 0, qfalse  },
 	{ &sk_plr_dmg_luger, "sk_plr_dmg_luger", "7", CVAR_CHEAT, 0, qfalse  },
-	{ &sk_plr_dmg_colt, "sk_plr_dmg_colt", "10", CVAR_CHEAT, 0, qfalse  },  
+	{ &sk_plr_dmg_colt, "sk_plr_dmg_colt", "11", CVAR_CHEAT, 0, qfalse  },  //was 8
 	{ &sk_plr_dmg_mp40, "sk_plr_dmg_mp40", "6", CVAR_CHEAT, 0, qfalse  },
-	{ &sk_plr_dmg_thompson, "sk_plr_dmg_thompson", "9", CVAR_CHEAT, 0, qfalse  }, 
+	{ &sk_plr_dmg_thompson, "sk_plr_dmg_thompson", "10", CVAR_CHEAT, 0, qfalse  }, // was 7
 	{ &sk_plr_dmg_sten, "sk_plr_dmg_sten", "7", CVAR_CHEAT, 0, qfalse  },
-	{ &sk_plr_dmg_mauser, "sk_plr_dmg_mauser", "35", CVAR_CHEAT, 0, qfalse  }, 
+	{ &sk_plr_dmg_mauser, "sk_plr_dmg_mauser", "35", CVAR_CHEAT, 0, qfalse  }, // was 30
 	{ &sk_plr_dmg_sniperrifle, "sk_plr_dmg_sniperrifle", "35", CVAR_CHEAT, 0, qfalse  },
 	{ &sk_plr_dmg_garand, "sk_plr_dmg_garand", "40", CVAR_CHEAT, 0, qfalse  },
 	{ &sk_plr_dmg_snooperscope, "sk_plr_dmg_snooperscope", "40", CVAR_CHEAT, 0, qfalse  },
-	{ &sk_plr_dmg_fg42, "sk_plr_dmg_fg42", "12", CVAR_CHEAT, 0, qfalse  },  
-	{ &sk_plr_dmg_fg42scope, "sk_plr_dmg_fg42scope", "12", CVAR_CHEAT, 0, qfalse  }, 
-	{ &sk_plr_dmg_panzerfaust, "sk_plr_dmg_panzerfaust", "250", CVAR_CHEAT, 0, qfalse  }, 
-	{ &sk_plr_dmg_panzerfaust_splash, "sk_plr_dmg_panzerfaust_splash", "300", CVAR_CHEAT, 0, qfalse  },  
-	{ &sk_plr_dmg_venom, "sk_plr_dmg_venom", "20", CVAR_CHEAT, 0, qfalse  },  
-	{ &sk_plr_dmg_flamethrower, "sk_plr_dmg_flamethrower", "10", CVAR_CHEAT, 0, qfalse  }, 
-	{ &sk_plr_dmg_tesla, "sk_plr_dmg_tesla", "20", CVAR_CHEAT, 0, qfalse  },  
+	{ &sk_plr_dmg_fg42, "sk_plr_dmg_fg42", "12", CVAR_CHEAT, 0, qfalse  },  // was 10
+	{ &sk_plr_dmg_fg42scope, "sk_plr_dmg_fg42scope", "12", CVAR_CHEAT, 0, qfalse  }, // was 15
+	{ &sk_plr_dmg_panzerfaust, "sk_plr_dmg_panzerfaust", "250", CVAR_CHEAT, 0, qfalse  }, // was 200
+	{ &sk_plr_dmg_panzerfaust_splash, "sk_plr_dmg_panzerfaust_splash", "320", CVAR_CHEAT, 0, qfalse  },  // was 200
+	{ &sk_plr_dmg_venom, "sk_plr_dmg_venom", "9", CVAR_CHEAT, 0, qfalse  },  // was 13
+	{ &sk_plr_dmg_flamethrower, "sk_plr_dmg_flamethrower", "10", CVAR_CHEAT, 0, qfalse  }, // was 6
+	{ &sk_plr_dmg_tesla, "sk_plr_dmg_tesla", "20", CVAR_CHEAT, 0, qfalse  },  // was 10
 	{ &sk_plr_dmg_grenade, "sk_plr_dmg_grenade", "170", CVAR_CHEAT, 0, qfalse  },
-	{ &sk_plr_dmg_grenade_radius, "sk_plr_dmg_grenade_radius", "310", CVAR_CHEAT, 0, qfalse  },
+	{ &sk_plr_dmg_grenade_radius, "sk_plr_dmg_grenade_radius", "250", CVAR_CHEAT, 0, qfalse  },
 	{ &sk_plr_dmg_pineapple, "sk_plr_dmg_pineapple", "220", CVAR_CHEAT, 0, qfalse  },
 	{ &sk_plr_dmg_pineapple_radius, "sk_plr_dmg_pineapple_radius", "270", CVAR_CHEAT, 0, qfalse  },
 	{ &sk_plr_dmg_dynamite, "sk_plr_dmg_dynamite", "800", CVAR_CHEAT, 0, qfalse  },
 	{ &sk_plr_dmg_dynamite_radius, "sk_plr_dmg_dynamite_radius", "450", CVAR_CHEAT, 0, qfalse  },
+
 	// New weapons
-	{ &sk_plr_dmg_mp34, "sk_plr_dmg_mp34", "6", CVAR_CHEAT, 0, qfalse  },
-	{ &sk_plr_dmg_tt33, "sk_plr_dmg_tt33", "8", CVAR_CHEAT, 0, qfalse  },
-	{ &sk_plr_dmg_ppsh, "sk_plr_dmg_ppsh", "6", CVAR_CHEAT, 0, qfalse  },	
-	{ &sk_plr_dmg_mosin, "sk_plr_dmg_mosin", "35", CVAR_CHEAT, 0, qfalse  },
+	// Player
+	{ &sk_plr_dmg_p38, "sk_plr_dmg_p38", "7", CVAR_CHEAT, 0, qfalse  },
 	{ &sk_plr_dmg_g43, "sk_plr_dmg_g43", "16", CVAR_CHEAT, 0, qfalse  },
 	{ &sk_plr_dmg_m1garand, "sk_plr_dmg_m1garand", "18", CVAR_CHEAT, 0, qfalse  },	
-	{ &sk_plr_dmg_bar, "sk_plr_dmg_bar", "15", CVAR_CHEAT, 0, qfalse  }, 
+	{ &sk_plr_dmg_bar, "sk_plr_dmg_bar", "15", CVAR_CHEAT, 0, qfalse  }, // was 13
 	{ &sk_plr_dmg_mp44, "sk_plr_dmg_mp44", "9", CVAR_CHEAT, 0, qfalse  },
-	{ &sk_plr_dmg_mg42m, "sk_plr_dmg_mg42m", "15", CVAR_CHEAT, 0, qfalse  }, 
+	{ &sk_plr_dmg_mg42m, "sk_plr_dmg_mg42m", "12", CVAR_CHEAT, 0, qfalse  }, // was 9
 	{ &sk_plr_dmg_m97, "sk_plr_dmg_m97", "10", CVAR_CHEAT, 0, qfalse  },
-	{ &sk_plr_dmg_revolver, "sk_plr_dmg_revolver", "20", CVAR_CHEAT, 0, qfalse  },
+	{ &sk_plr_dmg_m30, "sk_plr_dmg_m30", "11", CVAR_CHEAT, 0, qfalse  },
+	{ &sk_plr_dmg_welrod, "sk_plr_dmg_welrod", "50", CVAR_CHEAT, 0, qfalse  },
+	//AI	
+	{ &sk_ai_dmg_p38, "sk_ai_dmg_p38", "7", CVAR_CHEAT, 0, qfalse  },
+	{ &sk_ai_dmg_g43, "sk_ai_dmg_g43", "16", CVAR_CHEAT, 0, qfalse  },  // was 16
+	{ &sk_ai_dmg_m1garand, "sk_ai_dmg_m1garand", "18", CVAR_CHEAT, 0, qfalse  }, // was 18
+	{ &sk_ai_dmg_bar, "sk_ai_dmg_bar", "15", CVAR_CHEAT, 0, qfalse  }, // was 13
+	{ &sk_ai_dmg_mp44, "sk_ai_dmg_mp44", "9", CVAR_CHEAT, 0, qfalse  }, // was 9
+	{ &sk_ai_dmg_mg42m, "sk_ai_dmg_mg42m", "12", CVAR_CHEAT, 0, qfalse  }, // was 9
+	{ &sk_ai_dmg_m97, "sk_ai_dmg_m97", "10", CVAR_CHEAT, 0, qfalse  }, // was 9
+	{ &sk_ai_dmg_m30, "sk_ai_dmg_m30", "11", CVAR_CHEAT, 0, qfalse  }, // was 9
+	{ &sk_ai_dmg_welrod, "sk_ai_dmg_welrod", "50", CVAR_CHEAT, 0, qfalse  },	// was 16
+	// End new weapons								
 
-	//Damage inflicted by AI	
-	{ &sk_ai_dmg_knife, "sk_ai_dmg_knife", "6", CVAR_CHEAT, 0, qfalse  },
-	{ &sk_ai_dmg_luger, "sk_ai_dmg_luger", "5", CVAR_CHEAT, 0, qfalse  },
-	{ &sk_ai_dmg_colt, "sk_ai_dmg_colt", "6", CVAR_CHEAT, 0, qfalse  }, 
-	{ &sk_ai_dmg_mp40, "sk_ai_dmg_mp40", "4", CVAR_CHEAT, 0, qfalse  },
-	{ &sk_ai_dmg_thompson, "sk_ai_dmg_thompson", "5", CVAR_CHEAT, 0, qfalse  },
-	{ &sk_ai_dmg_sten, "sk_ai_dmg_sten", "4", CVAR_CHEAT, 0, qfalse  }, 
-	{ &sk_ai_dmg_mauser, "sk_ai_dmg_mauser", "15", CVAR_CHEAT, 0, qfalse  }, 
-	{ &sk_ai_dmg_sniperrifle, "sk_ai_dmg_sniperrifle", "15", CVAR_CHEAT, 0, qfalse  }, 
-	{ &sk_ai_dmg_garand, "sk_ai_dmg_garand", "15", CVAR_CHEAT, 0, qfalse  },
-	{ &sk_ai_dmg_snooperscope, "sk_ai_dmg_snooperscope", "15", CVAR_CHEAT, 0, qfalse  },
-	{ &sk_ai_dmg_fg42, "sk_ai_dmg_fg42", "6", CVAR_CHEAT, 0, qfalse  },  
-	{ &sk_ai_dmg_fg42scope, "sk_ai_dmg_fg42scope", "6", CVAR_CHEAT, 0, qfalse  },
-	{ &sk_ai_dmg_panzerfaust, "sk_ai_dmg_panzerfaust", "100", CVAR_CHEAT, 0, qfalse  },
-	{ &sk_ai_dmg_panzerfaust_splash, "sk_ai_dmg_panzerfaust_splash", "200", CVAR_CHEAT, 0, qfalse  }, 
-	{ &sk_ai_dmg_venom, "sk_ai_dmg_venom", "7", CVAR_CHEAT, 0, qfalse  },  
-	{ &sk_ai_dmg_flamethrower, "sk_ai_dmg_flamethrower", "5", CVAR_CHEAT, 0, qfalse  },
-	{ &sk_ai_dmg_tesla, "sk_ai_dmg_tesla", "3", CVAR_CHEAT, 0, qfalse  },
+
+	{ &sk_ai_dmg_knife, "sk_ai_dmg_knife", "10", CVAR_CHEAT, 0, qfalse  },
+	{ &sk_ai_dmg_luger, "sk_ai_dmg_luger", "7", CVAR_CHEAT, 0, qfalse  },
+	{ &sk_ai_dmg_colt, "sk_ai_dmg_colt", "11", CVAR_CHEAT, 0, qfalse  }, 
+	{ &sk_ai_dmg_mp40, "sk_ai_dmg_mp40", "6", CVAR_CHEAT, 0, qfalse  },
+	{ &sk_ai_dmg_thompson, "sk_ai_dmg_thompson", "10", CVAR_CHEAT, 0, qfalse  },
+	{ &sk_ai_dmg_sten, "sk_ai_dmg_sten", "7", CVAR_CHEAT, 0, qfalse  }, // was 7
+	{ &sk_ai_dmg_mauser, "sk_ai_dmg_mauser", "30", CVAR_CHEAT, 0, qfalse  }, // was 30
+	{ &sk_ai_dmg_sniperrifle, "sk_ai_dmg_sniperrifle", "35", CVAR_CHEAT, 0, qfalse  }, // was 30
+	{ &sk_ai_dmg_garand, "sk_ai_dmg_garand", "30", CVAR_CHEAT, 0, qfalse  },
+	{ &sk_ai_dmg_snooperscope, "sk_ai_dmg_snooperscope", "30", CVAR_CHEAT, 0, qfalse  },
+	{ &sk_ai_dmg_fg42, "sk_ai_dmg_fg42", "12", CVAR_CHEAT, 0, qfalse  },  // was 10
+	{ &sk_ai_dmg_fg42scope, "sk_ai_dmg_fg42scope", "12", CVAR_CHEAT, 0, qfalse  }, // was 15
+	{ &sk_ai_dmg_panzerfaust, "sk_ai_dmg_panzerfaust", "200", CVAR_CHEAT, 0, qfalse  },
+	{ &sk_ai_dmg_panzerfaust_splash, "sk_ai_dmg_panzerfaust_splash", "320", CVAR_CHEAT, 0, qfalse  }, // was 200
+	{ &sk_ai_dmg_venom, "sk_ai_dmg_venom", "9", CVAR_CHEAT, 0, qfalse  },  // was 13
+	{ &sk_ai_dmg_flamethrower, "sk_ai_dmg_flamethrower", "10", CVAR_CHEAT, 0, qfalse  },
+	{ &sk_ai_dmg_tesla, "sk_ai_dmg_tesla", "10", CVAR_CHEAT, 0, qfalse  },
 	{ &sk_ai_dmg_grenade, "sk_ai_dmg_grenade", "170", CVAR_CHEAT, 0, qfalse  },
-	{ &sk_ai_dmg_grenade_radius, "sk_ai_dmg_grenade_radius", "310", CVAR_CHEAT, 0, qfalse  },
+	{ &sk_ai_dmg_grenade_radius, "sk_ai_dmg_grenade_radius", "250", CVAR_CHEAT, 0, qfalse  },
 	{ &sk_ai_dmg_pineapple, "sk_ai_dmg_pineapple", "220", CVAR_CHEAT, 0, qfalse  },
 	{ &sk_ai_dmg_pineapple_radius, "sk_ai_dmg_pineapple_radius", "270", CVAR_CHEAT, 0, qfalse  },
 	{ &sk_ai_dmg_dynamite, "sk_ai_dmg_dynamite", "800", CVAR_CHEAT, 0, qfalse  },
 	{ &sk_ai_dmg_dynamite_radius, "sk_ai_dmg_dynamite_radius", "450", CVAR_CHEAT, 0, qfalse  },
-    // New Weapons
-	{ &sk_ai_dmg_mp34, "sk_ai_dmg_mp34", "4", CVAR_CHEAT, 0, qfalse  },
-	{ &sk_ai_dmg_tt33, "sk_ai_dmg_tt33", "7", CVAR_CHEAT, 0, qfalse  },
-	{ &sk_ai_dmg_ppsh, "sk_ai_dmg_ppsh", "5", CVAR_CHEAT, 0, qfalse  },
-	{ &sk_ai_dmg_mosin, "sk_ai_dmg_mosin", "15", CVAR_CHEAT, 0, qfalse  },
-	{ &sk_ai_dmg_g43, "sk_ai_dmg_g43", "7", CVAR_CHEAT, 0, qfalse  },  
-	{ &sk_ai_dmg_m1garand, "sk_ai_dmg_m1garand", "7", CVAR_CHEAT, 0, qfalse  }, 
-	{ &sk_ai_dmg_bar, "sk_ai_dmg_bar", "6", CVAR_CHEAT, 0, qfalse  }, 
-	{ &sk_ai_dmg_mp44, "sk_ai_dmg_mp44", "6", CVAR_CHEAT, 0, qfalse  }, 
-	{ &sk_ai_dmg_mg42m, "sk_ai_dmg_mg42m", "6", CVAR_CHEAT, 0, qfalse  }, 
-	{ &sk_ai_dmg_m97, "sk_ai_dmg_m97", "9", CVAR_CHEAT, 0, qfalse  }, 
-	{ &sk_ai_dmg_revolver, "sk_ai_dmg_revolver", "7", CVAR_CHEAT, 0, qfalse  },
+
+	// end RealRTCW
 
 	{ &g_reloading, "g_reloading", "0", CVAR_ROM },   //----(SA)	added
 
@@ -1146,7 +1143,7 @@ void G_RegisterCvars( void ) {
 	}
 
 	// Rafael gameskill
-	if ( g_gameskill.integer < GSKILL_EASY || g_gameskill.integer > GSKILL_REALISM ) {
+	if ( g_gameskill.integer < GSKILL_EASY || g_gameskill.integer > GSKILL_MAX ) {
 		G_Printf( "g_gameskill %i is out of range, default to medium\n", g_gameskill.integer );
 		trap_Cvar_Set( "g_gameskill", va( "%d", GSKILL_MEDIUM ) ); // default to medium
 	}

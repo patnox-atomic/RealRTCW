@@ -37,7 +37,6 @@ If you have questions concerning this license or the applicable additional terms
 
 int wolfkickModel;
 int hWeaponSnd;
-int hWeaponEchoSnd;
 int hflakWeaponSnd;
 int notebookModel;
 int propellerModel;
@@ -54,14 +53,15 @@ static qboolean CG_WeaponHasAmmo( int i );
 static int maxWeapBanks = MAX_WEAP_BANKS, maxWeapsInBank = MAX_WEAPS_IN_BANK; // JPW NERVE
 
 int weapBanks[MAX_WEAP_BANKS][MAX_WEAPS_IN_BANK] = {
+	// bank
 	{0,                     0,                      0,            0,               0            },  //	0 (empty)
 	{WP_KNIFE,              0,                      0,            0,               0            },  //	1
-	{WP_LUGER,              WP_COLT,                WP_TT33,      WP_REVOLVER,     0            },  //	2
-	{WP_MP40,               WP_MP34,                WP_STEN,      WP_THOMPSON,     WP_PPSH      },  //	3
-	{WP_MAUSER,             WP_GARAND,              WP_MOSIN,     0,               0            },  //	4
+	{WP_LUGER,              WP_COLT,                WP_P38,      WP_WELROD,     0            },  //	2
+	{WP_MP40,               WP_STEN,                WP_THOMPSON,  0,               0            },  //	3
+	{WP_MAUSER,             WP_GARAND,              0,            0,               0            },  //	4
     {WP_G43,                WP_M1GARAND,            0,            0,               0            },  //	5
 	{WP_FG42,               WP_MP44,                WP_BAR,       0,               0            },  //	6
-	{WP_M97,                0,                      0,            0,               0            },  //	7
+	{WP_M97,                WP_M30,                 0,            0,               0            },  //	7
 	{WP_GRENADE_LAUNCHER,   WP_GRENADE_PINEAPPLE,   WP_DYNAMITE,  0,               0            },  //	8
 	{WP_PANZERFAUST,        WP_FLAMETHROWER,        WP_MG42M,     0,               0            },  //	9
 	{WP_VENOM,              WP_TESLA,               0,            0,               0            }  //	10
@@ -77,7 +77,9 @@ int weapBanksMultiPlayer[MAX_WEAP_BANKS_MP][MAX_WEAPS_IN_BANK_MP] = {
 	{WP_CLASS_SPECIAL,      0,                      0,          0,          0,          0,              0,          0,          },
 	{WP_DYNAMITE,           0,                      0,          0,          0,          0,              0,          0           }
 };
+// jpw
 
+//----(SA)	end
 
 
 /*
@@ -99,8 +101,12 @@ static void CG_MachineGunEjectBrassNew( centity_t *cent ) {
 	if (cent->currentState.weapon == WP_M97) //jaymod
 		return;
 
-	if (cent->currentState.weapon == WP_REVOLVER) // no brass for revolver
+	if (cent->currentState.weapon == WP_M30) 
 		return;
+
+	if (cent->currentState.weapon == WP_WELROD) 
+		return;
+
 
 	le = CG_AllocLocalEntity();
 	re = &le->refEntity;
@@ -1133,7 +1139,7 @@ void CG_RegisterWeapon( int weaponNum ) {
 
 	case WP_AKIMBO: //----(SA)	added
 		// same as colt
-		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.6, 0.23 );
+		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.0, 0.0 );
 		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/colt/colt_fire.wav" );
 		weaponInfo->flashEchoSound[0] = trap_S_RegisterSound( "sound/weapons/colt/colt_far.wav" ); // RealRTCW new echo sound
 		weaponInfo->ejectBrassFunc = CG_MachineGunEjectBrass;
@@ -1141,7 +1147,7 @@ void CG_RegisterWeapon( int weaponNum ) {
 		break;
 
 	case WP_COLT:
-		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.6, 0.23 );
+		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.0, 0.0 );
 		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/colt/colt_fire.wav" );
 		weaponInfo->flashEchoSound[0] = trap_S_RegisterSound( "sound/weapons/colt/colt_far.wav" ); // RealRTCW new echo sound
 		weaponInfo->reloadSound = trap_S_RegisterSound( "sound/weapons/colt/colt_reload.wav" );
@@ -1155,16 +1161,15 @@ void CG_RegisterWeapon( int weaponNum ) {
 		break;
 
 	case WP_LUGER:
-		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.6, 0.23 );
+		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.0, 0.0 );
 		weaponInfo->switchSound[0] = trap_S_RegisterSound( "sound/weapons/luger/silencerremove.wav" );   //----(SA)	added
 		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/luger/luger_fire.wav" );
-		weaponInfo->flashEchoSound[0] = trap_S_RegisterSound( "sound/weapons/luger/luger_far.wav" ); // RealRTCW new echo sound
 		weaponInfo->reloadSound = trap_S_RegisterSound( "sound/weapons/luger/luger_reload.wav" );
 		weaponInfo->ejectBrassFunc = CG_MachineGunEjectBrass;
 		break;
 
 	case WP_SILENCER:   // luger mod
-		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.6, 0.23 );
+		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.0, 0.0 );
 		weaponInfo->switchSound[0] = trap_S_RegisterSound( "sound/weapons/luger/silencerattatch.wav" );  //----(SA)	added
 		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/luger/silencer_fire.wav" );
 		weaponInfo->reloadSound = trap_S_RegisterSound( "sound/weapons/luger/luger_reload.wav" );
@@ -1172,7 +1177,7 @@ void CG_RegisterWeapon( int weaponNum ) {
 		break;
 
 	case WP_MAUSER:
-		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.6, 0.23 );
+		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.0, 0.0 );
 		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/mauser/mauser_fire.wav" );
 		weaponInfo->flashEchoSound[0] = trap_S_RegisterSound( "sound/weapons/mauser/mauser_far.wav" );
 		weaponInfo->lastShotSound[0] = trap_S_RegisterSound( "sound/weapons/mauser/mauser_fire_last.wav" );
@@ -1180,7 +1185,7 @@ void CG_RegisterWeapon( int weaponNum ) {
 		weaponInfo->ejectBrassFunc = CG_MachineGunEjectBrass;
 		break;
 	case WP_SNIPERRIFLE:
-		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.6, 0.23 );
+		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.0, 0.0 );
 		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/mauser/sniper_fire.wav" );
 		weaponInfo->flashEchoSound[0] = trap_S_RegisterSound( "sound/weapons/mauser/mauser_far.wav" );
 		weaponInfo->reloadSound = trap_S_RegisterSound( "sound/weapons/mauser/sniper_reload.wav" );
@@ -1188,20 +1193,22 @@ void CG_RegisterWeapon( int weaponNum ) {
 		break;
 
 	case WP_GARAND:
-		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.6, 0.23 );
+		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.0, 0.0 );
 		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/garand/garand_fire.wav" );
 		weaponInfo->reloadSound = trap_S_RegisterSound( "sound/weapons/garand/garand_reload.wav" );
+		weaponInfo->lastShotSound[0] = trap_S_RegisterSound( "sound/weapons/garand/garand_fire_last.wav" );
 		weaponInfo->ejectBrassFunc = CG_MachineGunEjectBrass;
 		break;
 	case WP_SNOOPERSCOPE:
-		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.6, 0.23 );
+		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.0, 0.0 );
 		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/garand/snooper_fire.wav" );
+		weaponInfo->lastShotSound[0] = trap_S_RegisterSound( "sound/weapons/garand/snooper_fire_last.wav" );
 		weaponInfo->reloadSound = trap_S_RegisterSound( "sound/weapons/garand/snooper_reload.wav" );
 		weaponInfo->ejectBrassFunc = CG_MachineGunEjectBrass;
 		break;
 
 	case WP_THOMPSON:
-		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.6, 0.23 );
+		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.0, 0.0 );
 		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/thompson/thompson_fire.wav" );
 		weaponInfo->flashEchoSound[0] = trap_S_RegisterSound( "sound/weapons/thompson/thompson_far.wav" ); // RealRTCW new echo sound
 		weaponInfo->reloadSound = trap_S_RegisterSound( "sound/weapons/thompson/thompson_reload.wav" );
@@ -1210,7 +1217,7 @@ void CG_RegisterWeapon( int weaponNum ) {
 		break;
 
 	case WP_MP40:
-		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.6, 0.23 );
+		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.0, 0.0 );
 		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/mp40/mp40_fire.wav" );
 		weaponInfo->flashEchoSound[0] = trap_S_RegisterSound( "sound/weapons/mp40/mp40_far.wav" );
 		weaponInfo->reloadSound = trap_S_RegisterSound( "sound/weapons/mp40/mp40_reload.wav" );
@@ -1219,51 +1226,25 @@ void CG_RegisterWeapon( int weaponNum ) {
 		break;
 
 	// RealRTCW weapons
-
-	case WP_MP34:
-		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.6, 0.23 );
-		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/mp34/mp34_fire.wav" );
-		weaponInfo->flashEchoSound[0] = trap_S_RegisterSound( "sound/weapons/mp34/mp34_far.wav" );
-		weaponInfo->reloadSound = trap_S_RegisterSound( "sound/weapons/mp34/mp34_reload.wav" );
-		weaponInfo->overheatSound = trap_S_RegisterSound( "sound/weapons/mp40/mp40_overheat.wav" );
+	
+	 case WP_P38:
+		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.0, 0.0 );
+		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/p38/p38_fire.wav" );
+		weaponInfo->flashEchoSound[0] = trap_S_RegisterSound( "sound/weapons/p38/p38_far.wav" ); 
+		weaponInfo->reloadSound = trap_S_RegisterSound( "sound/weapons/p38/p38_reload.wav" );
 		weaponInfo->ejectBrassFunc = CG_MachineGunEjectBrass;
 		break;
 	
-	 case WP_TT33:
-		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.6, 0.23 );
-		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/tt33/tt33_fire.wav" );
-		weaponInfo->flashEchoSound[0] = trap_S_RegisterSound( "sound/weapons/tt33/tt33_far.wav" ); 
-		weaponInfo->reloadSound = trap_S_RegisterSound( "sound/weapons/tt33/tt33_reload.wav" );
-		weaponInfo->ejectBrassFunc = CG_MachineGunEjectBrass;
-		break;
-	
-	case WP_REVOLVER:
-		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.6, 0.23 );
-		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/revolver/revolver_fire.wav" );
-		weaponInfo->flashEchoSound[0] = trap_S_RegisterSound( "sound/weapons/revolver/revolver_far.wav" ); 
-		weaponInfo->reloadSound = trap_S_RegisterSound( "sound/weapons/revolver/revolver_reload.wav" );
-		weaponInfo->ejectBrassFunc = CG_MachineGunEjectBrass;
-		break;
-	
-	case WP_PPSH:
-		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.6, 0.23 );
-		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/ppsh/ppsh_fire.wav" );
-		weaponInfo->flashEchoSound[0] = trap_S_RegisterSound( "sound/weapons/ppsh/ppsh_far.wav" );
-		weaponInfo->reloadSound = trap_S_RegisterSound( "sound/weapons/ppsh/ppsh_reload.wav" );
-		weaponInfo->ejectBrassFunc = CG_MachineGunEjectBrass;
-		break;
-	
-	case WP_MOSIN:
-		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.6, 0.23 );
-		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/mosin/mosin_fire.wav" );
-		weaponInfo->lastShotSound[0] = trap_S_RegisterSound("sound/weapons/mosin/mosin_fire_last.wav");
-		weaponInfo->flashEchoSound[0] = trap_S_RegisterSound( "sound/weapons/mosin/mosin_far.wav" );
-		weaponInfo->reloadSound = trap_S_RegisterSound( "sound/weapons/mosin/mosin_reload.wav" );
+	case WP_WELROD:
+		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.0, 0.0 );
+		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/welrod/welrod_fire.wav" );
+		weaponInfo->flashEchoSound[0] = trap_S_RegisterSound( "sound/weapons/welrod/welrod_far.wav" ); 
+		weaponInfo->reloadSound = trap_S_RegisterSound( "sound/weapons/welrod/welrod_reload.wav" );
 		weaponInfo->ejectBrassFunc = CG_MachineGunEjectBrass;
 		break;
 
 	case WP_G43:
-		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.6, 0.23 );
+		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.0, 0.0 );
 		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/g43/g43_fire.wav" );
 		weaponInfo->flashEchoSound[0] = trap_S_RegisterSound( "sound/weapons/g43/g43_far.wav" );
 		weaponInfo->reloadSound = trap_S_RegisterSound( "sound/weapons/g43/g43_reload.wav" );
@@ -1271,7 +1252,7 @@ void CG_RegisterWeapon( int weaponNum ) {
 		break;
 	
 	case WP_M1GARAND:
-		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.6, 0.23 );
+		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.0, 0.0 );
 		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/m1_garand/m1garand_fire.wav" );
 		weaponInfo->flashEchoSound[0] = trap_S_RegisterSound( "sound/weapons/m1_garand/m1garand_far.wav" );
 		weaponInfo->reloadSound = trap_S_RegisterSound( "sound/weapons/m1_garand/m1garand_reload.wav" );
@@ -1280,7 +1261,7 @@ void CG_RegisterWeapon( int weaponNum ) {
 		break;
 
 	case WP_BAR:
-		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.6, 0.23 );
+		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.0, 0.0 );
 		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/bar/bar_fire.wav" ); 
 		weaponInfo->flashEchoSound[0] = trap_S_RegisterSound( "sound/weapons/bar/bar_far.wav" );
 		weaponInfo->reloadSound = trap_S_RegisterSound( "sound/weapons/bar/bar_reload.wav" );
@@ -1288,7 +1269,7 @@ void CG_RegisterWeapon( int weaponNum ) {
 		break;
 	
 	case WP_MP44:
-		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.6, 0.23 );
+		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.0, 0.0 );
 		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/mp44/mp44_fire.wav" );
 		weaponInfo->flashEchoSound[0] = trap_S_RegisterSound( "sound/weapons/mp44/mp44_far.wav" );
 		weaponInfo->reloadSound = trap_S_RegisterSound( "sound/weapons/mp44/mp44_reload.wav" );
@@ -1297,7 +1278,7 @@ void CG_RegisterWeapon( int weaponNum ) {
 		break;
 	
 	case WP_MG42M:
-		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.6, 0.23 );
+		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.0, 0.0 );
 		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/mg42m/mg42m_fire.wav" );
 		weaponInfo->flashEchoSound[0] = trap_S_RegisterSound( "sound/weapons/mg42m/mg42m_far.wav" );
 		weaponInfo->reloadSound = trap_S_RegisterSound( "sound/weapons/mg42m/mg42m_reload.wav" );
@@ -1306,7 +1287,7 @@ void CG_RegisterWeapon( int weaponNum ) {
 		break;
 	
 	case WP_M97: 
-		MAKERGB(weaponInfo->flashDlightColor, 1.0, 0.6, 0.23);
+		MAKERGB(weaponInfo->flashDlightColor, 1.0, 0.0, 0.0);
 		weaponInfo->flashSound[0] = trap_S_RegisterSound("sound/weapons/m97/m97_fire.wav");
 		weaponInfo->lastShotSound[0] = trap_S_RegisterSound("sound/weapons/m97/m97_fire_last.wav");
 		weaponInfo->flashEchoSound[0] = trap_S_RegisterSound("sound/weapons/m97/m97_far.wav");
@@ -1314,9 +1295,16 @@ void CG_RegisterWeapon( int weaponNum ) {
 		weaponInfo->reloadFastSound = trap_S_RegisterSound("sound/weapons/m97/m97_pump_reload.wav");
 		weaponInfo->ejectBrassFunc = CG_MachineGunEjectBrass;
 		break;
+	case WP_M30: 
+		MAKERGB(weaponInfo->flashDlightColor, 1.0, 0.0, 0.0);
+		weaponInfo->flashSound[0] = trap_S_RegisterSound("sound/weapons/m30/m30_fire.wav");
+		weaponInfo->flashEchoSound[0] = trap_S_RegisterSound("sound/weapons/m30/m30_far.wav");
+		weaponInfo->reloadSound = trap_S_RegisterSound("sound/weapons/m30/m30_reload.wav");
+		weaponInfo->ejectBrassFunc = CG_MachineGunEjectBrass;
+		break;
 
 	case WP_STEN:
-		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.6, 0.23 );
+		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.0, 0.0 );
 		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/sten/sten_fire.wav" );
 		weaponInfo->reloadSound = trap_S_RegisterSound( "sound/weapons/sten/sten_reload.wav" );
 		weaponInfo->overheatSound = trap_S_RegisterSound( "sound/weapons/sten/sten_overheat.wav" );
@@ -1325,7 +1313,7 @@ void CG_RegisterWeapon( int weaponNum ) {
 
 	case WP_FG42:
 	case WP_FG42SCOPE:
-		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.6, 0.23 );
+		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.0, 0.0 );
 		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/fg42/fg42_fire.wav" );
 		weaponInfo->flashEchoSound[0] = trap_S_RegisterSound( "sound/weapons/fg42/fg42_far.wav" );
 		weaponInfo->reloadSound = trap_S_RegisterSound( "sound/weapons/fg42/fg42_reload.wav" );
@@ -1338,8 +1326,8 @@ void CG_RegisterWeapon( int weaponNum ) {
 		weaponInfo->missileSound        = trap_S_RegisterSound( "sound/weapons/rocket/rockfly.wav" );
 		weaponInfo->missileTrailFunc    = CG_RocketTrail;
 		weaponInfo->missileDlight       = 200;
-		MAKERGB( weaponInfo->flashDlightColor, 0.75, 0.3, 0.0 );
-		MAKERGB( weaponInfo->missileDlightColor, 0.75, 0.3, 0.0 );
+		MAKERGB( weaponInfo->flashDlightColor, 0.75, 0.0, 0.0 );
+		MAKERGB( weaponInfo->missileDlightColor, 0.75, 0.0, 0.0 );
 		weaponInfo->flashSound[0]       = trap_S_RegisterSound( "sound/weapons/rocket/rocklf1a.wav" );
 		weaponInfo->reloadSound         = trap_S_RegisterSound( "sound/weapons/rocket/rocklf_reload.wav" );
 		cgs.media.rocketExplosionShader = trap_R_RegisterShader( "rocketExplosion" );
@@ -1352,7 +1340,7 @@ void CG_RegisterWeapon( int weaponNum ) {
 		weaponInfo->missileSound = trap_S_RegisterSound( "sound/weapons/rocket/rockfly.wav" );
 		weaponInfo->wiTrailTime = 300;
 		weaponInfo->trailRadius = 32;
-		MAKERGB( weaponInfo->flashDlightColor, 1, 0.7, 0.5 );
+		MAKERGB( weaponInfo->flashDlightColor, 1, 0.0, 0.0 );
 		break;
 // JPW NERVE
 	case WP_GRENADE_SMOKE:
@@ -1382,7 +1370,7 @@ void CG_RegisterWeapon( int weaponNum ) {
 //		weaponInfo->wiTrailTime = 2000;
 		weaponInfo->wiTrailTime = 1000;
 		weaponInfo->trailRadius = 32;
-		MAKERGB( weaponInfo->flashDlightColor, 1, 0.7, 0.5 );
+		MAKERGB( weaponInfo->flashDlightColor, 1, 0.0, 0.0 );
 		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/grenade/grenlf1a.wav" );
 		weaponInfo->reloadSound = trap_S_RegisterSound( "sound/weapons/grenade/grenlf_reload.wav" );
 		cgs.media.grenadeExplosionShader = trap_R_RegisterShader( "grenadeExplosion" );
@@ -1396,7 +1384,7 @@ void CG_RegisterWeapon( int weaponNum ) {
 		break;
 
 	case WP_VENOM:
-		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.6, 0.23 );
+		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.0, 0.0 );
 		weaponInfo->spinupSound = trap_S_RegisterSound( "sound/weapons/venom/venomsu1.wav" );    //----(SA)	added
 		weaponInfo->spindownSound = trap_S_RegisterSound( "sound/weapons/venom/venomsd1.wav" );  //----(SA)	added
 		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/venom/venom_fire.wav" );
@@ -1407,11 +1395,11 @@ void CG_RegisterWeapon( int weaponNum ) {
 		break;
 
 	case WP_FLAMETHROWER:
-		//MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.7, 0.4 );
+		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.0, 0.0 );
 		break;
 
 	case WP_TESLA:
-		MAKERGB( weaponInfo->flashDlightColor, 0.2, 0.6, 1 );
+		MAKERGB( weaponInfo->flashDlightColor, 0.2, 0, 0 );
 		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/tesla/teslaf1.wav" );
 		weaponInfo->reloadSound = trap_S_RegisterSound( "sound/weapons/tesla/tesla_reload.wav" );
 		weaponInfo->overheatSound = trap_S_RegisterSound( "sound/weapons/tesla/tesla_overheat.wav" );
@@ -1481,7 +1469,6 @@ void CG_RegisterItemVisuals( int itemNum ) {
 	wolfkickModel = trap_R_RegisterModel( "models/weapons2/foot/v_wolfoot_10f.md3" );
 	
 	hWeaponSnd = trap_S_RegisterSound( "sound/weapons/mg42/37mm.wav" );
-	hWeaponEchoSnd = trap_S_RegisterSound( "sound/weapons/mg42/e37mm.wav" );
 
 	hflakWeaponSnd = trap_S_RegisterSound( "sound/weapons/flak/flak.wav" );
 	notebookModel = trap_R_RegisterModel( "models/mapobjects/book/book.md3" );
@@ -2379,13 +2366,13 @@ void CG_PlayerTeslaCoilFire( centity_t *cent, vec3_t flashorigin ) {
 
 	if ( ( cg.time / 50 ) % ( 4 + ( cg.time % 4 ) ) == 0 ) {
 		// alt light
-		trap_R_AddLightToScene( tr.endpos, 256 + 600 * tr.fraction, 0.2, 0.6, 1, 1 );
+		trap_R_AddLightToScene( tr.endpos, 256 + 600 * tr.fraction, 0.2, 0, 0, 1 );
 	} else if ( ( cg.time / 50 ) % ( 4 + ( cg.time % 4 ) ) == 1 ) {
 		// no light
 		//trap_R_AddLightToScene( tr.endpos, 128 + 500*tr.fraction, 1, 1, 1, 10 );
 	} else {
 		// blue light
-		trap_R_AddLightToScene( tr.endpos, 256 + 600 * tr.fraction, 0.2, 0.6, 1, 0 );
+		trap_R_AddLightToScene( tr.endpos, 256 + 600 * tr.fraction, 0.2, 0, 0, 1 );
 	}
 
 	// shake the camera a bit
@@ -2833,6 +2820,14 @@ void CG_AddPlayerWeapon( refEntity_t *parent, playerState_t *ps, centity_t *cent
 		flash.hModel = 0;
 	}
 
+	if ( weaponNum == WP_WELROD ) {  
+		flash.hModel = 0;
+	}
+
+	if ( weaponNum == WP_LUGER ) {  
+		flash.hModel = 0;
+	}
+
 	// weaps with barrel smoke
 	if ( ps || cg.renderingThirdPerson || !isPlayer ) {
 		if ( !cg_paused.integer ) {    // don't add while paused
@@ -3046,73 +3041,141 @@ void CG_AddViewWeapon( playerState_t *ps ) {
 		// set up gun position
 		CG_CalculateWeaponPosition( hand.origin, angles );
         // REALRTCWEXP
-	    switch ( cg.predictedPlayerState.weapon ) {
+	   switch ( cg.predictedPlayerState.weapon ) {
 		case WP_FLAMETHROWER:
-			 gunoff[0] = 10;
-		     gunoff[1] = 2;
-		     gunoff[2] = 0;
+			gunoff[0] = 15;
+		    gunoff[1] = 2;
+		    gunoff[2] = -2;
 		break;
 		case WP_LUGER:
+			gunoff[0] = 1;
+		    gunoff[1] = 1;
+		    gunoff[2] = 2;
+		break;
 		case WP_SILENCER:
-			 gunoff[0] = 0;
-		     gunoff[1] = 2;
-		     gunoff[2] = 3;
+			gunoff[0] = 1;
+		    gunoff[1] = 1;
+		    gunoff[2] = 2;
+		break;
+		case WP_P38:
+			gunoff[0] = 1;
+		    gunoff[1] = 2;
+		    gunoff[2] = 2;
 		break;
 		case WP_COLT:
-		case WP_AKIMBO:
-			 gunoff[0] = 0;
-		     gunoff[1] = 2;
-		     gunoff[2] = 2;
-		break;
-		case WP_REVOLVER:
-			 gunoff[0] = 0;
-		     gunoff[1] = 0;
-		     gunoff[2] = -1;
-		break;
-		case WP_MP34:
-			 gunoff[0] = 0;
-		     gunoff[1] = 1;
-		     gunoff[2] = 0;
+			gunoff[0] = 1;
+		    gunoff[1] = 2;
+		    gunoff[2] = 2;
 		break;
 		case WP_MP40:
+			gunoff[0] = 2;
+		    gunoff[1] = 2;
+		    gunoff[2] = 0;
+		break;
+		case WP_STEN:
+			 gunoff[0] = 2;
+		     gunoff[1] = 2;
+		     gunoff[2] = -4;
+		break;
+		case WP_THOMPSON:
+			 gunoff[0] = 2;
+		     gunoff[1] = 2;
+		     gunoff[2] = 0;
+		break;
+		case WP_MAUSER:
 			 gunoff[0] = 0;
-		     gunoff[1] = 3;
-		     gunoff[2] = 1;
+		     gunoff[1] = 2;
+		     gunoff[2] = 0;
+		break;
+		case WP_SNIPERRIFLE:
+			 gunoff[0] = 0;
+		     gunoff[1] = 2;
+		     gunoff[2] = 0;
 		break;
 		case WP_M97:
 			 gunoff[0] = -3;
-		     gunoff[1] = 0;
-		     gunoff[2] = -1;
+		     gunoff[1] = 3;
+		     gunoff[2] = -2;
 		break;
 		case WP_VENOM:
-			 gunoff[0] = -1;
+			 gunoff[0] = 1;
 		     gunoff[1] = 2;
-		     gunoff[2] = 0;
+		     gunoff[2] = -1;
 		break;
+		case WP_M1GARAND:
+			 gunoff[0] = -2;
+		     gunoff[1] = 3;
+		     gunoff[2] = -2;
+		break;
+		case WP_TESLA:
+			 gunoff[0] = 2;
+		    gunoff[1] = 2;
+		    gunoff[2] = -1;
+		break;
+		/*case WP_PANZERFAUST:
+			 gunoff[0] = -3;
+		     gunoff[1] = -1;
+		     gunoff[2] = 1;
+		break;*/
+	/*	case WP_GRENADE_LAUNCHER:
+			 gunoff[0] = -6;
+		     gunoff[1] = 2;
+		     gunoff[2] = -5;
+		break;
+		case WP_GRENADE_PINEAPPLE:
+			 gunoff[0] = -5;
+		     gunoff[1] = 1;
+		     gunoff[2] = 3;
+		break;
+		case WP_DYNAMITE:
+			 gunoff[0] = -5;
+		     gunoff[1] = 1;
+		     gunoff[2] = 2;
+		break;*/
 		case WP_MG42M:
 			 gunoff[0] = 0;
-		     gunoff[1] = 3;
+		     gunoff[1] = 1;
 		     gunoff[2] = 0;
 		break;
 		case WP_G43:
-			 gunoff[0] = 0;
+			 gunoff[0] = 1;
 		     gunoff[1] = 1;
-		     gunoff[2] = 1;
+		     gunoff[2] = 0;
 		break;
 		case WP_MP44:
-			 gunoff[0] = 0;
-		     gunoff[1] = 1;
+			 gunoff[0] = 2;
+		     gunoff[1] = 3;
 		     gunoff[2] = 0;
 		break;
 		case WP_FG42:
 			 gunoff[0] = 0;
-		     gunoff[1] = 2;
-		     gunoff[2] = -1;
+		     gunoff[1] = 1;
+		     gunoff[2] = 0;
 		break;
 		case WP_BAR:
-			 gunoff[0] = -3;
+			 gunoff[0] = -2;
 		     gunoff[1] = 3;
-		     gunoff[2] = -1;
+		     gunoff[2] = -3;
+		break;
+		case WP_WELROD:
+			 gunoff[0] = 1;
+		     gunoff[1] = 0;
+		     gunoff[2] = 1;
+		break;
+		case WP_GARAND:
+			 gunoff[0] = -2;
+		     gunoff[1] = 1;
+		     gunoff[2] = -2;
+		break;
+		case WP_KNIFE:
+			 gunoff[0] = 1;
+		     gunoff[1] = 1;
+		     gunoff[2] = -3;
+		break;
+		case WP_M30:
+			 gunoff[0] = 0;
+		     gunoff[1] = 2;
+		     gunoff[2] = 0;
 		break;
 		default:
 		    gunoff[0] = cg_gun_x.value;
@@ -3249,15 +3312,13 @@ void CG_DrawWeaponSelect( void ) {
 		case WP_THOMPSON:
 		case WP_MP40:
 		// RealRTCW weapons
-		case WP_MP34:
-		case WP_PPSH:
-		case WP_MOSIN:
 		case WP_G43:
 		case WP_M1GARAND:
 		case WP_BAR:
 		case WP_MP44:
 		case WP_MG42M:
 		case WP_M97:
+		case WP_M30:
 
 		case WP_STEN:
 		case WP_MAUSER:
@@ -3970,25 +4031,7 @@ void CG_AltWeapon_f( void ) {
 		//		 I still think I'm going to make the weapon banks stored in the config, so this will
 		//		just be a matter of resetting the banks to what's in the config.
 		switch ( original ) {
-		case WP_LUGER:
-			if ( cg.snap->ps.eFlags & EF_MELEE_ACTIVE ) {   // if you're holding a chair, you can't screw on the silencer
-				return;
-			}
-			weapBanks[2][0] = WP_SILENCER;
-			break;
-		case WP_SILENCER:
-			if ( cg.snap->ps.eFlags & EF_MELEE_ACTIVE ) {   // if you're holding a chair, you can't remove the silencer
-				return;
-			}
-			weapBanks[2][0] = WP_LUGER;
-			break;
 
-		case WP_AKIMBO:
-			weapBanks[2][1] = WP_COLT;
-			break;
-		case WP_COLT:
-			weapBanks[2][1] = WP_AKIMBO;
-			break;
 		}
 
 //----(SA)	end
@@ -4606,7 +4649,7 @@ void CG_MG42EFX( centity_t *cent ) {
 	VectorCopy( cent->currentState.origin, point );
 	AngleVectors( cent->currentState.angles, forward, NULL, NULL );
 	VectorMA( point, 40, forward, point );
-	trap_R_AddLightToScene( point, 200 + ( rand() & 31 ),1.0, 0.6, 0.23, 0 );
+	trap_R_AddLightToScene( point, 200 + ( rand() & 31 ),1.0, 0.0, 0.0, 0 );
 
 	memset( &flash, 0, sizeof( flash ) );
 	flash.renderfx = RF_LIGHTING_ORIGIN;
@@ -4680,7 +4723,7 @@ void CG_MortarEFX( centity_t *cent ) {
 
 	if ( cent->currentState.density & 2 ) {
 		// light
-		trap_R_AddLightToScene( cent->currentState.origin, 200 + ( rand() & 31 ), 1.0, 1.0, 1.0, 0 );
+		trap_R_AddLightToScene( cent->currentState.origin, 200 + ( rand() & 31 ), 1.0, 0.0, 0.0, 0 );
 
 		// muzzle flash
 		memset( &flash, 0, sizeof( flash ) );
@@ -4717,18 +4760,17 @@ void CG_WeaponFireRecoil( int weapon ) {
 	case WP_LUGER:
 	case WP_SILENCER:
 	case WP_COLT:
-	case WP_TT33:
+	case WP_P38:
 	case WP_AKIMBO: 
 	   yawRandom = 1;
 	   pitchRecoilAdd = 2;
 	   pitchAdd = 1;
 	break;
-	case WP_REVOLVER:
+	case WP_WELROD:
 	    pitchAdd = 1;
 	    yawRandom = 1;
     break;
 	case WP_MAUSER:
-	case WP_MOSIN:
 	case WP_GARAND:
 	case WP_G43:
 	case WP_M1GARAND:
@@ -4742,8 +4784,6 @@ void CG_WeaponFireRecoil( int weapon ) {
 		pitchAdd = 0.8;
 	break;
 	case WP_MP40:
-	case WP_MP34:
-	case WP_PPSH:
 	case WP_THOMPSON:
 	case WP_STEN:
 		pitchAdd = 2;
@@ -4759,6 +4799,13 @@ void CG_WeaponFireRecoil( int weapon ) {
 		yawRandom = 1;  
 	break;
 	case WP_M97:
+		pitchRecoilAdd = 1;
+		pitchAdd = 12 + rand() % 3;
+		yawRandom = 2;
+		pitchAdd *= 0.5;
+		yawRandom *= 0.5;
+	break;
+	case WP_M30:
 		pitchRecoilAdd = 1;
 		pitchAdd = 12 + rand() % 3;
 		yawRandom = 2;
@@ -4824,25 +4871,7 @@ void CG_FireWeapon( centity_t *cent ) {
 			return;
 		}
 
-		trap_S_StartSound( NULL, ent->number, CHAN_WEAPON, hWeaponSnd );
-
-		if ( hWeaponEchoSnd ) { // check for echo
-			centity_t   *cent;
-			vec3_t porg, gorg, norm;    // player/gun origin
-			float gdist;
-
-			cent = &cg_entities[ent->number];
-			VectorCopy( cent->currentState.pos.trBase, gorg );
-			VectorCopy( cg.refdef.vieworg, porg );
-			VectorSubtract( gorg, porg, norm );
-			gdist = VectorNormalize( norm );
-			if ( gdist > 512 && gdist < 8192 ) {   // temp dist.  TODO: use numbers that are weapon specific // RealRTCW was 4096
-				// use gorg as the new sound origin
-				VectorMA( cg.refdef.vieworg, 64, norm, gorg );    // sound-on-a-stick
-				trap_S_StartSound( gorg, ent->number, CHAN_WEAPON, hWeaponEchoSnd );
-			}
-		}
-		//trap_S_StartSound( NULL, cent->currentState.number, CHAN_WEAPON, hWeaponSnd );
+		trap_S_StartSound( NULL, cent->currentState.number, CHAN_WEAPON, hWeaponSnd );
 		//trap_S_StartSound( NULL, ent->number, CHAN_WEAPON, hWeaponSnd );
 		if ( cg_brassTime.integer > 0 ) {
 			CG_MachineGunEjectBrass( cent );
@@ -5204,7 +5233,7 @@ void CG_MissileHitWall( int weapon, int clientNum, vec3_t origin, vec3_t dir, in
 	shader = 0;
 	light = 0;
 	lightColor[0] = 1;
-	lightColor[1] = 1;
+	lightColor[1] = 0;
 	lightColor[2] = 0;
 	// Ridah
 	lightOverdraw = 0;
@@ -5239,17 +5268,15 @@ void CG_MissileHitWall( int weapon, int clientNum, vec3_t origin, vec3_t dir, in
 	case WP_SNOOPERSCOPE:
 	case WP_MP40:
 	// RealRTCW weapons
-	case WP_MP34:
-	case WP_TT33:
-	case WP_PPSH:
-	case WP_MOSIN:
+	case WP_P38:
 	case WP_G43:
 	case WP_M1GARAND:
 	case WP_BAR:
 	case WP_MP44:
 	case WP_MG42M:
 	case WP_M97:
-	case WP_REVOLVER:
+	case WP_M30:
+	case WP_WELROD:
 	case WP_FG42:
 	case WP_FG42SCOPE:
 	case WP_THOMPSON:
@@ -5454,8 +5481,8 @@ void CG_Shard(centity_t *cent, vec3_t origin, vec3_t dir)
 		isSprite = qtrue;
 		duration = 1000;
 		lightColor[0] = 0.75;
-		lightColor[1] = 0.5;
-		lightColor[2] = 0.1;
+		lightColor[1] = 0.0;
+		lightColor[2] = 0.0;
 
 		shakeAmt = 0.15f;
 		shakeDur = 600;
@@ -5487,8 +5514,8 @@ void CG_Shard(centity_t *cent, vec3_t origin, vec3_t dir)
 		isSprite = qtrue;
 		duration = 1000;
 		lightColor[0] = 0.75;
-		lightColor[1] = 0.5;
-		lightColor[2] = 0.1;
+		lightColor[1] = 0.0;
+		lightColor[2] = 0.0;
 
 		shakeAmt = 0.25f;
 		shakeDur = 2800;
@@ -5562,8 +5589,8 @@ void CG_Shard(centity_t *cent, vec3_t origin, vec3_t dir)
 		isSprite = qtrue;
 		duration = 1000;
 		lightColor[0] = 0.75;
-		lightColor[1] = 0.5;
-		lightColor[2] = 0.1;
+		lightColor[1] = 0.0;
+		lightColor[2] = 0.0;
 
 		if ( weapon != WP_GRENADE_SMOKE ) {
 			shakeAmt = 0.15f;
@@ -5609,8 +5636,8 @@ void CG_Shard(centity_t *cent, vec3_t origin, vec3_t dir)
 //		lightColor[1] = 1;//0.75;
 //		lightColor[2] = 0.6;//0.0;
 		lightColor[0] = 0.75;
-		lightColor[1] = 0.5;
-		lightColor[2] = 0.1;
+		lightColor[1] = 0.0;
+		lightColor[2] = 0.0;
 
 		// explosion sprite animation
 		VectorMA( origin, 24, dir, sprOrg );
@@ -5759,7 +5786,7 @@ void CG_MissileHitWallSmall( int weapon, int clientNum, vec3_t origin, vec3_t di
 
 	mod = 0;
 	lightColor[0] = 1;
-	lightColor[1] = 1;
+	lightColor[1] = 0;
 	lightColor[2] = 0;
 	// Ridah
 	lightOverdraw = 0;
@@ -5773,8 +5800,8 @@ void CG_MissileHitWallSmall( int weapon, int clientNum, vec3_t origin, vec3_t di
 	isSprite = qtrue;
 	duration = 1000;
 	lightColor[0] = 0.75;
-	lightColor[1] = 0.5;
-	lightColor[2] = 0.1;
+	lightColor[1] = 0.0;
+	lightColor[2] = 0.0;
 
 	// Ridah, explosion sprite animation
 	VectorMA( origin, 16, dir, sprOrg );
