@@ -192,7 +192,7 @@ static void CG_DrawPlayerArmorIcon( rectDef_t *rect, qboolean draw2D ) {
 #endif
 }
 
-static void CG_DrawPlayerArmorValue( rectDef_t *rect, int font, float scale, vec4_t color, qhandle_t shader, int textStyle ) {
+/*static void CG_DrawPlayerArmorValue( rectDef_t *rect, int font, float scale, vec4_t color, qhandle_t shader, int textStyle ) {
 	char num[16];
 	int value;
 	playerState_t   *ps;
@@ -216,7 +216,58 @@ static void CG_DrawPlayerArmorValue( rectDef_t *rect, int font, float scale, vec
 		value = CG_Text_Width( num, font, scale, 0 );
 		CG_Text_Paint( rect->x + ( rect->w - value ) / 2, rect->y + rect->h, font, scale, color, num, 0, 0, textStyle );
 	}
+}*/
+
+static void CG_DrawPlayerArmorValue( rectDef_t *rect, vec4_t color, int align ) {
+	float frac; 
+	int flags = 0;
+
+	playerState_t   *ps;
+
+	ps = &cg.snap->ps;
+
+	//color[3] = 0.5f;
+
+	if ( cg_fixedAspect.integer == 2 ) {
+		CG_SetScreenPlacement(PLACE_LEFT, PLACE_BOTTOM);
+	}
+
+	if ( align != HUD_HORIZONTAL ) {
+		flags |= 4;   // BAR_VERT
+		flags |= 1;   // BAR_LEFT (left, when vertical means grow 'up')
+	}
+    //frac = cg.snap->ps.stats[STAT_ARMOR] / 100;
+	frac = ps->stats[STAT_ARMOR] / (float) 100;
+	//CG_FilledBar( rect->x, rect->y + ( rect->h * 0.1f ), rect->w, rect->h * 0.84f, colour, NULL, bgcolour, frac, flags );
+	CG_FilledBar( rect->x, rect->y, rect->w, rect->h, color, NULL, NULL, frac, flags );
+
+	trap_R_SetColor( NULL );
+// jpw
 }
+
+
+/*static void CG_DrawPlayerHealth( rectDef_t *rect, vec4_t color, int align ) {
+	float frac; 
+	int flags = 1 | 4 | 16 | 64;
+
+	CG_ColorForHealth( color );
+	color[3] = 0.5f;
+
+	if ( cg_fixedAspect.integer == 2 ) {
+		CG_SetScreenPlacement(PLACE_LEFT, PLACE_BOTTOM);
+	}
+
+	if ( align != HUD_HORIZONTAL ) {
+		flags |= 4;   // BAR_VERT
+		flags |= 1;   // BAR_LEFT (left, when vertical means grow 'up')
+	}
+    frac = cg.snap->ps.stats[STAT_HEALTH] / (float) cg.snap->ps.stats[STAT_MAX_HEALTH];
+	//CG_FilledBar( rect->x, rect->y + ( rect->h * 0.1f ), rect->w, rect->h * 0.84f, colour, NULL, bgcolour, frac, flags );
+	CG_FilledBar( rect->x, rect->y, rect->w, rect->h, color, NULL, NULL, frac, flags );
+
+	trap_R_SetColor( NULL );
+// jpw
+}*/
 
 // TTimo: unused
 /*
