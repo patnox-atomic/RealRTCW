@@ -1891,7 +1891,7 @@ model="models/powerups/ammo/ttammo.md3"
 		WP_PPSH,
 		"",                  // precache
 		"",                  // sounds
-		{71,71,100,50,50}	
+		{100,100,100,100,100}	
 	},
 
 /*QUAKED ammo_ttammo_l (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
@@ -1915,7 +1915,7 @@ model="models/powerups/ammo/ttammo.md3"
 		WP_PPSH,
 		"",                  // precache
 		"",                  // sounds
-		{142,142,150,100,100}	
+		{150,150,150,150,150}	
 	},
 
 /*QUAKED ammo_mosina (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
@@ -1939,7 +1939,7 @@ model="models/powerups/ammo/mosina.md3"
 		WP_MOSIN,
 		"",                          // precache
 		"",                          // sounds
-		{20,20,30,15,15}		
+		{30,30,30,30,30}		
 	},
 
 /*QUAKED ammo_barammo (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
@@ -1963,7 +1963,7 @@ model="models/powerups/ammo/barammo.md3"
 		WP_BAR,
 		"",                  // precache
 		"",                  // sounds
-		{40,40,60,30,30}	
+		{60,60,60,60,60}	
 	},
 
 /*QUAKED ammo_barammo_l (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
@@ -1987,7 +1987,7 @@ model="models/powerups/ammo/barammo_l.md3"
 		WP_BAR,
 		"",                  // precache
 		"",                  // sounds
-		{60,60,120,45,45}	
+		{120,120,120,120,120}	
 	},
 
 /*QUAKED ammo_44ammo (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
@@ -2011,7 +2011,7 @@ model="models/powerups/ammo/44ammo.md3"
 		WP_MP44,
 		"",                  // precache
 		"",                  // sounds
-		{60,60,60,45,45}	
+		{60,60,60,60,60}	
 	},
 
 /*QUAKED ammo_44ammo_l (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
@@ -2035,7 +2035,7 @@ model="models/powerups/ammo/44ammo_l.md3"
 		WP_MP44,
 		"",                  // precache
 		"",                  // sounds
-		{90,90,90,75,75}	
+		{90,90,90,90,90}	
 	},
 
 		/*QUAKED ammo_m97ammo (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
@@ -2083,7 +2083,7 @@ model="models/powerups/ammo/44ammo_l.md3"
 		WP_REVOLVER,
 		"",                  // precache
 		"",                  // sounds
-		{ 6,6,12,6,6 }
+		{ 12,12,12,12,12 }
 	},
 
 
@@ -2182,7 +2182,7 @@ model="models/powerups/ammo/am45cal_s.md3"
 		WP_COLT,
 		"",                  // precache
 		"",                  // sounds
-		{40,30,60,20,20}
+		{60,60,60,60,60}
 	},
 /*QUAKED ammo_45cal (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
 used by: Thompson, Colt
@@ -2205,7 +2205,7 @@ model="models/powerups/ammo/am45cal_m.md3"
 		WP_COLT,
 		"",                  // precache
 		"",                  // sounds
-		{60,45,90,30,30}
+		{90,90,90,90,90}
 	},
 /*QUAKED ammo_45cal_large (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
 used by: Thompson, Colt
@@ -2228,7 +2228,7 @@ model="models/powerups/ammo/am45cal_l.md3"
 		WP_COLT,
 		"",                  // precache
 		"",                  // sounds
-		{90,60,120,45,45}
+		{180,180,180,180,180}
 	},
 
 
@@ -2328,7 +2328,7 @@ model="models/powerups/ammo/am30cal_s.md3"
 		WP_GARAND,
 		"",                          // precache
 		"",                          // sounds
-		{5,2,5,2,2}
+		{5,5,5,5,5}
 	},
 /*QUAKED ammo_30cal (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
 used by: Garand rifle
@@ -2351,7 +2351,7 @@ model="models/powerups/ammo/am30cal_m.md3"
 		WP_GARAND,
 		"",                          // precache
 		"",                          // sounds
-		{5,5,5,5,5}
+		{10,10,10,10,10}
 	},
 /*QUAKED ammo_30cal_large (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
 used by: Garand rifle
@@ -2374,7 +2374,7 @@ model="models/powerups/ammo/am30cal_l.md3"
 		WP_GARAND,
 		"",                          // precache
 		"",                          // sounds
-		{10,10,10,10,10}
+		{15,15,15,15,15}
 	},
 
 
@@ -2447,7 +2447,7 @@ model="models/powerups/ammo/amgrenus_bag.md3"
 		WP_GRENADE_PINEAPPLE,
 		"",                      // precache
 		"",                      // sounds
-		{4,3,4,2,2}
+		{4,4,4,4,4}
 	},
 
 /*QUAKED ammo_dynamite (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
@@ -2496,7 +2496,7 @@ model="models/powerups/ammo/amcell.md3"
 		WP_TESLA,
 		"",                  // precache
 		"",                  // sounds
-		{75,75,7,75,75}
+		{75,75,75,75,75}
 	},
 
 
@@ -2522,7 +2522,7 @@ model="models/powerups/ammo/amfuel.md3"
 		WP_FLAMETHROWER,
 		"",                  // precache
 		"",                  // sounds
-		{100,75,50,50,50}
+		{100,75,75,75,75}
 	},
 
 
