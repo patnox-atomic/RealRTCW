@@ -235,6 +235,8 @@ void UseHoldableItem( gentity_t *ent, int item ) {
 		if ( !g_cheats.integer ) 
 		{
 		steamSetAchievement("ACH_ADRENALINE");
+		}
+		
 			ent->health += 99;
 			if ( ent->health > ent->client->ps.stats[STAT_MAX_HEALTH] ) {
 			ent->health = ent->client->ps.stats[STAT_MAX_HEALTH];
