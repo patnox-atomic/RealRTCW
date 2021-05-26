@@ -218,10 +218,11 @@ UseHoldableItem
 void UseHoldableItem( gentity_t *ent, int item ) {
 	switch ( item ) {
 	case HI_WINE:           // 1921 Chateu Lafite - gives 25 pts health up to max health
-		ent->client->ps.powerups[PW_NOFATIGUE] = 60000;
 		ent->health += 50;
+		if (!g_decaychallenge.integer){
 		if ( ent->health > ent->client->ps.stats[STAT_MAX_HEALTH] ) {
 			ent->health = ent->client->ps.stats[STAT_MAX_HEALTH];
+		}
 		}
 		break;
 
@@ -229,6 +230,7 @@ void UseHoldableItem( gentity_t *ent, int item ) {
 		ent->client->ps.powerups[PW_NOFATIGUE] = 60000;
 		ent->health += 100;
 		
+		if (!g_decaychallenge.integer){
 		if ( g_gameskill.integer == GSKILL_REALISM || g_gameskill.integer == GSKILL_MAX ) {
 			if ( ent->health > ent->client->ps.stats[STAT_MAX_HEALTH] ) {
 			ent->health = ent->client->ps.stats[STAT_MAX_HEALTH] * 3.0;
@@ -236,12 +238,16 @@ void UseHoldableItem( gentity_t *ent, int item ) {
 		} else if ( ent->health > ent->client->ps.stats[STAT_MAX_HEALTH] ) {
 			ent->health = ent->client->ps.stats[STAT_MAX_HEALTH] * 2.0;
 		}
+		}
 		break;
 
 	case HI_BANDAGES:       
-		ent->health += 30; 
+		ent->health += 30;
+
+		if (!g_decaychallenge.integer){
 		if ( ent->health > ent->client->ps.stats[STAT_MAX_HEALTH] ) {
 		ent->health = ent->client->ps.stats[STAT_MAX_HEALTH];
+		}
 		}
 		break;
 
@@ -387,6 +393,12 @@ Pickup_Ammo
 int Pickup_Ammo( gentity_t *ent, gentity_t *other ) {
 	int quantity;
 
+			if (g_decaychallenge.integer) {
+			quantity = 999;
+		}
+
+	
+
 	if ( ent->count ) {
 		quantity = ent->count;
 	} else {
@@ -428,11 +440,11 @@ int Pickup_Weapon( gentity_t *ent, gentity_t *other ) {
 		if ( ent->count ) {
 			quantity = ent->count;
 		} else {
-//----(SA) modified
-//			quantity = ent->item->quantity;
-//			quantity = (random() * (ent->item->quantity - 1)) + 1;	// giving 1-<item default count>
 			quantity = ( random() * ( ammoTable[weapon].maxclip - 4 ) ) + 4;    // giving 4-<item default count>
+		}
 
+		if (g_decaychallenge.integer) {
+			quantity = 999;
 		}
 
 		// dropped items and teamplay weapons always have full ammo
@@ -978,6 +990,22 @@ void FinishSpawningItem( gentity_t *ent ) {
 		ent->s.modelindex2 = G_ModelIndex( ent->model );
 	}
 
+	if ( g_nopickupchallenge.integer && ent->item->giType == IT_HEALTH )
+	{
+    return;
+	}
+
+	if ( g_decaychallenge.integer && ent->item->giType == IT_HEALTH )
+	{
+    return;
+	}
+
+	if ( g_nopickupchallenge.integer && ent->item->giType == IT_ARMOR )
+	{
+    return;
+	}
+
+
 
 	// if clipboard, add the menu name string to the client's configstrings
 	if ( ent->item->giType == IT_CLIPBOARD ) {
@@ -1210,6 +1238,7 @@ void G_SpawnItem( gentity_t *ent, gitem_t *item ) {
 	if ( item->giType == IT_POWERUP ) {
 		G_SoundIndex( "sound/items/poweruprespawn.wav" );
 	}
+
 
 	if ( item->giType == IT_TREASURE ) {
 		level.numTreasure++;
