@@ -220,14 +220,23 @@ UseHoldableItem
 void UseHoldableItem( gentity_t *ent, int item ) {
 	switch ( item ) {
 	case HI_WINE:           // 1921 Chateu Lafite - gives 25 pts health up to max health
-		ent->health += 30;
+	if (g_gameskill.integer == GSKILL_MAX) 
+	    {
+		ent->health += 20;
 		if ( ent->health > ent->client->ps.stats[STAT_MAX_HEALTH] ) {
-			ent->health = ent->client->ps.stats[STAT_MAX_HEALTH];
+		ent->health = ent->client->ps.stats[STAT_MAX_HEALTH];
 		}
+	    } 
+		else {
+		ent->health += 5;
+		if ( ent->health > ent->client->ps.stats[STAT_MAX_HEALTH] ) {
+	    ent->health = ent->client->ps.stats[STAT_MAX_HEALTH];
+		}
+	    }
 		break;
 
 	case HI_ADRENALINE:       
-		ent->client->ps.powerups[PW_NOFATIGUE] = 60000;
+		    ent->client->ps.powerups[PW_NOFATIGUE] = 60000;
 			ent->health += 99;
 			if ( ent->health > ent->client->ps.stats[STAT_MAX_HEALTH] ) {
 			ent->health = ent->client->ps.stats[STAT_MAX_HEALTH];
@@ -235,10 +244,19 @@ void UseHoldableItem( gentity_t *ent, int item ) {
 		
 
 	case HI_BANDAGES:       
+	if (g_gameskill.integer == GSKILL_MAX) 
+	    {
 		ent->health += 20;
-			if ( ent->health > ent->client->ps.stats[STAT_MAX_HEALTH] ) {
-			ent->health = ent->client->ps.stats[STAT_MAX_HEALTH];
+		if ( ent->health > ent->client->ps.stats[STAT_MAX_HEALTH] ) {
+		ent->health = ent->client->ps.stats[STAT_MAX_HEALTH];
 		}
+	    } 
+		else {
+		ent->health += 10;
+		if ( ent->health > ent->client->ps.stats[STAT_MAX_HEALTH] ) {
+	    ent->health = ent->client->ps.stats[STAT_MAX_HEALTH];
+		}
+	    }
 		break;
 
 	case HI_BOOK1:
