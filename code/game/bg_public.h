@@ -489,7 +489,7 @@ typedef enum {
 	WP_MP44,                // 18
 	WP_MG42M,               // 19
 	WP_M97,                 // 20
-	WP_REVOLVER,            // 21
+	WP_WALTHER,            // 21
 	WP_COLT,                // 22	
 	WP_THOMPSON,            // 23	
 	WP_GARAND,              // 24	
@@ -538,7 +538,7 @@ extern int weapAlts[];
 #define WP_BEGINSECONDARY   WP_SNIPERRIFLE
 #define WP_LASTSECONDARY    WP_FG42SCOPE
 
-#define WEAPS_ONE_HANDED    ( ( 1 << WP_KNIFE ) | ( 1 << WP_LUGER ) | ( 1 << WP_COLT ) | ( 1 << WP_SILENCER ) | ( 1 << WP_GRENADE_LAUNCHER ) | ( 1 << WP_GRENADE_PINEAPPLE ) | ( 1 << WP_TT33 ) | ( 1 << WP_REVOLVER ) )
+#define WEAPS_ONE_HANDED    ( ( 1 << WP_KNIFE ) | ( 1 << WP_LUGER ) | ( 1 << WP_COLT ) | ( 1 << WP_SILENCER ) | ( 1 << WP_GRENADE_LAUNCHER ) | ( 1 << WP_GRENADE_PINEAPPLE ) | ( 1 << WP_TT33 ) | ( 1 << WP_WALTHER ) )
 
 
 
@@ -553,7 +553,7 @@ extern int weapAlts[];
 		weapon == WP_BAR    || weapon == WP_MP44      || \
 		weapon == WP_M97   || weapon == WP_MP34     || weapon == WP_MOSIN     || \
 		weapon == WP_PPSH    || weapon == WP_GARAND      || \
-		weapon == WP_SNOOPERSCOPE  || weapon == WP_REVOLVER || weapon == WP_AKIMBO       \
+		weapon == WP_SNOOPERSCOPE  || weapon == WP_WALTHER || weapon == WP_AKIMBO       \
 	)
 
  // entityState_t->event values
@@ -1045,7 +1045,7 @@ typedef enum {
 	MOD_MP44,
 	MOD_MG42M,
 	MOD_M97,
-	MOD_REVOLVER,
+	MOD_WALTHER,
 	MOD_GRENADE_PINEAPPLE,
 	MOD_CROSS,
 	MOD_MORTAR,

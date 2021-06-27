@@ -597,7 +597,7 @@ int G_GetWeaponDamage( int weapon, qboolean player ) {
 			case WP_BAR: return sk_plr_dmg_bar.integer;
 			case WP_MG42M: return sk_plr_dmg_mg42m.integer;
 			case WP_M97: return sk_plr_dmg_m97.integer;
-			case WP_REVOLVER: return sk_plr_dmg_revolver.integer;	
+			case WP_WALTHER: return sk_plr_dmg_walther.integer;	
 			case WP_MORTAR: return 100;
 			case WP_GAUNTLET: return 1;
 			case WP_SNIPER: return 1;
@@ -638,7 +638,7 @@ int G_GetWeaponDamage( int weapon, qboolean player ) {
 			case WP_BAR: return sk_ai_dmg_bar.integer;
 			case WP_MG42M: return sk_ai_dmg_mg42m.integer;
 			case WP_M97: return sk_ai_dmg_m97.integer;
-			case WP_REVOLVER: return sk_ai_dmg_revolver.integer;		
+			case WP_WALTHER: return sk_ai_dmg_walther.integer;		
 			case WP_MORTAR: return 100;
 			case WP_GAUNTLET: return 1;
 			case WP_SNIPER: return 1;
@@ -698,7 +698,7 @@ float G_GetWeaponSpread( int weapon ) {
 		    case WP_MP44:       return 800;  
 			case WP_MG42M:      return 1500;
 			case WP_M97:        return 4500;
-			case WP_REVOLVER:   return 400; 
+			case WP_WALTHER:   return 400; 
 			case WP_FG42SCOPE:  return 250;
 			case WP_FG42:       return 600; 
 			case WP_THOMPSON:   return 950; 
@@ -768,8 +768,8 @@ float G_GetWeaponSpread( int weapon ) {
 #define TT33_SPREAD		G_GetWeaponSpread( WP_TT33 )
 #define TT33_DAMAGE(e)		G_GetWeaponDamage( WP_TT33, e )
 
-#define REVOLVER_SPREAD		G_GetWeaponSpread( WP_REVOLVER )
-#define REVOLVER_DAMAGE(e)		G_GetWeaponDamage( WP_REVOLVER, e )
+#define WALTHER_SPREAD		G_GetWeaponSpread( WP_WALTHER )
+#define WALTHER_DAMAGE(e)		G_GetWeaponDamage( WP_WALTHER, e )
 
 #define PPSH_SPREAD     G_GetWeaponSpread( WP_PPSH )
 #define PPSH_DAMAGE(e)     G_GetWeaponDamage( WP_PPSH, e ) 
@@ -1896,8 +1896,8 @@ void FireWeapon( gentity_t *ent ) {
 	case WP_TT33:
 		Bullet_Fire( ent, TT33_SPREAD * aimSpreadScale, TT33_DAMAGE(isPlayer) );
 		break;
-	case WP_REVOLVER:
-		Bullet_Fire( ent, REVOLVER_SPREAD * aimSpreadScale, REVOLVER_DAMAGE(isPlayer) );
+	case WP_WALTHER:
+		Bullet_Fire( ent, WALTHER_SPREAD * aimSpreadScale, WALTHER_DAMAGE(isPlayer) );
 		break;
 	case WP_PPSH: 
 		Bullet_Fire( ent, PPSH_SPREAD * aimSpreadScale, PPSH_DAMAGE(isPlayer) );
