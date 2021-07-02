@@ -3681,8 +3681,8 @@ LoperLightningEffect
 */
 void CG_AddLoperLightningEffect( centity_t *cent ) {
 #define LOPER_LIGHTNING_POINT_TIMEOUT   200
-#define LOPER_LIGHTNING_MAX_DIST        360
-#define LOPER_LIGHTNING_NORMAL_DIST     80
+#define LOPER_LIGHTNING_MAX_DIST        1
+#define LOPER_LIGHTNING_NORMAL_DIST     1
 #define LOPER_MAX_POINT_TESTS           10
 #define LOPER_MAX_POINT_TESTS_PERFRAME  20
 
@@ -3737,7 +3737,7 @@ void CG_AddLoperLightningEffect( centity_t *cent ) {
 		if (    ( cent->currentState.eFlags & EF_MONSTER_EFFECT ) &&
 				(   ( !cent->pe.lightningTimes[i] ) ||
 					( cent->pe.lightningTimes[i] > cg.time ) ||
-					( cent->pe.lightningTimes[i] < cg.time - 50 ) ||
+					( cent->pe.lightningTimes[i] < cg.time - 0 ) ||
 					( VectorDistance( cent->lerpOrigin, cent->pe.lightningPoints[i] ) > maxDist ) ) ) {
 			// attacking the player
 			VectorSet( testPos, 12 * crandom(),
@@ -3747,7 +3747,7 @@ void CG_AddLoperLightningEffect( centity_t *cent ) {
 			cent->pe.lightningTimes[i] = cg.time - rand() % ( LOPER_LIGHTNING_POINT_TIMEOUT / 2 );
 			VectorCopy( testPos, cent->pe.lightningPoints[i] );
 			// play a zap sound
-			if ( cent->pe.lightningSoundTime < cg.time - 100 ) {
+			if ( cent->pe.lightningSoundTime < cg.time - 0 ) {
 				trap_S_StartSound( testPos, ENTITYNUM_WORLD, CHAN_AUTO, cgs.media.lightningZap /*cgs.media.lightningSounds[rand()%3]*/ );
 				cent->pe.lightningSoundTime = cg.time;
 			}
@@ -3808,10 +3808,10 @@ LoperGroundEffect
 ===============
 */
 void CG_AddLoperGroundEffect( centity_t *cent ) {
-#define LOPER_GROUNDCHARGE_INTERVAL 30
+#define LOPER_GROUNDCHARGE_INTERVAL 30000
 #define LOPER_GROUNDCHARGE_DURATION 100
 #define LOPER_GROUNDCHARGE_FADEOUT  400
-#define LOPER_GROUNDCHARGE_RADIUS   150
+#define LOPER_GROUNDCHARGE_RADIUS   1
 	vec3_t org, c;
 	//static vec3_t up = {0,0,1}; // TTimo: unused
 	float colTake;
@@ -3866,7 +3866,7 @@ void CG_AddLoperGroundEffect( centity_t *cent ) {
 
 	// show a dlight
 	// color
-	colTake = 0.8 - fabs( sin( cg.time ) ) * 0.3;
+	colTake = 1 - fabs( sin( cg.time ) ) * 0.3;
 	c[0] = 1.0 - colTake;
 	c[1] = 1.0 - 0.8 * colTake;
 	c[2] = 1.0; //c[1] + 0.2;

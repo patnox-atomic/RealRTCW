@@ -220,58 +220,26 @@ UseHoldableItem
 void UseHoldableItem( gentity_t *ent, int item ) {
 	switch ( item ) {
 	case HI_WINE:           // 1921 Chateu Lafite - gives 25 pts health up to max health
-		ent->health += 25;
-		if ( !g_cheats.integer ) 
-		{
-		steamSetAchievement("ACH_WINE");
-		}
-		if (!g_decaychallenge.integer){
+		ent->health += 15;
 		if ( ent->health > ent->client->ps.stats[STAT_MAX_HEALTH] ) {
 			ent->health = ent->client->ps.stats[STAT_MAX_HEALTH];
-		}
 		}
 		break;
 
 	case HI_ADRENALINE:       
 		ent->client->ps.powerups[PW_NOFATIGUE] = 60000;
-		ent->health += 100;
-		if ( !g_cheats.integer ) 
-		{
-		steamSetAchievement("ACH_ADRENALINE");
-		}
-		
-		if (!g_decaychallenge.integer){
-		if ( g_gameskill.integer == GSKILL_REALISM || g_gameskill.integer == GSKILL_MAX ) {
-			if ( ent->health > ent->client->ps.stats[STAT_MAX_HEALTH] ) {
-			ent->health = ent->client->ps.stats[STAT_MAX_HEALTH] * 3.0;
-		}
-		} else if ( ent->health > ent->client->ps.stats[STAT_MAX_HEALTH] ) {
-			ent->health = ent->client->ps.stats[STAT_MAX_HEALTH] * 1.25;
-		}
-		}
 		break;
 
 	case HI_BANDAGES:       
-		ent->health += 20;
-		if ( !g_cheats.integer ) 
-		{
-		steamSetAchievement("ACH_BANDAGES");
-		}
-
-		if (!g_decaychallenge.integer){
-		if ( ent->health > ent->client->ps.stats[STAT_MAX_HEALTH] ) {
-		ent->health = ent->client->ps.stats[STAT_MAX_HEALTH];
-		}
+		ent->health += 25;
+			if ( ent->health > ent->client->ps.stats[STAT_MAX_HEALTH] ) {
+			ent->health = ent->client->ps.stats[STAT_MAX_HEALTH];
 		}
 		break;
 
 	case HI_BOOK1:
 	case HI_BOOK2:
 	case HI_BOOK3:
-	if ( !g_cheats.integer ) 
-	{
-	    steamSetAchievement("ACH_READ_BOOK");
-	}
 		G_AddEvent( ent, EV_POPUPBOOK, ( item - HI_BOOK1 ) + 1 );
 		break;
 	}

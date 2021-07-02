@@ -301,9 +301,9 @@ AICharacterDefaults_t aiDefaults[NUM_CHARACTERS] = {
 	{
 		"Loper",
 		{
-			220,        // running speed
+			110,        // running speed
 			70,         // walking speed
-			220,        // crouching speed
+			60,        // crouching speed
 			90,         // Field of View
 			200,        // Yaw Speed
 			0.0,        // leader
@@ -336,13 +336,13 @@ AICharacterDefaults_t aiDefaults[NUM_CHARACTERS] = {
 			"loperHit1",			// deny - refuse orders (doing something else)
 			"loperHit2",			// misc1
 		},
-		AITEAM_MONSTER,
+		AITEAM_NAZI,
 		"loper/default",
-		{ /*WP_MONSTER_ATTACK1,*/ WP_MONSTER_ATTACK2,WP_MONSTER_ATTACK3},
-		BBOX_LARGE, {32,32},		// large is for wide characters
+		{ WP_MONSTER_ATTACK1,WP_MONSTER_ATTACK2,WP_MONSTER_ATTACK3},
+		BBOX_LARGE, {20,20},		// large is for wide characters
 		AIFL_NO_RELOAD,
-		0 /*AIFunc_LoperAttack1Start*/, AIFunc_LoperAttack2Start, AIFunc_LoperAttack3Start,
-		"sound/world/electloop.wav",
+		AIFunc_LoperAttack1Start, AIFunc_LoperAttack2Start, AIFunc_LoperAttack3Start,
+		"sound/world/silent.wav",
 		AISTATE_ALERT
 	},
 

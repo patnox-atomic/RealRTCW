@@ -1057,7 +1057,7 @@ qboolean AICast_WeaponUsable( cast_state_t *cs, int weaponNum ) {
 					}
 				}
 				delay = 4500;
-				if ( dist < 200 ) {
+				if ( dist < 10 ) {
 					return qfalse;
 				}
 			} else {

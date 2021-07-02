@@ -446,11 +446,11 @@ char *AIFunc_LoperAttack1Start( cast_state_t *cs ) {
 
 #define LOPER_LEAP_DAMAGE           10
 #define LOPER_LEAP_DELAY            100 // note, this needs to be something, or they'll think they're done before they even started
-#define LOPER_LEAP_RANGE            200
-#define LOPER_LEAP_VELOCITY_START   750.0
-#define LOPER_LEAP_VELOCITY_END     1050.0
-#define LOPER_LEAP_VELOCITY_Z       300
-#define LOPER_LEAP_LAND_MOMENTUM    250
+#define LOPER_LEAP_RANGE            50
+#define LOPER_LEAP_VELOCITY_START   50.0
+#define LOPER_LEAP_VELOCITY_END     50.0
+#define LOPER_LEAP_VELOCITY_Z       90
+#define LOPER_LEAP_LAND_MOMENTUM    100
 
 /*
 ===============
