@@ -646,6 +646,7 @@ static void CG_DrawPlayerAmmoValue( rectDef_t *rect, int font, float scale, vec4
 
 	switch ( weap ) {      // some weapons don't draw ammo count text
 	case WP_KNIFE:
+	case WP_BINOCULARS:
 		return;
 
 	case WP_AKIMBO:

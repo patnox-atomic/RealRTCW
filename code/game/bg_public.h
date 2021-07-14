@@ -467,46 +467,47 @@ typedef enum
 typedef enum {
 	WP_NONE,                // 0
 	WP_KNIFE,               // 1
-	WP_LUGER,               // 2
-	WP_MP40,                // 3
-	WP_MAUSER,              // 4
-	WP_FG42,                // 5
-	WP_GRENADE_LAUNCHER,    // 6
-	WP_PANZERFAUST,         // 7
-	WP_VENOM,               // 8
-	WP_FLAMETHROWER,        // 9
-	WP_TESLA,               // 10
-	WP_MP34,                // 11
-	WP_G43,                 // 12
-	WP_M1GARAND,            // 13
-	WP_M7,                  // 14
-	WP_BAR,                 // 15
-	WP_MP44,                // 16
-	WP_MG42M,               // 17
-	WP_BROWNING,            // 18
-	WP_M97,                 // 19
-	WP_REVOLVER,            // 20
-	WP_COLT,                // 21	
-	WP_THOMPSON,            // 22	
-	WP_GARAND,              // 23	
-	WP_GRENADE_PINEAPPLE,   // 24
-	WP_SMOKE_GRENADE,       // 25
-	WP_POISON_GAS,          // 26
-	WP_SNIPERRIFLE,         // 27
-	WP_SNOOPERSCOPE,        // 28
-	WP_FG42SCOPE,           // 29
-	WP_STEN,                // 30	
-	WP_SILENCER,            // 31	
-	WP_AKIMBO,              // 32	
-	WP_DYNAMITE,            // 33
-	WP_MONSTER_ATTACK1,     // 34	
-	WP_MONSTER_ATTACK2,     // 35	
-	WP_MONSTER_ATTACK3,     // 36	
-	WP_GAUNTLET,            // 37
-	WP_SNIPER,              // 38
-	WP_MORTAR,              // 39
-	VERYBIGEXPLOSION,       // 40	
-	WP_NUM_WEAPONS          // 41   NOTE: this cannot be larger than 64 for AI/player weapons!
+	WP_BINOCULARS,          // 2
+	WP_LUGER,               // 3
+	WP_MP40,                // 4
+	WP_MAUSER,              // 5
+	WP_FG42,                // 6
+	WP_GRENADE_LAUNCHER,    // 7
+	WP_PANZERFAUST,         // 8
+	WP_VENOM,               // 9
+	WP_FLAMETHROWER,        // 10
+	WP_TESLA,               // 11
+	WP_MP34,                // 12
+	WP_G43,                 // 13
+	WP_M1GARAND,            // 14
+	WP_M7,                  // 15
+	WP_BAR,                 // 16
+	WP_MP44,                // 17
+	WP_MG42M,               // 18
+	WP_BROWNING,            // 19
+	WP_M97,                 // 20
+	WP_REVOLVER,            // 21
+	WP_COLT,                // 22	
+	WP_THOMPSON,            // 23	
+	WP_GARAND,              // 24	
+	WP_GRENADE_PINEAPPLE,   // 25
+	WP_SMOKE_GRENADE,       // 26
+	WP_POISON_GAS,          // 27
+	WP_SNIPERRIFLE,         // 28
+	WP_SNOOPERSCOPE,        // 29
+	WP_FG42SCOPE,           // 30
+	WP_STEN,                // 31	
+	WP_SILENCER,            // 32	
+	WP_AKIMBO,              // 33	
+	WP_DYNAMITE,            // 34
+	WP_MONSTER_ATTACK1,     // 35	
+	WP_MONSTER_ATTACK2,     // 36	
+	WP_MONSTER_ATTACK3,     // 37	
+	WP_GAUNTLET,            // 38
+	WP_SNIPER,              // 39
+	WP_MORTAR,              // 40
+	VERYBIGEXPLOSION,       // 41	
+	WP_NUM_WEAPONS          // 42   NOTE: this cannot be larger than 64 for AI/player weapons!
 } weapon_t;
 
 
