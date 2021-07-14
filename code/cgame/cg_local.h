@@ -824,6 +824,7 @@ typedef struct {
 	qboolean zoomedBinoc;
 	int zoomedScope;            //----(SA)	changed to int
 	int zoomTime;
+	int binocTime;
 	float zoomSensitivity;
 	float zoomval;
 
