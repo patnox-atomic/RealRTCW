@@ -94,7 +94,7 @@ void CG_CheckAmmo( void ) {
 		case WP_MP44:
 		case WP_MG42M:
 		case WP_M97:
-		case WP_WALTHER:
+		case WP_REVOLVER:
 		default:
 			total += cg.snap->ps.ammo[BG_FindAmmoForWeapon( i )] * 1000;
 		}

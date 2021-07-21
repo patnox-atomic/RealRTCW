@@ -56,7 +56,7 @@ static int maxWeapBanks = MAX_WEAP_BANKS, maxWeapsInBank = MAX_WEAPS_IN_BANK; //
 int weapBanks[MAX_WEAP_BANKS][MAX_WEAPS_IN_BANK] = {
 	{0,                     0,                      0,            0,               0            },  //	0 (empty)
 	{WP_KNIFE,              0,                      0,            0,               0            },  //	1
-	{WP_LUGER,              WP_COLT,                WP_TT33,      WP_WALTHER,      0            },  //	2
+	{WP_LUGER,              WP_COLT,                WP_TT33,      WP_REVOLVER,     0            },  //	2
 	{WP_MP40,               WP_MP34,                WP_STEN,      WP_THOMPSON,     WP_PPSH      },  //	3
 	{WP_MAUSER,             WP_GARAND,              WP_MOSIN,     0,               0            },  //	4
     {WP_G43,                WP_M1GARAND,            0,            0,               0            },  //	5
@@ -97,6 +97,9 @@ static void CG_MachineGunEjectBrassNew( centity_t *cent ) {
 	}
 
 	if (cent->currentState.weapon == WP_M97) //jaymod
+		return;
+
+	if (cent->currentState.weapon == WP_REVOLVER) // no brass for revolver
 		return;
 
 	le = CG_AllocLocalEntity();
@@ -1219,8 +1222,8 @@ void CG_RegisterWeapon( int weaponNum ) {
 
 	case WP_MP34:
 		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.6, 0.23 );
-		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/mp34/mp34f1.wav" );
-		weaponInfo->flashEchoSound[0] = trap_S_RegisterSound( "sound/weapons/mp34/mp34e1.wav" );
+		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/mp34/mp34_fire.wav" );
+		weaponInfo->flashEchoSound[0] = trap_S_RegisterSound( "sound/weapons/mp34/mp34_far.wav" );
 		weaponInfo->reloadSound = trap_S_RegisterSound( "sound/weapons/mp34/mp34_reload.wav" );
 		weaponInfo->overheatSound = trap_S_RegisterSound( "sound/weapons/mp40/mp40_overheat.wav" );
 		weaponInfo->ejectBrassFunc = CG_MachineGunEjectBrass;
@@ -1234,11 +1237,11 @@ void CG_RegisterWeapon( int weaponNum ) {
 		weaponInfo->ejectBrassFunc = CG_MachineGunEjectBrass;
 		break;
 	
-	case WP_WALTHER:
+	case WP_REVOLVER:
 		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.6, 0.23 );
-		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/walther/waltherf1.wav" );
-		weaponInfo->flashEchoSound[0] = trap_S_RegisterSound( "sound/weapons/walther/walthere1.wav" ); 
-		weaponInfo->reloadSound = trap_S_RegisterSound( "sound/weapons/walther/walther_reload.wav" );
+		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/revolver/revolver_fire.wav" );
+		weaponInfo->flashEchoSound[0] = trap_S_RegisterSound( "sound/weapons/revolver/revolver_far.wav" ); 
+		weaponInfo->reloadSound = trap_S_RegisterSound( "sound/weapons/revolver/revolver_reload.wav" );
 		weaponInfo->ejectBrassFunc = CG_MachineGunEjectBrass;
 		break;
 	
@@ -3044,7 +3047,7 @@ void CG_AddViewWeapon( playerState_t *ps ) {
 		CG_CalculateWeaponPosition( hand.origin, angles );
         // REALRTCWEXP
 	    switch ( cg.predictedPlayerState.weapon ) {
-		/*case WP_FLAMETHROWER:
+		case WP_FLAMETHROWER:
 			 gunoff[0] = 10;
 		     gunoff[1] = 2;
 		     gunoff[2] = 0;
@@ -3061,7 +3064,7 @@ void CG_AddViewWeapon( playerState_t *ps ) {
 		     gunoff[1] = 2;
 		     gunoff[2] = 2;
 		break;
-		case WP_WALTHER:
+		case WP_REVOLVER:
 			 gunoff[0] = 0;
 		     gunoff[1] = 0;
 		     gunoff[2] = -1;
@@ -3110,7 +3113,7 @@ void CG_AddViewWeapon( playerState_t *ps ) {
 			 gunoff[0] = -3;
 		     gunoff[1] = 3;
 		     gunoff[2] = -1;
-		break;*/
+		break;
 		default:
 		    gunoff[0] = cg_gun_x.value;
 		    gunoff[1] = cg_gun_y.value;
@@ -4720,7 +4723,7 @@ void CG_WeaponFireRecoil( int weapon ) {
 	   pitchRecoilAdd = 2;
 	   pitchAdd = 1;
 	break;
-	case WP_WALTHER:
+	case WP_REVOLVER:
 	    pitchAdd = 1;
 	    yawRandom = 1;
     break;
@@ -5246,7 +5249,7 @@ void CG_MissileHitWall( int weapon, int clientNum, vec3_t origin, vec3_t dir, in
 	case WP_MP44:
 	case WP_MG42M:
 	case WP_M97:
-	case WP_WALTHER:
+	case WP_REVOLVER:
 	case WP_FG42:
 	case WP_FG42SCOPE:
 	case WP_THOMPSON:

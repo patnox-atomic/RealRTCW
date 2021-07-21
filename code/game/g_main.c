@@ -185,7 +185,7 @@ vmCvar_t		sk_plr_dmg_m1garand;
 vmCvar_t		sk_plr_dmg_bar;
 vmCvar_t		sk_plr_dmg_mp44;
 vmCvar_t		sk_plr_dmg_m97;
-vmCvar_t		sk_plr_dmg_walther;
+vmCvar_t		sk_plr_dmg_revolver;
 vmCvar_t		sk_plr_dmg_mg42m;
 
 vmCvar_t		sk_ai_dmg_knife;
@@ -223,7 +223,7 @@ vmCvar_t		sk_ai_dmg_m1garand;
 vmCvar_t		sk_ai_dmg_bar;
 vmCvar_t		sk_ai_dmg_mp44;
 vmCvar_t		sk_ai_dmg_m97;
-vmCvar_t		sk_ai_dmg_walther;
+vmCvar_t		sk_ai_dmg_revolver;
 vmCvar_t		sk_ai_dmg_mg42m;
 
 
@@ -284,7 +284,7 @@ cvarTable_t gameCvarTable[] = {
 	{ &sk_plr_dmg_mp44, "sk_plr_dmg_mp44", "9", CVAR_CHEAT, 0, qfalse  },
 	{ &sk_plr_dmg_mg42m, "sk_plr_dmg_mg42m", "15", CVAR_CHEAT, 0, qfalse  }, 
 	{ &sk_plr_dmg_m97, "sk_plr_dmg_m97", "10", CVAR_CHEAT, 0, qfalse  },
-	{ &sk_plr_dmg_walther, "sk_plr_dmg_walther", "20", CVAR_CHEAT, 0, qfalse  },
+	{ &sk_plr_dmg_revolver, "sk_plr_dmg_revolver", "20", CVAR_CHEAT, 0, qfalse  },
 
 	//Damage inflicted by AI	
 	{ &sk_ai_dmg_knife, "sk_ai_dmg_knife", "6", CVAR_CHEAT, 0, qfalse  },
@@ -321,7 +321,7 @@ cvarTable_t gameCvarTable[] = {
 	{ &sk_ai_dmg_mp44, "sk_ai_dmg_mp44", "6", CVAR_CHEAT, 0, qfalse  }, 
 	{ &sk_ai_dmg_mg42m, "sk_ai_dmg_mg42m", "6", CVAR_CHEAT, 0, qfalse  }, 
 	{ &sk_ai_dmg_m97, "sk_ai_dmg_m97", "9", CVAR_CHEAT, 0, qfalse  }, 
-	{ &sk_ai_dmg_walther, "sk_ai_dmg_walther", "7", CVAR_CHEAT, 0, qfalse  },
+	{ &sk_ai_dmg_revolver, "sk_ai_dmg_revolver", "7", CVAR_CHEAT, 0, qfalse  },
 
 	{ &g_reloading, "g_reloading", "0", CVAR_ROM },   //----(SA)	added
 

@@ -1555,7 +1555,7 @@ void SetupWeaponsForSkill_EASY() // Easy
 	// m97
 	ammoTable[WP_M97].maxammo = 48;
 	// revolver
-	ammoTable[WP_WALTHER].maxammo = 60;
+	ammoTable[WP_REVOLVER].maxammo = 60;
 	// throwables
 	ammoTable[WP_GRENADE_LAUNCHER].maxammo = 10;
 	ammoTable[WP_GRENADE_LAUNCHER].maxclip = 10;
@@ -1608,7 +1608,7 @@ void SetupWeaponsForSkill_MEDIUM() // Medium
 	// m97
 	ammoTable[WP_M97].maxammo = 36;
 	// revolver
-	ammoTable[WP_WALTHER].maxammo = 42;
+	ammoTable[WP_REVOLVER].maxammo = 42;
 	// throwables
 	ammoTable[WP_GRENADE_LAUNCHER].maxammo = 8;
 	ammoTable[WP_GRENADE_LAUNCHER].maxclip = 8;
@@ -1660,7 +1660,7 @@ void SetupWeaponsForSkill_HARD() // Hard
 	// m97
 	ammoTable[WP_M97].maxammo = 30;
     // revolver
-	ammoTable[WP_WALTHER].maxammo = 36;
+	ammoTable[WP_REVOLVER].maxammo = 36;
 	// throwables
 	ammoTable[WP_GRENADE_LAUNCHER].maxammo = 6;
 	ammoTable[WP_GRENADE_LAUNCHER].maxclip = 6;
@@ -1713,7 +1713,7 @@ void SetupWeaponsForSkill_MAX() // Max
 	// m97
 	ammoTable[WP_M97].maxammo = 24;
 	// revolver
-	ammoTable[WP_WALTHER].maxammo = 24;
+	ammoTable[WP_REVOLVER].maxammo = 24;
 	// throwables
 	ammoTable[WP_GRENADE_LAUNCHER].maxammo = 5;
 	ammoTable[WP_GRENADE_LAUNCHER].maxclip = 5;
@@ -1767,7 +1767,7 @@ void SetupWeaponsForSkill_REALISM() // Realism
 	// m97
 	ammoTable[WP_M97].maxammo = 24;
 	// revolver
-	ammoTable[WP_WALTHER].maxammo = 24;
+	ammoTable[WP_REVOLVER].maxammo = 24;
 	// throwables
 	ammoTable[WP_GRENADE_LAUNCHER].maxammo = 5;
 	ammoTable[WP_GRENADE_LAUNCHER].maxclip = 5;
