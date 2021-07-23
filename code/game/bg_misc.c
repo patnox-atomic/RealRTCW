@@ -147,6 +147,7 @@ int weapAlts[] = {
 	WP_SNIPERRIFLE,     // 4 WP_MAUSER
 	WP_FG42SCOPE,       // 5 WP_FG42	
 	WP_NONE,            // 6 WP_GRENADE_LAUNCHER
+	WP_NONE,
 	WP_NONE,            // 7 WP_PANZERFAUST
 	WP_NONE,            // 8 WP_VENOM
 	WP_NONE,            // 9 WP_FLAMETHROWER
@@ -1300,6 +1301,28 @@ weapon_grenadePineapple
 	},
 
 
+	{
+		"weapon_smokebomb",
+		"",
+		{
+			"models/multiplayer/smokebomb/smokebomb.md3",
+			"models/multiplayer/smokebomb/v_smokebomb.md3",
+			0
+		},
+
+		"icons/iconw_dynamite_1",    // icon
+		"icons/ammo9",               // ammo icon
+		"Smoke Bomb",    // pickup
+		0,
+		IT_WEAPON,
+		WP_SMOKE_BOMB,
+		WP_SMOKE_BOMB,
+		WP_SMOKE_BOMB,
+		"",                      // precache
+		"",                      // sounds
+//		{0,0,0,0,0}
+	},
+
 
 
 /*QUAKED weapon_venom (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
@@ -2331,6 +2354,29 @@ model="models/powerups/ammo/dynamite.md3"
 		"",                      // precache
 		"",                      // sounds
 		{1,1,1,1,1}
+	},
+
+	/*QUAKED ammo_smoke_grenade (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
+used by: engineer
+
+-------- MODEL FOR RADIANT ONLY - DO NOT SET THIS AS A KEY --------
+model="models/ammo/smoke_grenade/smoke_grenade.md3"
+*/
+	{
+		"ammo_smoke_grenade",
+		"sound/misc/am_pkup.wav",
+		{ "models/ammo/smoke_grenade/smoke_grenade.md3",
+		  0, 0 },
+		"", // icon
+		NULL,               // ammo icon
+		"smoke grenade", // pickup			//----(SA)	changed
+		1,
+		IT_AMMO,
+		WP_SMOKE_BOMB,
+		WP_SMOKE_BOMB,
+		WP_SMOKE_BOMB,
+		"",                  // precache
+		"",                  // sounds
 	},
 
 
