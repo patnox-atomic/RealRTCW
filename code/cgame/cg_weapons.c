@@ -1352,6 +1352,12 @@ void CG_RegisterWeapon( int weaponNum ) {
 		cgs.media.grenadeExplosionShader = trap_R_RegisterShader( "grenadeExplosion" );
 		break;
 
+	case WP_SMOKE_BOMB:
+		weaponInfo->missileModel = trap_R_RegisterModel( "models/multiplayer/smokebomb/smokebomb.md3" );
+		weaponInfo->missileTrailFunc = CG_GrenadeTrail;
+		MAKERGB( weaponInfo->flashDlightColor, 1, 0.7, 0.5 );
+		break;
+
 	case WP_DYNAMITE:
 		weaponInfo->missileModel = trap_R_RegisterModel( "models/ammo/dynamite.md3" );
 //		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/grenade/grenlf1a.wav" );
@@ -2763,7 +2769,8 @@ void CG_AddPlayerWeapon( refEntity_t *parent, playerState_t *ps, centity_t *cent
 	if ( weaponNum == WP_GRENADE_LAUNCHER ||
 		 weaponNum == WP_GRENADE_PINEAPPLE ||
 		 weaponNum == WP_KNIFE ||
-		 weaponNum == WP_DYNAMITE ) {
+		 weaponNum == WP_DYNAMITE ||
+		 weaponNum == WP_SMOKE_BOMB ) {
 		return;
 	}
 
