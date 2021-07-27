@@ -62,7 +62,7 @@ int weapBanks[MAX_WEAP_BANKS][MAX_WEAPS_IN_BANK] = {
     {WP_G43,                WP_M1GARAND,            0,            0,               0            },  //	5
 	{WP_FG42,               WP_MP44,                WP_BAR,       0,               0            },  //	6
 	{WP_M97,                0,                      0,            0,               0            },  //	7
-	{WP_GRENADE_LAUNCHER,   WP_GRENADE_PINEAPPLE,   WP_DYNAMITE,  WP_SMOKE_GRENADE,0            },  //	8
+	{WP_GRENADE_LAUNCHER,   WP_GRENADE_PINEAPPLE,   WP_DYNAMITE,  WP_SMOKE_GRENADE,WP_POISON_GAS },  //	8
 	{WP_PANZERFAUST,        WP_FLAMETHROWER,        WP_MG42M,     0,               0            },  //	9
 	{WP_VENOM,              WP_TESLA,               0,            0,               0            }  //	10
 };
@@ -1359,6 +1359,13 @@ void CG_RegisterWeapon( int weaponNum ) {
 		MAKERGB( weaponInfo->flashDlightColor, 1, 0.7, 0.5 );
 		break;
 
+	case WP_POISON_GAS:
+		weaponInfo->missileModel = trap_R_RegisterModel( "models/weapons2/nebeleihandgranate/gas_grenade.md3" );
+		weaponInfo->overheatSound = trap_S_RegisterSound( "sound/weapons/gren_smoke.wav" );
+		weaponInfo->missileTrailFunc = CG_GrenadeTrail;
+		MAKERGB( weaponInfo->flashDlightColor, 1, 0.7, 0.5 );
+		break;
+
 	case WP_DYNAMITE:
 		weaponInfo->missileModel = trap_R_RegisterModel( "models/ammo/dynamite.md3" );
 //		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/grenade/grenlf1a.wav" );
@@ -1726,6 +1733,7 @@ static void CG_CalculateWeaponPosition( vec3_t origin, vec3_t angles ) {
 		case WP_KNIFE:
 		case WP_GRENADE_LAUNCHER:
 		case WP_GRENADE_PINEAPPLE:
+		case WP_POISON_GAS:
 		case WP_SMOKE_GRENADE:
 			break;
 
@@ -2771,7 +2779,8 @@ void CG_AddPlayerWeapon( refEntity_t *parent, playerState_t *ps, centity_t *cent
 		 weaponNum == WP_GRENADE_PINEAPPLE ||
 		 weaponNum == WP_KNIFE ||
 		 weaponNum == WP_DYNAMITE ||
-		 weaponNum == WP_SMOKE_BOMB ) {
+		 weaponNum == WP_SMOKE_BOMB ||
+		 weaponNum == WP_POISON_GAS ) {
 		return;
 	}
 
@@ -4774,8 +4783,8 @@ void CG_FireWeapon( centity_t *cent ) {
 	} else if (   ent->weapon == WP_GRENADE_LAUNCHER ||
 				  ent->weapon == WP_GRENADE_PINEAPPLE ||
 				  ent->weapon == WP_DYNAMITE ||
-				  ent->weapon == WP_SMOKE_GRENADE ) 
-				   { 
+				  ent->weapon == WP_POISON_GAS ||
+				  ent->weapon == WP_SMOKE_GRENADE  ) { // JPW NERVE
 		if ( ent->apos.trBase[0] > 0 ) { // underhand
 			return;
 		}

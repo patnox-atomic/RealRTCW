@@ -984,6 +984,11 @@ gentity_t *fire_grenade( gentity_t *self, vec3_t start, vec3_t dir, int grenadeW
 		bolt->classname             = "grenade";
 		bolt->s.eFlags              = EF_BOUNCE_HALF | EF_BOUNCE;
 		break;
+	case WP_POISON_GAS:
+			bolt->classname				= "poison_gas";
+			bolt->s.eFlags				= EF_BOUNCE_HALF;
+			bolt->methodOfDeath			= MOD_POISON_GAS;
+			break;
 	case WP_DYNAMITE:
 		// oh, this is /so/ cheap...
 		// you need to pick up new code ;)
