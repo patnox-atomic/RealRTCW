@@ -119,6 +119,7 @@ ammotable_t ammoTable[] = {
 	{   MAX_AMMO_GARAND,1,      5,      2500,   DELAY_HIGH,     1200,   0,      0,      MOD_GARAND              },  //	WP_GARAND				// 24	
 	{   5,              1,      5,      1000,   DELAY_THROW,    1600,   0,      0,      MOD_GRENADE_PINEAPPLE   },  //	WP_GRENADE_PINEAPPLE	// 25
 	{   1,              1,      1,      0,      50,             0,      0,      0,      0                       },  //	WP_SMOKE_GRENADE		// 44
+		{   5,           1,      5,      1000,   DELAY_THROW,    1600,   0,      0,      MOD_POISON_GAS          },  //	WP_GRENADE_LAUNCHER		// 6
 
 	{   MAX_AMMO_MAUSER,1,      5,      3000,   0,              1400,   0,      0,      MOD_SNIPERRIFLE         },  //	WP_SNIPER_GER			// 26
 	{   MAX_AMMO_GARAND,1,      5,      3000,   0,              1200,   0,      0,      MOD_SNOOPERSCOPE        },  //	WP_SNIPER_AM			// 27
@@ -148,6 +149,7 @@ int weapAlts[] = {
 	WP_FG42SCOPE,       // 5 WP_FG42	
 	WP_NONE,            // 6 WP_GRENADE_LAUNCHER
 	WP_NONE,
+	WP_NONE,
 	WP_NONE,            // 7 WP_PANZERFAUST
 	WP_NONE,            // 8 WP_VENOM
 	WP_NONE,            // 9 WP_FLAMETHROWER
@@ -164,6 +166,7 @@ int weapAlts[] = {
 	WP_NONE,            // 23 WP_THOMPSON
 	WP_SNOOPERSCOPE,    // 24 WP_GARAND		
 	WP_NONE,            // 25 WP_GRENADE_PINEAPPLE
+	WP_NONE,
 	WP_NONE,
 	WP_MAUSER,          // 26 WP_SNIPERRIFLE
 	WP_GARAND,          // 27 WP_SNOOPERSCOPE
@@ -1324,6 +1327,28 @@ weapon_grenadePineapple
 	},
 
 
+	{
+		"weapon_poisongas",
+		"",
+		{
+			"models/weapons2/nebeleihandgranate/gas_grenade.md3",
+			"models/weapons2/nebeleihandgranate/v_gas_grenade.md3",
+			0
+		},
+
+		"icons/iconw_grenade_1",    // icon
+		"icons/ammo9",               // ammo icon
+		"Poison Gas",    // pickup
+		0,
+		IT_WEAPON,
+		WP_POISON_GAS,
+		WP_POISON_GAS,
+		WP_POISON_GAS,
+		"",                      // precache
+		"",                      // sounds
+//		{0,0,0,0,0}
+	},
+
 
 /*QUAKED weapon_venom (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
 -------- MODEL FOR RADIANT ONLY - DO NOT SET THIS AS A KEY --------
@@ -2379,6 +2404,29 @@ model="models/ammo/smoke_grenade/smoke_grenade.md3"
 		"",                  // sounds
 	},
 
+		/*QUAKED ammo_smoke_grenade (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
+used by: engineer
+
+-------- MODEL FOR RADIANT ONLY - DO NOT SET THIS AS A KEY --------
+model="models/ammo/smoke_grenade/smoke_grenade.md3"
+*/
+	{
+		"ammo_poison_gas",
+		"sound/misc/am_pkup.wav",
+		{ "models/powerups/ammo/amgren_bag.md3",
+		  0, 0 },
+		"", // icon
+		NULL,               // ammo icon
+		"Poison Gas", // pickup			//----(SA)	changed
+		1,
+		IT_AMMO,
+		WP_POISON_GAS,
+		WP_POISON_GAS,
+		WP_POISON_GAS,
+		"",                  // precache
+		"",                  // sounds
+	},
+
 
 	/*QUAKED ammo_dynamite (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
 
@@ -3171,6 +3219,7 @@ qboolean isClipOnly( int weap ) {
 	case WP_GRENADE_LAUNCHER:
 	case WP_GRENADE_PINEAPPLE:
 	case WP_SMOKE_GRENADE:
+	case WP_POISON_GAS:
 	case WP_DYNAMITE:
 	case WP_TESLA:
 	case WP_FLAMETHROWER:

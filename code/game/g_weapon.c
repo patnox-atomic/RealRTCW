@@ -535,6 +535,45 @@ void weapon_smokeBombExplode( gentity_t *ent ) {
 	}
 }
 
+void G_PoisonGasExplode(gentity_t* ent) {
+    int lived = 0;
+
+    if (!ent->grenadeExplodeTime)
+        ent->grenadeExplodeTime = level.time;
+
+    lived = level.time - ent->grenadeExplodeTime;
+    ent->nextthink = level.time + FRAMETIME;
+
+    if (lived < SMOKEBOMB_GROWTIME) {
+        // Just been thrown, increase radius
+		ent->s.effect1Time = 16 + lived * ( ( 640.f - 16.f ) / (float)SMOKEBOMB_GROWTIME );
+    }
+    else if (lived < SMOKEBOMB_SMOKETIME + SMOKEBOMB_GROWTIME) {
+        // Smoking
+        ent->s.effect1Time = 640;
+
+        if (level.time >= ent->poisonGasAlarm) {
+            ent->poisonGasAlarm = level.time + 1500;
+            G_RadiusDamage(ent->r.currentOrigin, ent->parent, ent->poisonGasDamage, ent->poisonGasRadius, ent, MOD_POISON_GAS) ;
+
+
+						//G_RadiusDamage( self->s.pos.trBase, self, self->damage, self->damage, self, MOD_EXPLOSIVE );
+						//qboolean G_RadiusDamage( vec3_t origin, gentity_t *attacker, float damage, float radius, gentity_t *ignore, int mod )
+
+            //if (ent->parent->client)
+	           // ent->parent->client->sess.aWeaponStats[BG_WeapStatForWeapon( (weapon_t)ent->s.weapon )].subshots++;
+        }
+    }
+    else if (lived < SMOKEBOMB_SMOKETIME + SMOKEBOMB_GROWTIME + SMOKEBOMB_POSTSMOKETIME) {
+        // Dying out
+        ent->s.effect1Time = -1;
+    }
+    else {
+        // Poof and it's gone
+        G_FreeEntity( ent );
+    }
+}
+
 
 /*
 ======================================================================
@@ -1218,6 +1257,7 @@ gentity_t *weapon_grenadelauncher_fire( gentity_t *ent, int grenType ) {
 		switch ( grenType ) {
 		case WP_GRENADE_LAUNCHER:
 		case WP_GRENADE_PINEAPPLE:
+		case WP_POISON_GAS:
 			upangle *= 800;
 			break;
 		case WP_DYNAMITE:
@@ -1265,6 +1305,14 @@ gentity_t *weapon_grenadelauncher_fire( gentity_t *ent, int grenType ) {
 	//m->damage *= s_quadFactor;
 	m->damage = 0;  // Ridah, grenade's don't explode on contact
 	m->splashDamage *= s_quadFactor;
+
+		if ( grenType == WP_POISON_GAS ) {
+            m->s.effect1Time = 16;
+            m->think = G_PoisonGasExplode;
+            m->poisonGasAlarm  = level.time + SMOKEBOMB_GROWTIME;
+            m->poisonGasDamage = 30;
+            m->poisonGasRadius = 300;
+	}
 
 	if ( grenType == WP_SMOKE_GRENADE ) {
 
@@ -1654,6 +1702,7 @@ void CalcMuzzlePoint( gentity_t *ent, int weapon, vec3_t forward, vec3_t right, 
 	case WP_GRENADE_PINEAPPLE:
 	case WP_GRENADE_LAUNCHER:
 	case WP_SMOKE_BOMB:
+	case WP_POISON_GAS:
 		VectorMA( muzzlePoint, 20, right, muzzlePoint );
 		break;
 	case WP_AKIMBO:     // left side rather than right
@@ -1941,6 +1990,7 @@ void FireWeapon( gentity_t *ent ) {
 	case WP_GRENADE_PINEAPPLE:
 	case WP_DYNAMITE:
 	case WP_SMOKE_BOMB:
+	case WP_POISON_GAS:
 		// weapon_grenadelauncher_fire( ent, ent->s.weapon );
 		//RF- disabled this since it's broken (do we still want it?)
 		//if (ent->aiName && !Q_strncmp(ent->aiName, "mechanic", 8) && !AICast_HasFiredWeapon(ent->s.number, ent->s.weapon))
