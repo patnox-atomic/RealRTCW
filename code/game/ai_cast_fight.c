@@ -505,6 +505,8 @@ float AICast_WeaponRange( cast_state_t *cs, int weaponnum ) {
 			}
 		case AICHAR_HELGA:  // helga BOSS1 melee
 			return 100;  // RealRTCW was 80
+		case AICHAR_DOG: // dog melee
+			return 45;
 		case AICHAR_WARZOMBIE:
 			return 90;      // RealRTCW was 80
 		case AICHAR_LOPER:  // close attack, head-butt, fist
@@ -539,6 +541,8 @@ float AICast_WeaponRange( cast_state_t *cs, int weaponnum ) {
 			return 2000;
 		case AICHAR_ZOMBIE:
 			return 44;
+		case AICHAR_DOG:
+			return 2000;	// dog bark
 		}
 		break;
 
@@ -985,6 +989,7 @@ qboolean AICast_WeaponUsable( cast_state_t *cs, int weaponNum ) {
 			// melee attacks are always available
 		case AICHAR_LOPER:
 		case AICHAR_WARZOMBIE:
+		case AICHAR_DOG:
 			return qtrue;   // always usable
 
 		case AICHAR_STIMSOLDIER2:
@@ -1016,6 +1021,7 @@ qboolean AICast_WeaponUsable( cast_state_t *cs, int weaponNum ) {
 			delay = 6000;
 			break;
 		case AICHAR_WARZOMBIE:
+		case AICHAR_DOG:
 			delay = 9999999;
 			break;
 		case AICHAR_ZOMBIE:
@@ -1090,6 +1096,12 @@ qboolean AICast_WeaponUsable( cast_state_t *cs, int weaponNum ) {
 		case AICHAR_WARZOMBIE:  // warzombie defense
 			delay = 7000;
 			if ( dist < 120 || dist > 2000 ) {
+				return qfalse;
+			}
+			break;
+		case AICHAR_DOG:  // warzombie defense
+			delay = 2000;
+			if (dist < 500 || dist > 2500) {
 				return qfalse;
 			}
 			break;
