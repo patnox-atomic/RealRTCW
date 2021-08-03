@@ -2894,8 +2894,8 @@ pickup sound : "sound/pickup/keys/binocs.wav"
 -------- MODEL FOR RADIANT ONLY - DO NOT SET THIS AS A KEY --------
 model="models/powerups/keys/binoculars.md3"
 */
-/*	{
-		"key_binocs",
+	{
+		"key_binocs_2",
 		"sound/pickup/keys/binocs.wav",
 		{
 			"models/powerups/keys/binoculars.md3",
@@ -2904,7 +2904,7 @@ model="models/powerups/keys/binoculars.md3"
 		},
 		"icons/binocs",          // icon
 		NULL,                   // ammo icon
-		"Binoculars",            // pickup
+		"Binoculars2",            // pickup
 		0,
 		IT_KEY,
 		INV_BINOCS,
@@ -2913,7 +2913,7 @@ model="models/powerups/keys/binoculars.md3"
 		"",                      // precache
 		"models/keys/key.wav",   // sounds
 		{0,0,0,0}
-	},*/
+	},
 
 	// end of list marker
 	{NULL}
