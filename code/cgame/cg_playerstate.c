@@ -71,6 +71,7 @@ void CG_CheckAmmo( void ) {
 		case WP_GRENADE_LAUNCHER:
 		case WP_GRENADE_PINEAPPLE:
 		case WP_SMOKE_GRENADE:
+		case WP_POISON_GAS:
 		case WP_LUGER:
 		case WP_COLT:
 		case WP_AKIMBO:

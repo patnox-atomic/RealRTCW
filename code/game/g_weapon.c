@@ -1709,7 +1709,6 @@ void CalcMuzzlePoint( gentity_t *ent, int weapon, vec3_t forward, vec3_t right, 
 	case WP_DYNAMITE:
 	case WP_GRENADE_PINEAPPLE:
 	case WP_GRENADE_LAUNCHER:
-	case WP_SMOKE_BOMB:
 	case WP_POISON_GAS:
 		VectorMA( muzzlePoint, 20, right, muzzlePoint );
 		break;
@@ -1997,7 +1996,6 @@ void FireWeapon( gentity_t *ent ) {
 	case WP_GRENADE_LAUNCHER:
 	case WP_GRENADE_PINEAPPLE:
 	case WP_DYNAMITE:
-	case WP_SMOKE_BOMB:
 	case WP_POISON_GAS:
 		// weapon_grenadelauncher_fire( ent, ent->s.weapon );
 		//RF- disabled this since it's broken (do we still want it?)
