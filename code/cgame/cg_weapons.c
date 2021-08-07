@@ -56,9 +56,9 @@ static int maxWeapBanks = MAX_WEAP_BANKS, maxWeapsInBank = MAX_WEAPS_IN_BANK; //
 int weapBanks[MAX_WEAP_BANKS][MAX_WEAPS_IN_BANK] = {
 	{0,                     0,                      0,            0,               0            },  //	0 (empty)
 	{WP_KNIFE,              0,                      0,            0,               0            },  //	1
-	{WP_LUGER,              WP_COLT,                WP_TT33,      WP_REVOLVER,     0            },  //	2
-	{WP_MP40,               WP_MP34,                WP_STEN,      WP_THOMPSON,     WP_PPSH      },  //	3
-	{WP_MAUSER,             WP_GARAND,              WP_MOSIN,     0,               0            },  //	4
+	{WP_LUGER,              WP_COLT,                WP_REVOLVER,  0,               0            },  //	2
+	{WP_MP40,               WP_MP34,                WP_STEN,      WP_THOMPSON,     0            },  //	3
+	{WP_MAUSER,             WP_GARAND,              0,            0,               0            },  //	4
     {WP_G43,                WP_M1GARAND,            0,            0,               0            },  //	5
 	{WP_FG42,               WP_MP44,                WP_BAR,       0,               0            },  //	6
 	{WP_M97,                0,                      0,            0,               0            },  //	7
@@ -1229,14 +1229,6 @@ void CG_RegisterWeapon( int weaponNum ) {
 		weaponInfo->ejectBrassFunc = CG_MachineGunEjectBrass;
 		break;
 	
-	 case WP_TT33:
-		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.6, 0.23 );
-		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/tt33/tt33_fire.wav" );
-		weaponInfo->flashEchoSound[0] = trap_S_RegisterSound( "sound/weapons/tt33/tt33_far.wav" ); 
-		weaponInfo->reloadSound = trap_S_RegisterSound( "sound/weapons/tt33/tt33_reload.wav" );
-		weaponInfo->ejectBrassFunc = CG_MachineGunEjectBrass;
-		break;
-	
 	case WP_REVOLVER:
 		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.6, 0.23 );
 		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/revolver/revolver_fire.wav" );
@@ -1244,23 +1236,7 @@ void CG_RegisterWeapon( int weaponNum ) {
 		weaponInfo->reloadSound = trap_S_RegisterSound( "sound/weapons/revolver/revolver_reload.wav" );
 		weaponInfo->ejectBrassFunc = CG_MachineGunEjectBrass;
 		break;
-	
-	case WP_PPSH:
-		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.6, 0.23 );
-		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/ppsh/ppsh_fire.wav" );
-		weaponInfo->flashEchoSound[0] = trap_S_RegisterSound( "sound/weapons/ppsh/ppsh_far.wav" );
-		weaponInfo->reloadSound = trap_S_RegisterSound( "sound/weapons/ppsh/ppsh_reload.wav" );
-		weaponInfo->ejectBrassFunc = CG_MachineGunEjectBrass;
-		break;
-	
-	case WP_MOSIN:
-		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.6, 0.23 );
-		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/mosin/mosin_fire.wav" );
-		weaponInfo->lastShotSound[0] = trap_S_RegisterSound("sound/weapons/mosin/mosin_fire_last.wav");
-		weaponInfo->flashEchoSound[0] = trap_S_RegisterSound( "sound/weapons/mosin/mosin_far.wav" );
-		weaponInfo->reloadSound = trap_S_RegisterSound( "sound/weapons/mosin/mosin_reload.wav" );
-		weaponInfo->ejectBrassFunc = CG_MachineGunEjectBrass;
-		break;
+
 
 	case WP_G43:
 		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.6, 0.23 );
@@ -3260,8 +3236,6 @@ void CG_DrawWeaponSelect( void ) {
 		case WP_MP40:
 		// RealRTCW weapons
 		case WP_MP34:
-		case WP_PPSH:
-		case WP_MOSIN:
 		case WP_G43:
 		case WP_M1GARAND:
 		case WP_BAR:
@@ -4727,7 +4701,6 @@ void CG_WeaponFireRecoil( int weapon ) {
 	case WP_LUGER:
 	case WP_SILENCER:
 	case WP_COLT:
-	case WP_TT33:
 	case WP_AKIMBO: 
 	   yawRandom = 1;
 	   pitchRecoilAdd = 2;
@@ -4738,7 +4711,6 @@ void CG_WeaponFireRecoil( int weapon ) {
 	    yawRandom = 1;
     break;
 	case WP_MAUSER:
-	case WP_MOSIN:
 	case WP_GARAND:
 	case WP_G43:
 	case WP_M1GARAND:
@@ -4753,7 +4725,6 @@ void CG_WeaponFireRecoil( int weapon ) {
 	break;
 	case WP_MP40:
 	case WP_MP34:
-	case WP_PPSH:
 	case WP_THOMPSON:
 	case WP_STEN:
 		pitchAdd = 2;
@@ -5250,9 +5221,6 @@ void CG_MissileHitWall( int weapon, int clientNum, vec3_t origin, vec3_t dir, in
 	case WP_MP40:
 	// RealRTCW weapons
 	case WP_MP34:
-	case WP_TT33:
-	case WP_PPSH:
-	case WP_MOSIN:
 	case WP_G43:
 	case WP_M1GARAND:
 	case WP_BAR:

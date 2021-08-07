@@ -1545,11 +1545,6 @@ void SetupWeaponsForSkill_EASY() // Easy
 	// barammo
 	ammoTable[WP_BAR].maxammo = 300;
 	ammoTable[WP_M1GARAND].maxammo = 300;
-	// ppsh,tt33
-	ammoTable[WP_TT33].maxammo = 400;
-	ammoTable[WP_PPSH].maxammo = 400;
-	// mosin
-	ammoTable[WP_MOSIN].maxammo = 150;
 	// mp44
 	ammoTable[WP_MP44].maxammo = 200;
 	// m97
@@ -1598,11 +1593,6 @@ void SetupWeaponsForSkill_MEDIUM() // Medium
 	// barammo
 	ammoTable[WP_BAR].maxammo = 200;
 	ammoTable[WP_M1GARAND].maxammo = 200;
-	// ppsh,tt33
-	ammoTable[WP_TT33].maxammo = 300;
-	ammoTable[WP_PPSH].maxammo = 300;
-	// mosin
-	ammoTable[WP_MOSIN].maxammo = 100;
 	// mp44
 	ammoTable[WP_MP44].maxammo = 180;
 	// m97
@@ -1650,11 +1640,6 @@ void SetupWeaponsForSkill_HARD() // Hard
 	// barammo
 	ammoTable[WP_BAR].maxammo = 180;
 	ammoTable[WP_M1GARAND].maxammo = 180;
-	// ppsh,tt33
-	ammoTable[WP_TT33].maxammo = 250;
-	ammoTable[WP_PPSH].maxammo = 250;
-	// mosin
-	ammoTable[WP_MOSIN].maxammo = 50;
 	// mp44
 	ammoTable[WP_MP44].maxammo = 150;
 	// m97
@@ -1703,11 +1688,6 @@ void SetupWeaponsForSkill_MAX() // Max
 	// barammo
 	ammoTable[WP_BAR].maxammo = 150;
 	ammoTable[WP_M1GARAND].maxammo = 150;
-	// ppsh,tt33
-	ammoTable[WP_TT33].maxammo = 200;
-	ammoTable[WP_PPSH].maxammo = 200;
-	// mosin
-	ammoTable[WP_MOSIN].maxammo = 50;
 	// mp44
 	ammoTable[WP_MP44].maxammo = 120;
 	// m97
@@ -1757,11 +1737,6 @@ void SetupWeaponsForSkill_REALISM() // Realism
 	// barammo
 	ammoTable[WP_BAR].maxammo = 150;
 	ammoTable[WP_M1GARAND].maxammo = 150;
-	// ppsh,tt33
-	ammoTable[WP_TT33].maxammo = 200;
-	ammoTable[WP_PPSH].maxammo = 200;
-	// mosin
-	ammoTable[WP_MOSIN].maxammo = 50;
 	// mp44
 	ammoTable[WP_MP44].maxammo = 120;
 	// m97
