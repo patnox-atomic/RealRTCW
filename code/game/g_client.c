@@ -1550,6 +1550,10 @@ void SetupWeaponsForSkill_EASY() // Easy
 	ammoTable[WP_DYNAMITE].maxclip = 5;
 	ammoTable[WP_GRENADE_PINEAPPLE].maxammo = 10;
 	ammoTable[WP_GRENADE_PINEAPPLE].maxclip = 10;
+	ammoTable[WP_SMOKE_GRENADE].maxammo = 1;
+	ammoTable[WP_SMOKE_GRENADE].maxclip = 1;
+	ammoTable[WP_POISON_GAS].maxammo = 5;
+	ammoTable[WP_POISON_GAS].maxclip = 5;
 	// heavy weapons
 	ammoTable[WP_PANZERFAUST].maxammo = 5;
 	ammoTable[WP_FLAMETHROWER].maxammo = 250;
@@ -1598,6 +1602,10 @@ void SetupWeaponsForSkill_MEDIUM() // Medium
 	ammoTable[WP_DYNAMITE].maxclip = 4;
 	ammoTable[WP_GRENADE_PINEAPPLE].maxammo = 8;
 	ammoTable[WP_GRENADE_PINEAPPLE].maxclip = 8;
+	ammoTable[WP_SMOKE_GRENADE].maxammo = 1;
+	ammoTable[WP_SMOKE_GRENADE].maxclip = 1;
+	ammoTable[WP_POISON_GAS].maxammo = 4;
+	ammoTable[WP_POISON_GAS].maxclip = 4;
 	// heavy weapons
 	ammoTable[WP_PANZERFAUST].maxammo = 4;
 	ammoTable[WP_FLAMETHROWER].maxammo = 200;
@@ -1645,6 +1653,11 @@ void SetupWeaponsForSkill_HARD() // Hard
 	ammoTable[WP_DYNAMITE].maxclip = 3;
 	ammoTable[WP_GRENADE_PINEAPPLE].maxammo = 6;
 	ammoTable[WP_GRENADE_PINEAPPLE].maxclip = 6;
+	ammoTable[WP_SMOKE_GRENADE].maxammo = 1;
+	ammoTable[WP_SMOKE_GRENADE].maxclip = 1;
+	ammoTable[WP_POISON_GAS].maxammo = 3;
+	ammoTable[WP_POISON_GAS].maxclip = 3;
+
 	// heavy weapons
 	ammoTable[WP_PANZERFAUST].maxammo = 3;
 	ammoTable[WP_FLAMETHROWER].maxammo = 150;
@@ -1693,6 +1706,10 @@ void SetupWeaponsForSkill_MAX() // Max
 	ammoTable[WP_DYNAMITE].maxclip = 3;
 	ammoTable[WP_GRENADE_PINEAPPLE].maxammo = 5;
 	ammoTable[WP_GRENADE_PINEAPPLE].maxclip = 5;
+	ammoTable[WP_SMOKE_GRENADE].maxammo = 1;
+	ammoTable[WP_SMOKE_GRENADE].maxclip = 1;
+	ammoTable[WP_POISON_GAS].maxammo = 3;
+	ammoTable[WP_POISON_GAS].maxclip = 3;
 	// heavy weapons
 	ammoTable[WP_PANZERFAUST].maxammo = 3;
 	ammoTable[WP_FLAMETHROWER].maxammo = 100;
@@ -1742,6 +1759,10 @@ void SetupWeaponsForSkill_REALISM() // Realism
 	ammoTable[WP_DYNAMITE].maxclip = 3;
 	ammoTable[WP_GRENADE_PINEAPPLE].maxammo = 5;
 	ammoTable[WP_GRENADE_PINEAPPLE].maxclip = 5;
+	ammoTable[WP_SMOKE_GRENADE].maxammo = 1;
+	ammoTable[WP_SMOKE_GRENADE].maxclip = 1;
+	ammoTable[WP_POISON_GAS].maxammo = 3;
+	ammoTable[WP_POISON_GAS].maxclip = 3;
 	// heavy weapons
 	ammoTable[WP_PANZERFAUST].maxammo = 3;
 	ammoTable[WP_FLAMETHROWER].maxammo = 100;

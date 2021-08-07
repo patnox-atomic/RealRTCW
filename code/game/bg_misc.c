@@ -107,35 +107,35 @@ ammotable_t ammoTable[] = {
 	{   100,            1,      100,    1000,   DELAY_LOW,      50,     0,      0,      MOD_FLAMETHROWER        },  //	WP_FLAMETHROWER			// 9
 	{   50,             1,      50,     1000,    DELAY_LOW,      0,     0,      0,      MOD_TESLA               },  //	WP_TESLA				// 10
 	{   MAX_AMMO_9MM,   1,      32,     3100,   DELAY_LOW,      105,    0,      0,      MOD_MP34                },  //	WP_MP34					// 11
-	{   MAX_AMMO_MAUSER,  1,    10,     1800,   DELAY_LOW,      300,    0,      0,      MOD_G43                 },  //	WP_G43				    // 15
-	{   MAX_AMMO_BARAMMO, 1,    8,      1650,   DELAY_LOW,      300,    0,      0,      MOD_M1GARAND            },  //	WP_M1GARAND				// 16
-	{   MAX_AMMO_BARAMMO, 1,    20,     2250,   DELAY_LOW,      160,    0,      0,      MOD_BAR                 },  //	WP_BAR					// 17
-	{   MAX_AMMO_44AMMO,  1,    30,     2600,   DELAY_LOW,      105,    0,      0,      MOD_MP44                },  //	WP_MP44					// 18
-	{   MAX_AMMO_MAUSER,  1,    100,    2600,   DELAY_LOW,      65,     2500,   350,    MOD_MG42M               },  //	WP_MG42M                // 19
-	{   MAX_AMMO_M97,     1,    6,      2000,   DELAY_LOW,      1250,   0,      0,      MOD_M97                 },  //	WP_M97                  // 20
-	{   MAX_AMMO_REVOLVER,1,    6,      1500,   DELAY_PISTOL,   500,    0,      0,      MOD_REVOLVER            },  //	WP_REVOLVER             // 21
-	{   MAX_AMMO_45,    1,      7,      1500,   DELAY_PISTOL,   300,    0,      0,      MOD_COLT                },  //	WP_COLT					// 22
-	{   MAX_AMMO_45,    1,      30,     2400,   DELAY_LOW,      90,     0,      0,      MOD_THOMPSON            },  //	WP_THOMPSON				// 23
-	{   MAX_AMMO_GARAND,1,      5,      2500,   DELAY_HIGH,     1200,   0,      0,      MOD_GARAND              },  //	WP_GARAND				// 24	
-	{   5,              1,      5,      1000,   DELAY_THROW,    1600,   0,      0,      MOD_GRENADE_PINEAPPLE   },  //	WP_GRENADE_PINEAPPLE	// 25
-	{   1,              1,      1,      0,      50,             0,      0,      0,      0                       },  //	WP_SMOKE_GRENADE		// 44
-	{   5,              1,      5,      1000,   DELAY_THROW,    1600,   0,      0,      MOD_POISON_GAS          },  //	WP_GRENADE_LAUNCHER		// 6
+	{   MAX_AMMO_MAUSER,  1,    10,     1800,   DELAY_LOW,      300,    0,      0,      MOD_G43                 },  //	WP_G43				    // 12
+	{   MAX_AMMO_BARAMMO, 1,    8,      1650,   DELAY_LOW,      300,    0,      0,      MOD_M1GARAND            },  //	WP_M1GARAND				// 13
+	{   MAX_AMMO_BARAMMO, 1,    20,     2250,   DELAY_LOW,      160,    0,      0,      MOD_BAR                 },  //	WP_BAR					// 14
+	{   MAX_AMMO_44AMMO,  1,    30,     2600,   DELAY_LOW,      105,    0,      0,      MOD_MP44                },  //	WP_MP44					// 15
+	{   MAX_AMMO_MAUSER,  1,    100,    2600,   DELAY_LOW,      65,     2500,   350,    MOD_MG42M               },  //	WP_MG42M                // 16
+	{   MAX_AMMO_M97,     1,    6,      2000,   DELAY_LOW,      1250,   0,      0,      MOD_M97                 },  //	WP_M97                  // 17
+	{   MAX_AMMO_REVOLVER,1,    6,      1500,   DELAY_PISTOL,   500,    0,      0,      MOD_REVOLVER            },  //	WP_REVOLVER             // 18
+	{   MAX_AMMO_45,    1,      7,      1500,   DELAY_PISTOL,   300,    0,      0,      MOD_COLT                },  //	WP_COLT					// 19
+	{   MAX_AMMO_45,    1,      30,     2400,   DELAY_LOW,      90,     0,      0,      MOD_THOMPSON            },  //	WP_THOMPSON				// 20
+	{   MAX_AMMO_GARAND,1,      5,      2500,   DELAY_HIGH,     1200,   0,      0,      MOD_GARAND              },  //	WP_GARAND				// 21	
+	{   5,              1,      5,      1000,   DELAY_THROW,    1600,   0,      0,      MOD_GRENADE_PINEAPPLE   },  //	WP_GRENADE_PINEAPPLE	// 22
+	{   1,              1,      1,      0,      50,             0,      0,      0,      0                       },  //	WP_SMOKE_GRENADE		// 23
+	{   3,              1,      3,      1000,   DELAY_THROW,    1600,   0,      0,      MOD_POISON_GAS          },  //	WP_POISON_GAS		    // 24
 
-	{   MAX_AMMO_MAUSER,1,      5,      3000,   0,              1400,   0,      0,      MOD_SNIPERRIFLE         },  //	WP_SNIPER_GER			// 26
-	{   MAX_AMMO_GARAND,1,      5,      3000,   0,              1200,   0,      0,      MOD_SNOOPERSCOPE        },  //	WP_SNIPER_AM			// 27
+	{   MAX_AMMO_MAUSER,1,      5,      3000,   0,              1400,   0,      0,      MOD_SNIPERRIFLE         },  //	WP_SNIPER_GER			// 25
+	{   MAX_AMMO_GARAND,1,      5,      3000,   0,              1200,   0,      0,      MOD_SNOOPERSCOPE        },  //	WP_SNIPER_AM			// 26
 
-	{   MAX_AMMO_FG42,  1,      20,     2000,   DELAY_LOW,      180,    0,      0,      MOD_FG42SCOPE           },  //	WP_FG42SCOPE			// 28
-	{   MAX_AMMO_9MM,   1,      32,     3100,   DELAY_LOW,      115,    900,    500,    MOD_STEN                },  //	WP_STEN					// 29
-	{   MAX_AMMO_9MM,   1,      8,      1500,   DELAY_PISTOL,   300,    0,      0,      MOD_SILENCER            },  //	WP_SILENCER				// 30
-	{   MAX_AMMO_45,    1,      7,      2700,   DELAY_PISTOL,   200,    0,      0,      MOD_AKIMBO              },  //	WP_AKIMBO				// 31
+	{   MAX_AMMO_FG42,  1,      20,     2000,   DELAY_LOW,      180,    0,      0,      MOD_FG42SCOPE           },  //	WP_FG42SCOPE			// 27
+	{   MAX_AMMO_9MM,   1,      32,     3100,   DELAY_LOW,      115,    900,    500,    MOD_STEN                },  //	WP_STEN					// 28
+	{   MAX_AMMO_9MM,   1,      8,      1500,   DELAY_PISTOL,   300,    0,      0,      MOD_SILENCER            },  //	WP_SILENCER				// 29
+	{   MAX_AMMO_45,    1,      7,      2700,   DELAY_PISTOL,   200,    0,      0,      MOD_AKIMBO              },  //	WP_AKIMBO				// 30
 
-	{   3,              1,      3,      1000,   DELAY_THROW,    1600,   0,      0,      MOD_DYNAMITE            },  //	WP_DYNAMITE				// 33
+	{   3,              1,      3,      1000,   DELAY_THROW,    1600,   0,      0,      MOD_DYNAMITE            },  //	WP_DYNAMITE				// 31
 
 // stubs for some "not-real" weapons (so they always return "yes, you have enough ammo for that gauntlet", etc.)
-	{   999,            0,      999,    0,      50,             0,      0,      0,      0                       },  //	WP_MONSTER_ATTACK1		// 35
-	{   999,            0,      999,    0,      50,             0,      0,      0,      0                       },  //	WP_MONSTER_ATTACK2		// 36
-	{   999,            0,      999,    0,      50,             0,      0,      0,      0                       },  //	WP_MONSTER_ATTACK3		// 37
-	{   999,            0,      999,    0,      50,             0,      0,      0,      0                       }   //	WP_GAUNTLET				// 38
+	{   999,            0,      999,    0,      50,             0,      0,      0,      0                       },  //	WP_MONSTER_ATTACK1		// 32
+	{   999,            0,      999,    0,      50,             0,      0,      0,      0                       },  //	WP_MONSTER_ATTACK2		// 33
+	{   999,            0,      999,    0,      50,             0,      0,      0,      0                       },  //	WP_MONSTER_ATTACK3		// 34
+	{   999,            0,      999,    0,      50,             0,      0,      0,      0                       }   //	WP_GAUNTLET				// 35
 };
 
 
@@ -153,26 +153,26 @@ int weapAlts[] = {
 	WP_NONE,            // 9 WP_FLAMETHROWER
 	WP_NONE,            // 10 WP_TESLA
 	WP_NONE,            // 11 WP_MP34
-	WP_NONE,            // 15 WP_G43
-	WP_NONE,            // 16 WP_M1GARAND
-	WP_NONE,            // 17 WP_BAR
-	WP_NONE,            // 18 WP_MP44
-	WP_NONE,            // 19 WP_MG42M
-	WP_NONE,            // 20 WP_M97
-	WP_NONE,            // 21 WP_REVOLVER
-	WP_AKIMBO,          // 22 WP_COLT		
-	WP_NONE,            // 23 WP_THOMPSON
-	WP_SNOOPERSCOPE,    // 24 WP_GARAND		
-	WP_NONE,            // 25 WP_GRENADE_PINEAPPLE
-	WP_NONE,
-	WP_NONE,
-	WP_MAUSER,          // 26 WP_SNIPERRIFLE
-	WP_GARAND,          // 27 WP_SNOOPERSCOPE
-	WP_FG42,            // 28 WP_FG42SCOPE
-	WP_NONE,            // 29 WP_STEN
-	WP_LUGER,           // 30 WP_SILENCER	
-	WP_COLT,            // 31 WP_AKIMBO		
-	WP_NONE             // 33 WP_DYNAMITE
+	WP_NONE,            // 12 WP_G43
+	WP_NONE,            // 13 WP_M1GARAND
+	WP_NONE,            // 14 WP_BAR
+	WP_NONE,            // 15 WP_MP44
+	WP_NONE,            // 16 WP_MG42M
+	WP_NONE,            // 17 WP_M97
+	WP_NONE,            // 18 WP_REVOLVER
+	WP_AKIMBO,          // 19 WP_COLT		
+	WP_NONE,            // 20 WP_THOMPSON
+	WP_SNOOPERSCOPE,    // 21 WP_GARAND		
+	WP_NONE,            // 22 WP_GRENADE_PINEAPPLE
+	WP_NONE,            // 23 WP_SMOKE_GRENADE
+	WP_NONE,            // 24 WP_POISON_GAS
+	WP_MAUSER,          // 25 WP_SNIPERRIFLE
+	WP_GARAND,          // 26 WP_SNOOPERSCOPE
+	WP_FG42,            // 27 WP_FG42SCOPE
+	WP_NONE,            // 28 WP_STEN
+	WP_LUGER,           // 29 WP_SILENCER	
+	WP_COLT,            // 30 WP_AKIMBO		
+	WP_NONE             // 31 WP_DYNAMITE
 };
 
 
@@ -2357,7 +2357,7 @@ model="models/powerups/ammo/dynamite.md3"
 		{1,1,1,1,1}
 	},
 
-		/*QUAKED ammo_smoke_grenade (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
+		/*QUAKED ammo_poison_gas (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
 used by: engineer
 
 -------- MODEL FOR RADIANT ONLY - DO NOT SET THIS AS A KEY --------
@@ -2366,7 +2366,7 @@ model="models/ammo/smoke_grenade/smoke_grenade.md3"
 	{
 		"ammo_poison_gas",
 		"sound/misc/am_pkup.wav",
-		{ "models/powerups/ammo/amgren_bag.md3",
+		{ "models/powerups/ammo/grengas_bag.md3",
 		  0, 0 },
 		"", // icon
 		NULL,               // ammo icon
@@ -2378,6 +2378,7 @@ model="models/ammo/smoke_grenade/smoke_grenade.md3"
 		WP_POISON_GAS,
 		"",                  // precache
 		"",                  // sounds
+	   {2,2,2,2,2}
 	},
 
 
@@ -2389,7 +2390,7 @@ model="models/powerups/ammo/dynamite.md3"
 	{
 		"ammo_smokegrenade",
 		"sound/misc/am_pkup.wav",
-		{ "models/powerups/ammo/dynamite.md3",
+		{ "models/powerups/ammo/smokegren_bag.md3",
 		  0, 0, 0,    0 },
 		"icons/icona_dynamite",  // icon
 		NULL,                   // ammo icon
