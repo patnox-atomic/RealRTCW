@@ -2017,13 +2017,18 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 
 	case EV_NOAMMO:
 		DEBUGNAME( "EV_NOAMMO" );
-		if ( ( es->weapon != WP_GRENADE_LAUNCHER ) && ( es->weapon != WP_GRENADE_PINEAPPLE ) && ( es->weapon != WP_DYNAMITE ) ) {
+		if ( ( es->weapon != WP_GRENADE_LAUNCHER ) && ( es->weapon != WP_GRENADE_PINEAPPLE ) && ( es->weapon != WP_DYNAMITE ) && ( es->weapon != WP_SMOKE_GRENADE ) ) {
 			trap_S_StartSound( NULL, es->number, CHAN_AUTO, cgs.media.noAmmoSound );
-		}
-		if ( es->number == cg.snap->ps.clientNum ) {
 			return;
-			//CG_OutOfAmmoChange(); autoreload
+		} else {
+			if ( es->number == cg.snap->ps.clientNum ) {
+			CG_OutOfAmmoChange();
 		}
+		}
+
+		//if ( es->number == cg.snap->ps.clientNum ) {
+		//	CG_OutOfAmmoChange();
+		//}
 		break;
 	case EV_CHANGE_WEAPON:
 	{

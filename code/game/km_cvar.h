@@ -26,6 +26,9 @@ extern vmCvar_t		sk_plr_dmg_pineapple_radius;
 extern vmCvar_t		sk_plr_dmg_dynamite;
 extern vmCvar_t		sk_plr_dmg_dynamite_radius;
 
+extern vmCvar_t		sk_plr_dmg_smokegrenade;
+extern vmCvar_t		sk_plr_dmg_smokegrenade_radius;
+
 //RealRTCW weapons
 extern vmCvar_t		sk_plr_dmg_mp34;
 extern vmCvar_t		sk_plr_dmg_g43;
@@ -60,6 +63,9 @@ extern vmCvar_t		sk_ai_dmg_pineapple;
 extern vmCvar_t		sk_ai_dmg_pineapple_radius;
 extern vmCvar_t		sk_ai_dmg_dynamite;
 extern vmCvar_t		sk_ai_dmg_dynamite_radius;
+
+extern vmCvar_t		sk_ai_dmg_smokegrenade;
+extern vmCvar_t		sk_ai_dmg_smokegrenade_radius;
 
 extern vmCvar_t		sk_ai_dmg_mp34;
 extern vmCvar_t		sk_ai_dmg_g43;

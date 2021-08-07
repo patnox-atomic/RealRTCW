@@ -118,6 +118,7 @@ ammotable_t ammoTable[] = {
 	{   MAX_AMMO_45,    1,      30,     2400,   DELAY_LOW,      90,     0,      0,      MOD_THOMPSON            },  //	WP_THOMPSON				// 23
 	{   MAX_AMMO_GARAND,1,      5,      2500,   DELAY_HIGH,     1200,   0,      0,      MOD_GARAND              },  //	WP_GARAND				// 24	
 	{   5,              1,      5,      1000,   DELAY_THROW,    1600,   0,      0,      MOD_GRENADE_PINEAPPLE   },  //	WP_GRENADE_PINEAPPLE	// 25
+	{   1,              1,      1,      0,      50,             0,      0,      0,      0                       },  //	WP_SMOKE_GRENADE		// 44
 
 	{   MAX_AMMO_MAUSER,1,      5,      3000,   0,              1400,   0,      0,      MOD_SNIPERRIFLE         },  //	WP_SNIPER_GER			// 26
 	{   MAX_AMMO_GARAND,1,      5,      3000,   0,              1200,   0,      0,      MOD_SNOOPERSCOPE        },  //	WP_SNIPER_AM			// 27
@@ -127,7 +128,6 @@ ammotable_t ammoTable[] = {
 	{   MAX_AMMO_9MM,   1,      8,      1500,   DELAY_PISTOL,   300,    0,      0,      MOD_SILENCER            },  //	WP_SILENCER				// 30
 	{   MAX_AMMO_45,    1,      7,      2700,   DELAY_PISTOL,   200,    0,      0,      MOD_AKIMBO              },  //	WP_AKIMBO				// 31
 
-	{   999,            0,      999,    0,      50,             0,      0,      0,      0                       },  //	WP_CLASS_SPECIAL		// 32	
 	{   3,              1,      3,      1000,   DELAY_THROW,    1600,   0,      0,      MOD_DYNAMITE            },  //	WP_DYNAMITE				// 33
 
 // stubs for some "not-real" weapons (so they always return "yes, you have enough ammo for that gauntlet", etc.)
@@ -163,13 +163,13 @@ int weapAlts[] = {
 	WP_NONE,            // 23 WP_THOMPSON
 	WP_SNOOPERSCOPE,    // 24 WP_GARAND		
 	WP_NONE,            // 25 WP_GRENADE_PINEAPPLE
+	WP_NONE,
 	WP_MAUSER,          // 26 WP_SNIPERRIFLE
 	WP_GARAND,          // 27 WP_SNOOPERSCOPE
 	WP_FG42,            // 28 WP_FG42SCOPE
 	WP_NONE,            // 29 WP_STEN
 	WP_LUGER,           // 30 WP_SILENCER	
 	WP_COLT,            // 31 WP_AKIMBO		
-	WP_NONE,            // 32 WP_CLASS_SPECIAL
 	WP_NONE             // 33 WP_DYNAMITE
 };
 
@@ -1774,6 +1774,27 @@ model="models/weapons2/p38/luger.md3"
 	},
 
 
+		{
+		"weapon_grenadesmoke",
+		"sound/misc/w_pkup.wav",
+		{   "models/multiplayer/smokegrenade/smokegrenade.md3",
+			"models/multiplayer/smokegrenade/v_smokegrenade.md3",
+			0, 0, 0},
+
+		"icons/iconw_smokegrenade_1",    // icon
+		"icons/ammo2",   // ammo icon
+		"smokeGrenade",              // pickup
+		50,
+		IT_WEAPON,
+		WP_SMOKE_GRENADE,
+		WP_SMOKE_GRENADE,
+		WP_SMOKE_GRENADE,
+		"",                      // precache
+		"sound/weapons/grenade/hgrenb1a.wav sound/weapons/grenade/hgrenb2a.wav",             // sounds
+		{0,0,0,0,0}
+	},
+
+
 	//
 	// AMMO ITEMS
 	//
@@ -2307,6 +2328,30 @@ model="models/powerups/ammo/dynamite.md3"
 		WP_DYNAMITE,
 		WP_DYNAMITE,
 		WP_DYNAMITE,
+		"",                      // precache
+		"",                      // sounds
+		{1,1,1,1,1}
+	},
+
+
+	/*QUAKED ammo_dynamite (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
+
+ -------- MODEL FOR RADIANT ONLY - DO NOT SET THIS AS A KEY --------
+model="models/powerups/ammo/dynamite.md3"
+*/
+	{
+		"ammo_smokegrenade",
+		"sound/misc/am_pkup.wav",
+		{ "models/powerups/ammo/dynamite.md3",
+		  0, 0, 0,    0 },
+		"icons/icona_dynamite",  // icon
+		NULL,                   // ammo icon
+		"Smoke Grenades",              // pickup
+		1,
+		IT_AMMO,
+		WP_SMOKE_GRENADE,
+		WP_SMOKE_GRENADE,
+		WP_SMOKE_GRENADE,
 		"",                      // precache
 		"",                      // sounds
 		{1,1,1,1,1}
@@ -3079,6 +3124,7 @@ qboolean isClipOnly( int weap ) {
 	switch ( weap ) {
 	case WP_GRENADE_LAUNCHER:
 	case WP_GRENADE_PINEAPPLE:
+	case WP_SMOKE_GRENADE:
 	case WP_DYNAMITE:
 	case WP_TESLA:
 	case WP_FLAMETHROWER:

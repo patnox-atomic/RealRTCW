@@ -436,6 +436,7 @@ void G_ExplodeMissile( gentity_t *ent ) {
 	SnapVector( origin );
 	G_SetOrigin( ent, origin );
 
+
 	// we don't have a valid direction, so just point straight up
 	dir[0] = dir[1] = 0;
 	dir[2] = 1;
@@ -974,12 +975,15 @@ gentity_t *fire_grenade( gentity_t *self, vec3_t start, vec3_t dir, int grenadeW
 		bolt->splashMethodOfDeath   = MOD_GRENADE_SPLASH;
 		bolt->s.eFlags              = EF_BOUNCE_HALF;
 		break;
-// JPW NERVE
-	case WP_GRENADE_SMOKE:
+	case WP_SMOKE_GRENADE:
+			if ( self->aiCharacter ) {
+			bolt->splashRadius          = sk_ai_dmg_smokegrenade_radius.integer;	// Knightmare- was 300
+		} else {
+			bolt->splashRadius          = sk_plr_dmg_smokegrenade_radius.integer;	// Knightmare- was 300
+		}
 		bolt->classname             = "grenade";
-		bolt->s.eFlags              = EF_BOUNCE_HALF;
+		bolt->s.eFlags              = EF_BOUNCE_HALF | EF_BOUNCE;
 		break;
-// jpw
 	case WP_DYNAMITE:
 		// oh, this is /so/ cheap...
 		// you need to pick up new code ;)

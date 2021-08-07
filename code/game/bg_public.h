@@ -492,21 +492,19 @@ typedef enum {
 	WP_THOMPSON,            // 23	
 	WP_GARAND,              // 24	
 	WP_GRENADE_PINEAPPLE,   // 25
+	WP_SMOKE_GRENADE,
 	WP_SNIPERRIFLE,         // 26
 	WP_SNOOPERSCOPE,        // 27
 	WP_FG42SCOPE,           // 28
 	WP_STEN,                // 29	
 	WP_SILENCER,            // 30	
 	WP_AKIMBO,              // 31	
-	WP_CLASS_SPECIAL,       // 32
 	WP_DYNAMITE,            // 33
 	WP_MONSTER_ATTACK1,     // 34	
 	WP_MONSTER_ATTACK2,     // 35	
 	WP_MONSTER_ATTACK3,     // 36	
 	WP_GAUNTLET,            // 37
 	WP_SNIPER,              // 38
-	WP_GRENADE_SMOKE,       // 39	
-	WP_MEDIC_HEAL,          // 40	
 	WP_MORTAR,              // 41
 	VERYBIGEXPLOSION,       // 42	
 	WP_NUM_WEAPONS          // 43   NOTE: this cannot be larger than 64 for AI/player weapons!

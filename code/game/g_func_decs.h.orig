@@ -647,7 +647,6 @@ extern int G_GetWeaponDamage ( int weapon ) ;
 extern void SnapVectorTowards ( vec3_t v , vec3_t to ) ;
 extern trace_t * CheckMeleeAttack ( gentity_t * ent , float dist , qboolean isTest ) ;
 extern void Weapon_Gauntlet ( gentity_t * ent ) ;
-extern void Weapon_Class_Special ( gentity_t * ent ) ;
 extern void weapon_callAirStrike ( gentity_t * ent ) ;
 extern void Weapon_Engineer ( gentity_t * ent ) ;
 extern void Weapon_Medic ( gentity_t * ent ) ;
