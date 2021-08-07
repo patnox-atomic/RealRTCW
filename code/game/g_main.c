@@ -177,9 +177,6 @@ vmCvar_t		sk_plr_dmg_dynamite_radius;
 // RealRTCW weapons
 
 vmCvar_t		sk_plr_dmg_mp34;
-vmCvar_t		sk_plr_dmg_tt33;
-vmCvar_t		sk_plr_dmg_ppsh;
-vmCvar_t		sk_plr_dmg_mosin;
 vmCvar_t		sk_plr_dmg_g43;
 vmCvar_t		sk_plr_dmg_m1garand;
 vmCvar_t		sk_plr_dmg_bar;
@@ -215,9 +212,6 @@ vmCvar_t		sk_ai_dmg_dynamite_radius;
 //RealRTCW weapons
 
 vmCvar_t		sk_ai_dmg_mp34;
-vmCvar_t		sk_ai_dmg_tt33;
-vmCvar_t		sk_ai_dmg_ppsh;
-vmCvar_t		sk_ai_dmg_mosin;
 vmCvar_t		sk_ai_dmg_g43;
 vmCvar_t		sk_ai_dmg_m1garand;
 vmCvar_t		sk_ai_dmg_bar;
@@ -275,9 +269,6 @@ cvarTable_t gameCvarTable[] = {
 	{ &sk_plr_dmg_dynamite_radius, "sk_plr_dmg_dynamite_radius", "450", CVAR_CHEAT, 0, qfalse  },
 	// New weapons
 	{ &sk_plr_dmg_mp34, "sk_plr_dmg_mp34", "6", CVAR_CHEAT, 0, qfalse  },
-	{ &sk_plr_dmg_tt33, "sk_plr_dmg_tt33", "8", CVAR_CHEAT, 0, qfalse  },
-	{ &sk_plr_dmg_ppsh, "sk_plr_dmg_ppsh", "6", CVAR_CHEAT, 0, qfalse  },	
-	{ &sk_plr_dmg_mosin, "sk_plr_dmg_mosin", "35", CVAR_CHEAT, 0, qfalse  },
 	{ &sk_plr_dmg_g43, "sk_plr_dmg_g43", "16", CVAR_CHEAT, 0, qfalse  },
 	{ &sk_plr_dmg_m1garand, "sk_plr_dmg_m1garand", "18", CVAR_CHEAT, 0, qfalse  },	
 	{ &sk_plr_dmg_bar, "sk_plr_dmg_bar", "16", CVAR_CHEAT, 0, qfalse  }, 
@@ -312,9 +303,6 @@ cvarTable_t gameCvarTable[] = {
 	{ &sk_ai_dmg_dynamite_radius, "sk_ai_dmg_dynamite_radius", "450", CVAR_CHEAT, 0, qfalse  },
     // New Weapons
 	{ &sk_ai_dmg_mp34, "sk_ai_dmg_mp34", "4", CVAR_CHEAT, 0, qfalse  },
-	{ &sk_ai_dmg_tt33, "sk_ai_dmg_tt33", "7", CVAR_CHEAT, 0, qfalse  },
-	{ &sk_ai_dmg_ppsh, "sk_ai_dmg_ppsh", "5", CVAR_CHEAT, 0, qfalse  },
-	{ &sk_ai_dmg_mosin, "sk_ai_dmg_mosin", "15", CVAR_CHEAT, 0, qfalse  },
 	{ &sk_ai_dmg_g43, "sk_ai_dmg_g43", "7", CVAR_CHEAT, 0, qfalse  },  
 	{ &sk_ai_dmg_m1garand, "sk_ai_dmg_m1garand", "7", CVAR_CHEAT, 0, qfalse  }, 
 	{ &sk_ai_dmg_bar, "sk_ai_dmg_bar", "6", CVAR_CHEAT, 0, qfalse  }, 

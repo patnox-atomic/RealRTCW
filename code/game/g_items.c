@@ -480,21 +480,6 @@ int Pickup_Weapon( gentity_t *ent, gentity_t *other ) {
 //----(SA) end
 	}
 
-	if (( weapon == WP_PPSH ) && strstr (level.scriptAI, "Village1"))
-	{
-	if ( !g_cheats.integer ) 
-	{
-    steamSetAchievement("ACH_PPSH");
-	}
-	}
-
-	if (( weapon == WP_MOSIN ) && strstr (level.scriptAI, "chateau"))
-	{
-	if ( !g_cheats.integer ) 
-	{
-    steamSetAchievement("ACH_MOSIN");
-	}
-	}
 
 
 	//----(SA)	added

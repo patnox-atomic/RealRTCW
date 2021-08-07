@@ -56,8 +56,6 @@ extern vmCvar_t g_gametype;
 #define MAX_AMMO_GARAND 5
 #define MAX_AMMO_FG42   MAX_AMMO_MAUSER
 #define MAX_AMMO_BAR    150
-#define MAX_AMMO_TTAMMO 200
-#define MAX_AMMO_MOSINA 50
 #define MAX_AMMO_BARAMMO    120  
 #define MAX_AMMO_44AMMO     120
 #define MAX_AMMO_M97        24
@@ -109,9 +107,6 @@ ammotable_t ammoTable[] = {
 	{   100,            1,      100,    1000,   DELAY_LOW,      50,     0,      0,      MOD_FLAMETHROWER        },  //	WP_FLAMETHROWER			// 9
 	{   50,             1,      50,     1000,    DELAY_LOW,      0,     0,      0,      MOD_TESLA               },  //	WP_TESLA				// 10
 	{   MAX_AMMO_9MM,   1,      32,     3100,   DELAY_LOW,      105,    0,      0,      MOD_MP34                },  //	WP_MP34					// 11
-	{   MAX_AMMO_TTAMMO,  1,    8,      1600,   DELAY_PISTOL,   350,    0,      0,      MOD_TT33                },  //	WP_TT33					// 12
-	{   MAX_AMMO_TTAMMO,  1,    71,     2900,   DELAY_LOW,      65,     0,      0,      MOD_PPSH                },  //	WP_PPSH					// 13
-	{   MAX_AMMO_MOSINA,  1,    5,      2400,   DELAY_HIGH,     1400,   0,      0,      MOD_MOSIN               },  //	WP_MOSIN				// 14
 	{   MAX_AMMO_MAUSER,  1,    10,     1800,   DELAY_LOW,      300,    0,      0,      MOD_G43                 },  //	WP_G43				    // 15
 	{   MAX_AMMO_BARAMMO, 1,    8,      1650,   DELAY_LOW,      300,    0,      0,      MOD_M1GARAND            },  //	WP_M1GARAND				// 16
 	{   MAX_AMMO_BARAMMO, 1,    20,     2250,   DELAY_LOW,      160,    0,      0,      MOD_BAR                 },  //	WP_BAR					// 17
@@ -157,9 +152,6 @@ int weapAlts[] = {
 	WP_NONE,            // 9 WP_FLAMETHROWER
 	WP_NONE,            // 10 WP_TESLA
 	WP_NONE,            // 11 WP_MP34
-	WP_NONE,            // 12 WP_TT33
-	WP_NONE,            // 13 WP_PPSH
-	WP_NONE,            // 14 WP_MOSIN
 	WP_NONE,            // 15 WP_G43
 	WP_NONE,            // 16 WP_M1GARAND
 	WP_NONE,            // 17 WP_BAR
@@ -1586,89 +1578,6 @@ model="models/weapons2/mp34/mp34_3rd.md3"
 		{0,0,0,0,0}
 	},
 
-	/*QUAKED weapon_tt33 (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
-"stand" values:
-	no value:	laying in a default position on it's side (default)
-	2:			upright, barrel pointing up, slightly angled (rack mount)
--------- MODEL FOR RADIANT ONLY - DO NOT SET THIS AS A KEY --------
-model="models/weapons2/tt33/tt33.md3"
-*/
-	{
-		"weapon_tt33",
-		"sound/misc/w_pkup.wav",
-		{   "models/weapons2/tt33/tt33.md3",
-			"models/weapons2/tt33/v_tt33.md3",
-			"models/weapons2/tt33/pu_tt33.md3",
-			0, 0 },
-
-		"icons/iconw_tt33",    // icon
-		"icons/ammoppsh",      // ammo icon
-		"tt33",              // pickup
-		30,
-		IT_WEAPON,
-		WP_TT33,
-		WP_TT33,
-		WP_TT33,
-		"",                  // precache
-		"",                  // sounds
-		{0,0,0,0,0}
-	},
-
-/*QUAKED weapon_ppsh (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
-"stand" values:
-	no value:	laying in a default position on it's side (default)
-	2:			upright, barrel pointing up, slightly angled (rack mount)
--------- MODEL FOR RADIANT ONLY - DO NOT SET THIS AS A KEY --------
-model="models/weapons2/ppsh/ppsh.md3"
-*/
-	{
-		"weapon_ppsh",
-		"sound/misc/w_pkup.wav",
-		{   "models/weapons2/ppsh/ppsh.md3",
-			"models/weapons2/ppsh/v_ppsh.md3",
-			"models/weapons2/ppsh/pu_ppsh.md3",
-			0, 0 },
-
-		"icons/iconw_ppsh_1",   // icon
-		"icons/ammo9",       // ammo icon
-		"ppsh",              // pickup
-		30,
-		IT_WEAPON,
-		WP_PPSH,
-		WP_TT33,
-		WP_PPSH,
-		"",                  // precache
-		"",                  // sounds
-		{0,0,0,0,0}
-	},
-
-/*QUAKED weapon_mosin (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
-"stand" values:
-	no value:	laying in a default position on it's side (default)
-	2:			upright, barrel pointing up, slightly angled (rack mount)
--------- MODEL FOR RADIANT ONLY - DO NOT SET THIS AS A KEY --------
-model="models/weapons2/mosin/mosin.md3"
-*/
-	{
-		"weapon_mosin",
-		"sound/misc/w_pkup.wav",
-		{   "models/weapons2/mosin/mosin.md3",
-			"models/weapons2/mosin/v_mosin.md3",
-			"models/weapons2/mosin/pu_mosin.md3",
-			0, 0 },
-
-		"icons/iconw_mosin",    // icon
-		"icons/ammomosin",      // ammo icon
-		"mosin",               // pickup
-		30,
-		IT_WEAPON,
-		WP_MOSIN,
-		WP_MOSIN,
-		WP_MOSIN,
-		"",                  // precache
-		"",                  // sounds
-		{0,0,0,0,0}
-	},
 
 /*QUAKED weapon_g43 (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
 "stand" values:
@@ -1697,6 +1606,7 @@ model="models/multiplayer/g43/g43_3rd.md3"
 		"",                  // sounds
 		{0,0,0,0,0}
 	},
+
 
 
 /*QUAKED weapon_m1_garand (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
@@ -1870,77 +1780,6 @@ model="models/weapons2/p38/luger.md3"
 
 // RealRTCW ammo
 
-/*QUAKED ammo_ttammo (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
-used by: TT33, PPSH
-
--------- MODEL FOR RADIANT ONLY - DO NOT SET THIS AS A KEY --------
-model="models/powerups/ammo/ttammo.md3"
-*/
-	{
-		"ammo_ttammo",
-		"sound/misc/am_pkup.wav",
-		{ "models/powerups/ammo/ttammo.md3",
-		  0, 0, 0,    0 },
-		"icons/iconw_luger_1", // icon
-		NULL,               // ammo icon
-		"ttammo",           // pickup			
-		60,
-		IT_AMMO,
-		WP_PPSH,
-		WP_TT33,
-		WP_PPSH,
-		"",                  // precache
-		"",                  // sounds
-		{71,71,50,50,50}	
-	},
-
-/*QUAKED ammo_ttammo_l (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
-used by: TT33, PPSH
-
--------- MODEL FOR RADIANT ONLY - DO NOT SET THIS AS A KEY --------
-model="models/powerups/ammo/ttammo.md3"
-*/
-	{
-		"ammo_ttammo_l",
-		"sound/misc/am_pkup.wav",
-		{ "models/powerups/ammo/ttammo_l.md3",
-		  0, 0, 0,    0 },
-		"icons/iconw_luger_1", // icon
-		NULL,               // ammo icon
-		"ttammol",           // pickup			
-		60,
-		IT_AMMO,
-		WP_PPSH,
-		WP_TT33,
-		WP_PPSH,
-		"",                  // precache
-		"",                  // sounds
-		{142,142,100,100,100}	
-	},
-
-/*QUAKED ammo_mosina (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
-used by: mosin nagant
-
--------- MODEL FOR RADIANT ONLY - DO NOT SET THIS AS A KEY --------
-model="models/powerups/ammo/mosina.md3"
-*/
-	{
-		"ammo_mosina",
-		"sound/misc/am_pkup.wav",
-		{ "models/powerups/ammo/mosina.md3",
-		  0, 0, 0,    0 },
-		"icons/icona_machinegun",    // icon
-		NULL,                       // ammo icon
-		"mosina",			       // pickup
-		50,
-		IT_AMMO,
-		WP_MOSIN,
-		WP_MOSIN,
-		WP_MOSIN,
-		"",                          // precache
-		"",                          // sounds
-		{20,20,15,15,15}		
-	},
 
 /*QUAKED ammo_barammo (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
 used by: Bar, M1 Garand

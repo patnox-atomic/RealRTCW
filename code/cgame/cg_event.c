@@ -267,21 +267,9 @@ static void CG_Obituary( entityState_t *ent ) {
 			message = "was killed by";
 			message2 = "'s MP34";
 			break;
-		case MOD_TT33:
-			message = "was killed by";
-			message2 = "'s TT33";
-			break;
 		case MOD_REVOLVER:
 			message = "was killed by";
 			message2 = "'s REVOLVER";
-			break;
-		case MOD_PPSH:
-			message = "was killed by";
-			message2 = "'s PPSH";
-			break;
-		case MOD_MOSIN:
-			message = "was killed by";
-			message2 = "'s MOSIN";
 			break;
 		case MOD_G43:
 			message = "was killed by";
