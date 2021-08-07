@@ -2064,6 +2064,7 @@ static void PM_BeginWeaponReload( int weapon ) {
 	case WP_DYNAMITE:
 	case WP_GRENADE_LAUNCHER:
 	case WP_GRENADE_PINEAPPLE:
+	case WP_SMOKE_GRENADE:
 		break;
 
 		// no reloading
@@ -2476,6 +2477,7 @@ static void PM_SwitchIfEmpty( void ) {
 	switch ( pm->ps->weapon ) {
 	case WP_GRENADE_LAUNCHER:
 	case WP_GRENADE_PINEAPPLE:
+	case WP_SMOKE_GRENADE:
 	case WP_DYNAMITE:
 	case WP_PANZERFAUST:
 		break;
@@ -2498,6 +2500,7 @@ static void PM_SwitchIfEmpty( void ) {
 	switch ( pm->ps->weapon ) {
 	case WP_GRENADE_LAUNCHER:
 	case WP_GRENADE_PINEAPPLE:
+	case WP_SMOKE_GRENADE:
 	case WP_DYNAMITE:
 		// take the 'weapon' away from the player
 		COM_BitClear( pm->ps->weapons, pm->ps->weapon );
@@ -3227,6 +3230,7 @@ static void PM_Weapon( void ) {
 	case WP_MG42M:
 	case WP_FG42SCOPE:
 	case WP_M97:
+	case WP_SMOKE_GRENADE:
 		if ( !weaponstateFiring ) {
 			if ( pm->ps->aiChar && pm->ps->weapon == WP_VENOM ) {
 				// AI get fast spin-up
@@ -3335,6 +3339,7 @@ static void PM_Weapon( void ) {
 			case WP_DYNAMITE:
 			case WP_GRENADE_LAUNCHER:
 			case WP_GRENADE_PINEAPPLE:
+			case WP_SMOKE_GRENADE:
 				playswitchsound = qfalse;
 				break;
 			// some weapons not allowed to reload.  must switch back to primary first
@@ -3425,6 +3430,7 @@ static void PM_Weapon( void ) {
 	case WP_MG42M:
 	case WP_THOMPSON:
 	case WP_STEN:
+	case WP_SMOKE_GRENADE:
 		PM_ContinueWeaponAnim( weapattackanim );
 		break;
 
@@ -3476,6 +3482,9 @@ static void PM_Weapon( void ) {
 	case WP_COLT:
 		addTime = ammoTable[pm->ps->weapon].nextShotTime;
 		aimSpreadScaleAdd = 20;
+		break;
+	case WP_SMOKE_GRENADE:
+		addTime = 1000;
 		break;
 //----(SA)	added
 	case WP_AKIMBO:
@@ -3574,9 +3583,6 @@ static void PM_Weapon( void ) {
 	case WP_VENOM:
 		addTime = ammoTable[pm->ps->weapon].nextShotTime;
 		aimSpreadScaleAdd = 10;
-		break;
-	case WP_CLASS_SPECIAL:
-		addTime = 50;
 		break;
 	case WP_MONSTER_ATTACK1:
 		addTime = 1000;
@@ -3753,7 +3759,7 @@ case WP_MG42M:
 			pm->ps->weapHeat[pm->ps->weapon] = ammoTable[pm->ps->weapon].maxHeat;       // cap heat to max
 			PM_AddEvent( EV_WEAP_OVERHEAT );
 //			PM_StartWeaponAnim(WEAP_IDLE1);	// removed.  client handles anim in overheat event
-			addTime = 2000;         // force "heat recovery minimum" to 2 sec right now
+			addTime = 2000;      
 		}
 	}
 

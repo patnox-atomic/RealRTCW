@@ -305,28 +305,54 @@ void Weapon_Engineer( gentity_t *ent ) {
 // JPW NERVE -- launch airstrike as line of bombs mostly-perpendicular to line of grenade travel
 // (close air support should *always* drop parallel to friendly lines, tho accidents do happen)
 void G_ExplodeMissile( gentity_t *ent );
+
+
+void G_AirStrikeExplode( gentity_t *self ) {
+
+	self->r.svFlags &= ~SVF_NOCLIENT;
+	self->r.svFlags |= SVF_BROADCAST;
+
+	self->think = G_ExplodeMissile;
+	self->nextthink = level.time + 50;
+}
+
+
 #define NUMBOMBS 10
 #define BOMBSPREAD 150
-extern void G_SayTo( gentity_t *ent, gentity_t *other, int mode, int color, const char *name, const char *message );
 void weapon_callAirStrike( gentity_t *ent ) {
 	int i;
-	vec3_t bombaxis, lookaxis, pos, bomboffset, fallaxis;
-	gentity_t *bomb;
+	vec3_t bombaxis, lookaxis, pos, bomboffset, fallaxis, temp;
+	gentity_t *bomb,*te;
 	trace_t tr;
 	float traceheight, bottomtraceheight;
 
 	VectorCopy( ent->s.pos.trBase,bomboffset );
 	bomboffset[2] += 4096;
 
+	// cancel the airstrike if FF off and player joined spec
+	if ( !g_friendlyFire.integer && ent->parent->client && ent->parent->client->sess.sessionTeam == TEAM_SPECTATOR ) {
+		ent->splashDamage = 0; // no damage
+		ent->think = G_ExplodeMissile;
+		ent->nextthink = level.time + crandom() * 50;
+		return; // do nothing, don't hurt anyone
+	}
+
 	// turn off smoke grenade
 	ent->think = G_ExplodeMissile;
-	ent->nextthink = level.time + 1000 + NUMBOMBS * 100 + crandom() * 50; // 3000 offset is for aircraft flyby
+	ent->nextthink = level.time + 950 + NUMBOMBS * 100 + crandom() * 50; // 3000 offset is for aircraft flyby
 
 	trap_Trace( &tr, ent->s.pos.trBase, NULL, NULL, bomboffset, ent->s.number, MASK_SHOT );
-	if ( ( tr.fraction < 1.0 ) && ( !( tr.surfaceFlags & SURF_SKY ) ) ) {
-		G_SayTo( ent->parent, ent->parent, 2, COLOR_YELLOW, "Pilot: ", "Can't see target, aborting bomb run" );
+	if ( ( tr.fraction < 1.0 ) && ( !( tr.surfaceFlags & SURF_NOIMPACT ) ) ) { //SURF_SKY)) ) { // JPW NERVE changed for trenchtoast foggie prollem
+		//G_SayTo( ent->parent, ent->parent, 2, COLOR_YELLOW, "Pilot: ", "Aborting, can't see target.", qtrue );
+			te = G_TempEntity( ent->parent->s.pos.trBase, EV_GLOBAL_SOUND );
+			te->s.eventParm = G_SoundIndex( "sound/weapons/airstrike/a-aborting.wav" );
+			te->s.teamNum = ent->parent->s.clientNum;
 		return;
 	}
+	
+		te = G_TempEntity( ent->parent->s.pos.trBase, EV_GLOBAL_SOUND );
+		te->s.eventParm = G_SoundIndex( "sound/weapons/airstrike/a-affirmative_omw.wav" );
+		te->s.teamNum = ent->parent->s.clientNum;
 
 	VectorCopy( tr.endpos, bomboffset );
 	traceheight = bomboffset[2];
@@ -347,36 +373,13 @@ void weapon_callAirStrike( gentity_t *ent ) {
 	VectorAdd( ent->s.pos.trBase, pos, pos ); // first bomb position
 	VectorScale( bombaxis,BOMBSPREAD,bombaxis ); // bomb drop direction offset
 
-// add an aircraft (looks suspiciously like a rocket right now) (but doesn't work)
-/*
-	bomb = G_Spawn();
-	bomb->nextthink = level.time + 26000;
-	bomb->think = G_ExplodeMissile;
-	bomb->s.eType		= ET_MISSILE;
-	bomb->r.svFlags		= SVF_USE_CURRENT_ORIGIN | SVF_BROADCAST;
-	bomb->s.weapon		= WP_GRENADE_LAUNCHER; // might wanna change this
-	bomb->r.ownerNum	= ent->s.number;
-	bomb->parent		= ent->parent;
-	bomb->damage		= 400; // maybe should un-hard-code these?
-	bomb->splashDamage  = 400;
-	bomb->classname		= "fighterbomber";
-	bomb->splashRadius			= 400;
-	bomb->methodOfDeath			= MOD_DYNAMITE; // FIXME add MOD for air strike
-	bomb->splashMethodOfDeath	= MOD_DYNAMITE_SPLASH;
-	bomb->clipmask = MASK_MISSILESHOT;
-	bomb->s.pos.trType = TR_STATIONARY; // TR_LINEAR;
-	bomb->s.pos.trTime = level.time;
-	VectorCopy(ent->s.pos.trBase, bomb->s.pos.trBase);
-	bomb->s.pos.trBase[2] += 200;
-	bomb->s.modelindex = G_ModelIndex( "models/mapobjects/vehicles/m109.md3" );
-*/
 	for ( i = 0; i < NUMBOMBS; i++ ) {
 		bomb = G_Spawn();
 		bomb->nextthink = level.time + i * 100 + crandom() * 50 + 1000; // 1000 for aircraft flyby, other term for tumble stagger
-		bomb->think = G_ExplodeMissile;
+		bomb->think = G_AirStrikeExplode;
 		bomb->s.eType       = ET_MISSILE;
-		bomb->r.svFlags     = SVF_USE_CURRENT_ORIGIN | SVF_BROADCAST;
-		bomb->s.weapon      = WP_GRENADE_LAUNCHER; // might wanna change this
+		bomb->r.svFlags     = SVF_USE_CURRENT_ORIGIN | SVF_NOCLIENT;
+		bomb->s.weapon      = WP_GRENADE_PINEAPPLE; // might wanna change this
 		bomb->r.ownerNum    = ent->s.number;
 		bomb->parent        = ent->parent;
 		bomb->damage        = 400; // maybe should un-hard-code these?
@@ -387,7 +390,7 @@ void weapon_callAirStrike( gentity_t *ent ) {
 		bomb->splashMethodOfDeath   = MOD_AIRSTRIKE;
 		bomb->clipmask = MASK_MISSILESHOT;
 		bomb->s.pos.trType = TR_STATIONARY; // was TR_GRAVITY,  might wanna go back to this and drop from height
-		bomb->s.pos.trTime = level.time;        // move a bit on the very first frame
+		//bomb->s.pos.trTime = level.time;		// move a bit on the very first frame
 		bomboffset[0] = crandom() * 0.5 * BOMBSPREAD;
 		bomboffset[1] = crandom() * 0.5 * BOMBSPREAD;
 		bomboffset[2] = 0;
@@ -404,10 +407,13 @@ void weapon_callAirStrike( gentity_t *ent ) {
 			VectorCopy( tr.endpos,bomb->s.pos.trBase );
 		}
 
-		bomb->s.pos.trDelta[0] = 0; // might need to change this
-		bomb->s.pos.trDelta[1] = 0;
-		bomb->s.pos.trDelta[2] = 0;
-		SnapVector( bomb->s.pos.trDelta );          // save net bandwidth
+		VectorClear( bomb->s.pos.trDelta );
+
+		// Snap origin!
+		VectorCopy( bomb->s.pos.trBase, temp );
+		temp[2] += 2.f;
+		SnapVectorTowards( bomb->s.pos.trBase, temp );          // save net bandwidth
+
 		VectorCopy( bomb->s.pos.trBase, bomb->r.currentOrigin );
 
 		// move pos for next bomb
@@ -416,29 +422,6 @@ void weapon_callAirStrike( gentity_t *ent ) {
 }
 
 gentity_t *LaunchItem( gitem_t *item, vec3_t origin, vec3_t velocity );
-void Weapon_Class_Special( gentity_t *ent ) {
-
-	switch ( ent->client->ps.stats[STAT_PLAYER_CLASS] ) {
-	case PC_SOLDIER:
-		G_Printf( "shooting soldier\n" );
-		break;
-	case PC_MEDIC:
-		Weapon_Medic( ent );
-		break;
-	case PC_ENGINEER:
-		//G_Printf("shooting engineer\n");
-		//ent->client->ps.classWeaponTime = level.time;
-		Weapon_Engineer( ent );
-		break;
-	case PC_LT:
-		if ( level.time - ent->client->ps.classWeaponTime > g_LTChargeTime.integer ) {
-			weapon_grenadelauncher_fire( ent,WP_GRENADE_SMOKE );
-			ent->client->ps.classWeaponTime = level.time;
-		}
-		break;
-	}
-}
-// jpw
 
 /*
 ==============
@@ -596,6 +579,7 @@ int G_GetWeaponDamage( int weapon, qboolean player ) {
 			case WP_M97: return sk_plr_dmg_m97.integer;
 			case WP_REVOLVER: return sk_plr_dmg_revolver.integer;	
 			case WP_MORTAR: return 100;
+			case WP_SMOKE_GRENADE: return sk_plr_dmg_smokegrenade.integer;	
 			case WP_GAUNTLET: return 1;
 			case WP_SNIPER: return 1;
 			default:    return 1;
@@ -634,6 +618,7 @@ int G_GetWeaponDamage( int weapon, qboolean player ) {
 			case WP_M97: return sk_ai_dmg_m97.integer;
 			case WP_REVOLVER: return sk_ai_dmg_revolver.integer;		
 			case WP_MORTAR: return 100;
+		    case WP_SMOKE_GRENADE: return sk_ai_dmg_smokegrenade.integer;	
 			case WP_GAUNTLET: return 1;
 			case WP_SNIPER: return 1;
 			default:    return 1;
@@ -657,7 +642,6 @@ int G_GetWeaponDamage( int weapon, qboolean player ) {
 		case WP_SNOOPERSCOPE: return 75;
 		case WP_NONE: return 0;
 		case WP_KNIFE: return 10;
-		case WP_GRENADE_SMOKE: return 100;
 		case WP_GRENADE_LAUNCHER: return 200;
 		case WP_GRENADE_PINEAPPLE: return 200;
 		case WP_DYNAMITE: return 600;
@@ -1172,14 +1156,11 @@ gentity_t *weapon_crowbar_throw( gentity_t *ent ) {
 }
 
 gentity_t *weapon_grenadelauncher_fire( gentity_t *ent, int grenType ) {
-	gentity_t   *m, *te; // JPW NERVE
+	gentity_t   *m, *te;
 	float upangle = 0;                  //	start with level throwing and adjust based on angle
 	vec3_t tosspos;
 	qboolean underhand = 0;
 
-	if ( ( ent->s.apos.trBase[0] > 0 ) && ( grenType != WP_GRENADE_SMOKE ) ) { // JPW NERVE -- smoke grenades always overhand
-		underhand = qtrue;
-	}
 
 	if ( underhand ) {
 		forward[2] = 0;                 //	start the toss level for underhand
@@ -1199,35 +1180,20 @@ gentity_t *weapon_grenadelauncher_fire( gentity_t *ent, int grenType ) {
 		upangle = .1;
 	}
 
-	// pineapples are not thrown as far as mashers
-	if ( grenType == WP_GRENADE_LAUNCHER ) {
-		upangle *= 800;     //									    0.0 / 800.0
-	} else if ( grenType == WP_GRENADE_PINEAPPLE )                                {
-// JPW NERVE
-		if ( g_gametype.integer != GT_SINGLE_PLAYER ) {
+		switch ( grenType ) {
+		case WP_GRENADE_LAUNCHER:
+		case WP_GRENADE_PINEAPPLE:
 			upangle *= 800;
-		} else {
-// jpw
-			upangle *= 800;     //									    0.0 / 600.0
+			break;
+		case WP_DYNAMITE:
+			upangle *= 400;
+			break;
+		case WP_SMOKE_GRENADE:
+			upangle *= 700;
+			break;
+		default:
+		break;
 		}
-	}
-// JPW NERVE
-	else if ( grenType == WP_GRENADE_SMOKE ) { // smoke grenades *really* get chucked
-		upangle *= 800;
-	}
-// jpw
-	else {      // WP_DYNAMITE
-		upangle *= 400;     //										0.0 / 100.0
-
-	}
-	/*
-	if(ent->aiCharacter)
-	{
-		VectorScale(forward, 700, forward);				//----(SA)	700 is the default grenade throw they are already used to
-		m = fire_grenade (ent, muzzleTrace, forward);	//----(SA)	temp to make AI's throw grenades at their actual target
-	}
-	else
-	*/
 
 
 
@@ -1265,26 +1231,22 @@ gentity_t *weapon_grenadelauncher_fire( gentity_t *ent, int grenType ) {
 	m->damage = 0;  // Ridah, grenade's don't explode on contact
 	m->splashDamage *= s_quadFactor;
 
-	if ( ent->aiCharacter == AICHAR_VENOM ) { // poison gas grenade
-		m->think = G_ExplodeMissilePoisonGas;
-		m->s.density = 1;
-	}
+	if ( grenType == WP_SMOKE_GRENADE ) {
 
-// JPW NERVE
-	if ( grenType == WP_GRENADE_SMOKE ) {
-		if ( ent->client->sess.sessionTeam == TEAM_RED ) { // store team so we can generate red or blue smoke
-			m->s.otherEntityNum2 = 1;
-		} else {
-			m->s.otherEntityNum2 = 0;
-		}
+		//m->s.otherEntityNum2 = 1; 
+		m->s.otherEntityNum2 = 0;
 		m->nextthink = level.time + 4000;
 		m->think = weapon_callAirStrike;
 
 		te = G_TempEntity( m->s.pos.trBase, EV_GLOBAL_SOUND );
-		te->s.eventParm = G_SoundIndex( "sound/scenaric/forest/me109_flight.wav" );
-//		te->r.svFlags |= SVF_BROADCAST | SVF_USE_CURRENT_ORIGIN;
+		te->s.eventParm = G_SoundIndex( "sound/weapons/airstrike/airstrike_01.wav" );
+		te->r.svFlags |= SVF_BROADCAST | SVF_USE_CURRENT_ORIGIN;
 	}
-// jpw
+
+	if ( ent->aiCharacter == AICHAR_VENOM ) { // poison gas grenade
+		m->think = G_ExplodeMissilePoisonGas;
+		m->s.density = 1;
+	}
 
 	//----(SA)	adjust for movement of character.  TODO: Probably comment in later, but only for forward/back not strafing
 //	VectorAdd( m->s.pos.trDelta, ent->client->ps.velocity, m->s.pos.trDelta );	// "real" physics
@@ -1794,11 +1756,8 @@ void FireWeapon( gentity_t *ent ) {
 	case WP_KNIFE:
 		Weapon_Knife( ent );
 		break;
-// JPW NERVE
-	case WP_CLASS_SPECIAL:
-		Weapon_Class_Special( ent );
-		break;
-// jpw
+	case WP_SMOKE_GRENADE:
+		weapon_grenadelauncher_fire( ent,WP_SMOKE_GRENADE );
 		break;
 	case WP_LUGER:
 		Bullet_Fire( ent, LUGER_SPREAD * aimSpreadScale, LUGER_DAMAGE(isPlayer) );

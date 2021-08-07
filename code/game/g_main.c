@@ -174,6 +174,9 @@ vmCvar_t		sk_plr_dmg_pineapple_radius;
 vmCvar_t		sk_plr_dmg_dynamite;
 vmCvar_t		sk_plr_dmg_dynamite_radius;
 
+vmCvar_t		sk_plr_dmg_smokegrenade;
+vmCvar_t		sk_plr_dmg_smokegrenade_radius;
+
 // RealRTCW weapons
 
 vmCvar_t		sk_plr_dmg_mp34;
@@ -208,6 +211,9 @@ vmCvar_t		sk_ai_dmg_pineapple;
 vmCvar_t		sk_ai_dmg_pineapple_radius;
 vmCvar_t		sk_ai_dmg_dynamite;
 vmCvar_t		sk_ai_dmg_dynamite_radius;
+
+vmCvar_t		sk_ai_dmg_smokegrenade;
+vmCvar_t		sk_ai_dmg_smokegrenade_radius;
 
 //RealRTCW weapons
 
@@ -267,6 +273,10 @@ cvarTable_t gameCvarTable[] = {
 	{ &sk_plr_dmg_pineapple_radius, "sk_plr_dmg_pineapple_radius", "270", CVAR_CHEAT, 0, qfalse  },
 	{ &sk_plr_dmg_dynamite, "sk_plr_dmg_dynamite", "800", CVAR_CHEAT, 0, qfalse  },
 	{ &sk_plr_dmg_dynamite_radius, "sk_plr_dmg_dynamite_radius", "450", CVAR_CHEAT, 0, qfalse  },
+
+	{ &sk_plr_dmg_smokegrenade, "sk_plr_dmg_smokegrenade", "50", CVAR_CHEAT, 0, qfalse  },
+	{ &sk_plr_dmg_smokegrenade_radius, "sk_plr_dmg_smokegrenade_radius", "200", CVAR_CHEAT, 0, qfalse  },
+
 	// New weapons
 	{ &sk_plr_dmg_mp34, "sk_plr_dmg_mp34", "6", CVAR_CHEAT, 0, qfalse  },
 	{ &sk_plr_dmg_g43, "sk_plr_dmg_g43", "16", CVAR_CHEAT, 0, qfalse  },
@@ -301,6 +311,10 @@ cvarTable_t gameCvarTable[] = {
 	{ &sk_ai_dmg_pineapple_radius, "sk_ai_dmg_pineapple_radius", "270", CVAR_CHEAT, 0, qfalse  },
 	{ &sk_ai_dmg_dynamite, "sk_ai_dmg_dynamite", "800", CVAR_CHEAT, 0, qfalse  },
 	{ &sk_ai_dmg_dynamite_radius, "sk_ai_dmg_dynamite_radius", "450", CVAR_CHEAT, 0, qfalse  },
+
+	{ &sk_ai_dmg_smokegrenade, "sk_ai_dmg_smokegrenade", "50", CVAR_CHEAT, 0, qfalse  },
+	{ &sk_ai_dmg_smokegrenade_radius, "sk_ai_dmg_smokegrenade_radius", "200", CVAR_CHEAT, 0, qfalse  },
+
     // New Weapons
 	{ &sk_ai_dmg_mp34, "sk_ai_dmg_mp34", "4", CVAR_CHEAT, 0, qfalse  },
 	{ &sk_ai_dmg_g43, "sk_ai_dmg_g43", "7", CVAR_CHEAT, 0, qfalse  },  

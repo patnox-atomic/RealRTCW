@@ -339,23 +339,7 @@ static void CG_DrawPlayerWeaponIcon( rectDef_t *rect, qboolean drawHighlighted, 
 		CG_SetScreenPlacement(PLACE_RIGHT, PLACE_BOTTOM);
 	}
 
-	// DHM - Nerve :: special case for WP_CLASS_SPECIAL
-
 	realweap = cg.predictedPlayerState.weapon;
-
-	if ( cgs.gametype == GT_WOLF && realweap == WP_CLASS_SPECIAL ) {
-		switch ( cg.predictedPlayerState.stats[ STAT_PLAYER_CLASS ] ) {
-		case PC_MEDIC:
-			realweap = WP_MEDIC_HEAL;
-			break;
-		case PC_LT:
-			realweap = WP_GRENADE_SMOKE;
-			break;
-		default:
-			break;
-		}
-	}
-	// dhm
 
 	size = weapIconDrawSize( realweap );
 
@@ -660,7 +644,6 @@ static void CG_DrawPlayerAmmoValue( rectDef_t *rect, int font, float scale, vec4
 
 	switch ( weap ) {      // some weapons don't draw ammo count text
 	case WP_KNIFE:
-	case WP_CLASS_SPECIAL:              // DHM - Nerve
 		return;
 
 	case WP_AKIMBO:
@@ -669,6 +652,7 @@ static void CG_DrawPlayerAmmoValue( rectDef_t *rect, int font, float scale, vec4
 
 	case WP_GRENADE_LAUNCHER:
 	case WP_GRENADE_PINEAPPLE:
+	case WP_SMOKE_GRENADE:
 	case WP_DYNAMITE:
 	case WP_TESLA:
 	case WP_FLAMETHROWER:
