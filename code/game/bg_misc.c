@@ -119,7 +119,7 @@ ammotable_t ammoTable[] = {
 	{   MAX_AMMO_GARAND,1,      5,      2500,   DELAY_HIGH,     1200,   0,      0,      MOD_GARAND              },  //	WP_GARAND				// 24	
 	{   5,              1,      5,      1000,   DELAY_THROW,    1600,   0,      0,      MOD_GRENADE_PINEAPPLE   },  //	WP_GRENADE_PINEAPPLE	// 25
 	{   1,              1,      1,      0,      50,             0,      0,      0,      0                       },  //	WP_SMOKE_GRENADE		// 44
-		{   5,           1,      5,      1000,   DELAY_THROW,    1600,   0,      0,      MOD_POISON_GAS          },  //	WP_GRENADE_LAUNCHER		// 6
+	{   5,              1,      5,      1000,   DELAY_THROW,    1600,   0,      0,      MOD_POISON_GAS          },  //	WP_GRENADE_LAUNCHER		// 6
 
 	{   MAX_AMMO_MAUSER,1,      5,      3000,   0,              1400,   0,      0,      MOD_SNIPERRIFLE         },  //	WP_SNIPER_GER			// 26
 	{   MAX_AMMO_GARAND,1,      5,      3000,   0,              1200,   0,      0,      MOD_SNOOPERSCOPE        },  //	WP_SNIPER_AM			// 27
@@ -148,8 +148,6 @@ int weapAlts[] = {
 	WP_SNIPERRIFLE,     // 4 WP_MAUSER
 	WP_FG42SCOPE,       // 5 WP_FG42	
 	WP_NONE,            // 6 WP_GRENADE_LAUNCHER
-	WP_NONE,
-	WP_NONE,
 	WP_NONE,            // 7 WP_PANZERFAUST
 	WP_NONE,            // 8 WP_VENOM
 	WP_NONE,            // 9 WP_FLAMETHROWER
@@ -1304,39 +1302,17 @@ weapon_grenadePineapple
 	},
 
 
-	{
-		"weapon_smokebomb",
-		"",
-		{
-			"models/weapons2/smoke_grenade/smoke_grenade.md3",
-			"models/weapons2/smoke_grenade/v_smoke_grenade.md3",
-			0
-		},
-
-		"icons/iconw_grenade_1",    // icon
-		"icons/ammo9",               // ammo icon
-		"Smoke Bomb",    // pickup
-		0,
-		IT_WEAPON,
-		WP_SMOKE_BOMB,
-		WP_SMOKE_BOMB,
-		WP_SMOKE_BOMB,
-		"",                      // precache
-		"",                      // sounds
-//		{0,0,0,0,0}
-	},
-
 
 	{
 		"weapon_poisongas",
 		"",
 		{
-			"models/weapons2/nebeleihandgranate/gas_grenade.md3",
-			"models/weapons2/nebeleihandgranate/v_gas_grenade.md3",
+			"models/multiplayer/gasgrenade/smokegrenade.md3",
+			"models/multiplayer/gasgrenade/v_smokegrenade.md3",
 			0
 		},
 
-		"icons/iconw_grenade_1",    // icon
+		"icons/iconw_gasgrenade_1",    // icon
 		"icons/ammo9",               // ammo icon
 		"Poison Gas",    // pickup
 		0,
@@ -2379,29 +2355,6 @@ model="models/powerups/ammo/dynamite.md3"
 		"",                      // precache
 		"",                      // sounds
 		{1,1,1,1,1}
-	},
-
-	/*QUAKED ammo_smoke_grenade (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
-used by: engineer
-
--------- MODEL FOR RADIANT ONLY - DO NOT SET THIS AS A KEY --------
-model="models/ammo/smoke_grenade/smoke_grenade.md3"
-*/
-	{
-		"ammo_smoke_grenade",
-		"sound/misc/am_pkup.wav",
-		{ "models/powerups/ammo/amgren_bag.md3",
-		  0, 0 },
-		"", // icon
-		NULL,               // ammo icon
-		"smoke grenade", // pickup			//----(SA)	changed
-		1,
-		IT_AMMO,
-		WP_SMOKE_BOMB,
-		WP_SMOKE_BOMB,
-		WP_SMOKE_BOMB,
-		"",                  // precache
-		"",                  // sounds
 	},
 
 		/*QUAKED ammo_smoke_grenade (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN

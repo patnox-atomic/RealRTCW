@@ -1352,16 +1352,9 @@ void CG_RegisterWeapon( int weaponNum ) {
 		cgs.media.grenadeExplosionShader = trap_R_RegisterShader( "grenadeExplosion" );
 		break;
 
-	case WP_SMOKE_BOMB:
-		weaponInfo->missileModel = trap_R_RegisterModel( "models/ammo/smoke_grenade.md3" );
-		weaponInfo->overheatSound = trap_S_RegisterSound( "sound/weapons/gren_smoke.wav" );
-		weaponInfo->missileTrailFunc = CG_GrenadeTrail;
-		MAKERGB( weaponInfo->flashDlightColor, 1, 0.7, 0.5 );
-		break;
-
 	case WP_POISON_GAS:
-		weaponInfo->missileModel = trap_R_RegisterModel( "models/ammo/gas_grenade.md3" );
-		weaponInfo->overheatSound = trap_S_RegisterSound( "sound/weapons/gren_smoke.wav" );
+		weaponInfo->missileModel = trap_R_RegisterModel( "models/multiplayer/gasgrenade/smokegrenade.md3" );
+		weaponInfo->overheatSound = trap_S_RegisterSound( "sound/weapons/gasgrenade/gren_gas.wav" );
 		weaponInfo->missileTrailFunc = CG_GrenadeTrail;
 		MAKERGB( weaponInfo->flashDlightColor, 1, 0.7, 0.5 );
 		break;
@@ -2779,7 +2772,6 @@ void CG_AddPlayerWeapon( refEntity_t *parent, playerState_t *ps, centity_t *cent
 		 weaponNum == WP_GRENADE_PINEAPPLE ||
 		 weaponNum == WP_KNIFE ||
 		 weaponNum == WP_DYNAMITE ||
-		 weaponNum == WP_SMOKE_BOMB ||
 		 weaponNum == WP_POISON_GAS ) {
 		return;
 	}
