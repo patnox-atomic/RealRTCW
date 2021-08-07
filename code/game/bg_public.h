@@ -481,34 +481,34 @@ typedef enum {
 	WP_FLAMETHROWER,        // 9
 	WP_TESLA,               // 10
 	WP_MP34,                // 11
-	WP_G43,                 // 15
-	WP_M1GARAND,            // 16
-	WP_BAR,                 // 17
-	WP_MP44,                // 18
-	WP_MG42M,               // 19
-	WP_M97,                 // 20
-	WP_REVOLVER,            // 21
-	WP_COLT,                // 22	
-	WP_THOMPSON,            // 23	
-	WP_GARAND,              // 24	
-	WP_GRENADE_PINEAPPLE,   // 25
-	WP_SMOKE_GRENADE,
-	WP_POISON_GAS,
-	WP_SNIPERRIFLE,         // 26
-	WP_SNOOPERSCOPE,        // 27
-	WP_FG42SCOPE,           // 28
-	WP_STEN,                // 29	
-	WP_SILENCER,            // 30	
-	WP_AKIMBO,              // 31	
-	WP_DYNAMITE,            // 33
-	WP_MONSTER_ATTACK1,     // 34	
-	WP_MONSTER_ATTACK2,     // 35	
-	WP_MONSTER_ATTACK3,     // 36	
-	WP_GAUNTLET,            // 37
-	WP_SNIPER,              // 38
-	WP_MORTAR,              // 41
-	VERYBIGEXPLOSION,       // 42	
-	WP_NUM_WEAPONS          // 43   NOTE: this cannot be larger than 64 for AI/player weapons!
+	WP_G43,                 // 12
+	WP_M1GARAND,            // 13
+	WP_BAR,                 // 14
+	WP_MP44,                // 15
+	WP_MG42M,               // 16
+	WP_M97,                 // 17
+	WP_REVOLVER,            // 18
+	WP_COLT,                // 19	
+	WP_THOMPSON,            // 20	
+	WP_GARAND,              // 21	
+	WP_GRENADE_PINEAPPLE,   // 22
+	WP_SMOKE_GRENADE,       // 23
+	WP_POISON_GAS,          // 24
+	WP_SNIPERRIFLE,         // 25
+	WP_SNOOPERSCOPE,        // 26
+	WP_FG42SCOPE,           // 27
+	WP_STEN,                // 28	
+	WP_SILENCER,            // 29	
+	WP_AKIMBO,              // 30	
+	WP_DYNAMITE,            // 31
+	WP_MONSTER_ATTACK1,     // 32	
+	WP_MONSTER_ATTACK2,     // 33	
+	WP_MONSTER_ATTACK3,     // 34	
+	WP_GAUNTLET,            // 35
+	WP_SNIPER,              // 36
+	WP_MORTAR,              // 37
+	VERYBIGEXPLOSION,       // 38	
+	WP_NUM_WEAPONS          // 39   NOTE: this cannot be larger than 64 for AI/player weapons!
 } weapon_t;
 
 
