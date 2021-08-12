@@ -953,7 +953,7 @@ weapon_binoculars (.3 .3 1) (-16 -16 -16) (16 16 16) suspended
 		"icons/iconw_binoculars_1",  // icon
 		"",          // ammo icon
 		"Binoculars",                // pickup
-		50, // this should never be picked up
+		0, // this should never be picked up
 		IT_WEAPON,
 		WP_BINOCULARS,
 		WP_BINOCULARS,
@@ -2894,7 +2894,7 @@ pickup sound : "sound/pickup/keys/binocs.wav"
 -------- MODEL FOR RADIANT ONLY - DO NOT SET THIS AS A KEY --------
 model="models/powerups/keys/binoculars.md3"
 */
-	{
+	/*{
 		"key_binocs_2",
 		"sound/pickup/keys/binocs.wav",
 		{
@@ -2913,7 +2913,7 @@ model="models/powerups/keys/binoculars.md3"
 		"",                      // precache
 		"models/keys/key.wav",   // sounds
 		{0,0,0,0}
-	},
+	},*/
 
 	// end of list marker
 	{NULL}
