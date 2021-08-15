@@ -182,6 +182,7 @@ vmCvar_t		sk_plr_dmg_smokegrenade_radius;
 vmCvar_t		sk_plr_dmg_mp34;
 vmCvar_t		sk_plr_dmg_g43;
 vmCvar_t		sk_plr_dmg_m1garand;
+vmCvar_t		sk_plr_dmg_m7;
 vmCvar_t		sk_plr_dmg_bar;
 vmCvar_t		sk_plr_dmg_mp44;
 vmCvar_t		sk_plr_dmg_m97;
@@ -220,6 +221,7 @@ vmCvar_t		sk_ai_dmg_smokegrenade_radius;
 vmCvar_t		sk_ai_dmg_mp34;
 vmCvar_t		sk_ai_dmg_g43;
 vmCvar_t		sk_ai_dmg_m1garand;
+vmCvar_t		sk_ai_dmg_m7;
 vmCvar_t		sk_ai_dmg_bar;
 vmCvar_t		sk_ai_dmg_mp44;
 vmCvar_t		sk_ai_dmg_m97;
@@ -281,6 +283,7 @@ cvarTable_t gameCvarTable[] = {
 	{ &sk_plr_dmg_mp34, "sk_plr_dmg_mp34", "6", CVAR_CHEAT, 0, qfalse  },
 	{ &sk_plr_dmg_g43, "sk_plr_dmg_g43", "16", CVAR_CHEAT, 0, qfalse  },
 	{ &sk_plr_dmg_m1garand, "sk_plr_dmg_m1garand", "18", CVAR_CHEAT, 0, qfalse  },	
+	{ &sk_plr_dmg_m7, "sk_plr_dmg_m7", "250", CVAR_CHEAT, 0, qfalse  },	
 	{ &sk_plr_dmg_bar, "sk_plr_dmg_bar", "16", CVAR_CHEAT, 0, qfalse  }, 
 	{ &sk_plr_dmg_mp44, "sk_plr_dmg_mp44", "9", CVAR_CHEAT, 0, qfalse  },
 	{ &sk_plr_dmg_mg42m, "sk_plr_dmg_mg42m", "15", CVAR_CHEAT, 0, qfalse  }, 
@@ -319,6 +322,7 @@ cvarTable_t gameCvarTable[] = {
 	{ &sk_ai_dmg_mp34, "sk_ai_dmg_mp34", "4", CVAR_CHEAT, 0, qfalse  },
 	{ &sk_ai_dmg_g43, "sk_ai_dmg_g43", "7", CVAR_CHEAT, 0, qfalse  },  
 	{ &sk_ai_dmg_m1garand, "sk_ai_dmg_m1garand", "7", CVAR_CHEAT, 0, qfalse  }, 
+	{ &sk_ai_dmg_m7, "sk_ai_dmg_m7", "250", CVAR_CHEAT, 0, qfalse  }, 
 	{ &sk_ai_dmg_bar, "sk_ai_dmg_bar", "6", CVAR_CHEAT, 0, qfalse  }, 
 	{ &sk_ai_dmg_mp44, "sk_ai_dmg_mp44", "6", CVAR_CHEAT, 0, qfalse  }, 
 	{ &sk_ai_dmg_mg42m, "sk_ai_dmg_mg42m", "6", CVAR_CHEAT, 0, qfalse  }, 

@@ -93,6 +93,82 @@ void PM_AddEvent( int newEvent ) {
 	BG_AddPredictableEventToPlayerstate( newEvent, 0, pm->ps );
 }
 
+void PM_AddEventExt( int newEvent, int eventParm ) {
+	BG_AddPredictableEventToPlayerstate( newEvent, eventParm, pm->ps );
+}
+
+int PM_IdleAnimForWeapon( int weapon ) {
+	switch ( weapon ) {
+	case WP_M7:
+		return WEAP_IDLE2;
+	default:
+		return WEAP_IDLE1;
+	}
+}
+
+int PM_AltSwitchFromForWeapon( int weapon ) {
+	switch ( weapon ) {
+	default:
+		return WEAP_ALTSWITCHFROM;
+	}
+}
+
+int PM_AltSwitchToForWeapon( int weapon ) {
+	switch ( weapon ) {
+	case WP_M7:
+	return WEAP_ALTSWITCHFROM;
+	default:
+		return WEAP_ALTSWITCHTO;
+	}
+}
+
+int PM_AttackAnimForWeapon( int weapon ) {
+	switch ( weapon ) {
+	case WP_M7:
+		return WEAP_ATTACK2;
+	default:
+		return WEAP_ATTACK1;
+	}
+}
+
+int PM_LastAttackAnimForWeapon( int weapon ) {
+	switch ( weapon ) {
+	case WP_M7:
+		return WEAP_ATTACK2;
+		return WEAP_ATTACK1;
+	default:
+		return WEAP_ATTACK_LASTSHOT;
+	}
+}
+
+int PM_ReloadAnimForWeapon( int weapon ) {
+	switch ( weapon ) {
+	case WP_M7:
+		return WEAP_RELOAD2;
+		return WEAP_RELOAD3;
+	default:
+		return WEAP_RELOAD1;
+	}
+}
+
+int PM_RaiseAnimForWeapon( int weapon ) {
+	switch ( weapon ) {
+	case WP_M7:
+		return WEAP_RELOAD3;
+	default:
+		return WEAP_RAISE;
+	}
+}
+
+int PM_DropAnimForWeapon( int weapon ) {
+	switch ( weapon ) {
+	case WP_M7:
+		return WEAP_DROP2;
+	default:
+		return WEAP_DROP;
+	}
+}
+
 /*
 ===============
 PM_AddTouchEnt
@@ -451,7 +527,7 @@ if ( ! (pm->ps->aiChar))  // RealRTCW weapon weight does not affect AI now
 		if ( ( pm->ps->weapon == WP_VENOM ) || ( pm->ps->weapon == WP_PANZERFAUST ) || ( pm->ps->weapon == WP_FLAMETHROWER ) || ( pm->ps->weapon == WP_TESLA ) || ( pm->ps->weapon == WP_MG42M ) ) {
 			scale *= 0.90; 
         }
-		if ( ( pm->ps->weapon == WP_MP40 ) || ( pm->ps->weapon == WP_THOMPSON ) || ( pm->ps->weapon == WP_STEN ) || ( pm->ps->weapon == WP_MP34 ) || ( pm->ps->weapon == WP_FG42 ) || ( pm->ps->weapon == WP_MAUSER ) || ( pm->ps->weapon == WP_MP44 ) || ( pm->ps->weapon == WP_GARAND ) || ( pm->ps->weapon == WP_G43 ) || ( pm->ps->weapon == WP_BAR )  || ( pm->ps->weapon == WP_M1GARAND )   || (pm->ps->weapon == WP_M97) )  {
+		if ( ( pm->ps->weapon == WP_MP40 ) || ( pm->ps->weapon == WP_THOMPSON ) || ( pm->ps->weapon == WP_STEN ) || ( pm->ps->weapon == WP_MP34 ) || ( pm->ps->weapon == WP_FG42 ) || ( pm->ps->weapon == WP_MAUSER ) || ( pm->ps->weapon == WP_MP44 ) || ( pm->ps->weapon == WP_GARAND ) || ( pm->ps->weapon == WP_G43 ) || ( pm->ps->weapon == WP_BAR )  || ( pm->ps->weapon == WP_M1GARAND ) || ( pm->ps->weapon == WP_M7 )   || (pm->ps->weapon == WP_M97) )  {
 			scale *= 0.90; 
 		}
 		if ( ( pm->ps->weapon == WP_LUGER ) || ( pm->ps->weapon == WP_COLT ) || ( pm->ps->weapon == WP_AKIMBO ) || ( pm->ps->weapon == WP_SILENCER ) || ( pm->ps->weapon == WP_DYNAMITE ) || ( pm->ps->weapon == WP_POISON_GAS ) || ( pm->ps->weapon == WP_GRENADE_LAUNCHER ) || ( pm->ps->weapon == WP_SMOKE_GRENADE ) || ( pm->ps->weapon == WP_GRENADE_PINEAPPLE ) || ( pm->ps->weapon == WP_REVOLVER ) ) {
@@ -2095,6 +2171,7 @@ static void PM_BeginWeaponReload( int weapon ) {
 	PM_AddEvent( EV_FILL_CLIP );    // play reload sound
 }
 
+static void PM_ReloadClip( int weapon );
 
 
 
@@ -2103,9 +2180,10 @@ static void PM_BeginWeaponReload( int weapon ) {
 PM_BeginWeaponChange
 ===============
 */
-static void PM_BeginWeaponChange( int oldweapon, int newweapon, qboolean reload ) {  //----(SA)	modified to play 1st person alt-mode transition animations.
+void PM_BeginWeaponChange( int oldweapon, int newweapon, qboolean reload ) {  //----(SA)	modified to play 1st person alt-mode transition animations.
 	int switchtime;
 	qboolean altswitch, showdrop;
+	qboolean altSwitchAnim = qfalse;
 
 	if ( newweapon < WP_NONE || newweapon >= WP_NUM_WEAPONS ) {
 		return;
@@ -2179,7 +2257,7 @@ static void PM_BeginWeaponChange( int oldweapon, int newweapon, qboolean reload 
 		}
 	}
 
-	BG_AnimScriptEvent( pm->ps, ANIM_ET_DROPWEAPON, qfalse, qfalse );
+	//BG_AnimScriptEvent( pm->ps, ANIM_ET_DROPWEAPON, qfalse, qfalse );
 
 	if ( reload ) {
 		pm->ps->weaponstate = WEAPON_DROPPING_TORELOAD;
@@ -2187,9 +2265,29 @@ static void PM_BeginWeaponChange( int oldweapon, int newweapon, qboolean reload 
 		pm->ps->weaponstate = WEAPON_DROPPING;
 	}
 
+		// it's an alt mode, play different anim
+	if ( newweapon == weapAlts[oldweapon] ) {
+		PM_StartWeaponAnim( PM_AltSwitchFromForWeapon( oldweapon ) );
+	} else {
+		PM_StartWeaponAnim( PM_DropAnimForWeapon( oldweapon ) );
+	}
+
 	switchtime = 250;   // dropping/raising usually takes 1/4 sec.
 	// sometimes different switch times for alt weapons
 	switch ( oldweapon ) {
+		case WP_M1GARAND:
+		if ( newweapon == weapAlts[oldweapon] ) {
+			switchtime = 0;
+			if ( !pm->ps->ammoclip[newweapon] && pm->ps->ammo[newweapon] ) {
+				PM_ReloadClip( newweapon );
+			}
+		}
+		break;
+	case WP_M7:
+		if ( newweapon == weapAlts[oldweapon] ) {
+			switchtime = 0;
+		}
+		break;
 	case WP_LUGER:
 		if ( altswitch ) {
 			switchtime = 50;
@@ -2198,6 +2296,7 @@ static void PM_BeginWeaponChange( int oldweapon, int newweapon, qboolean reload 
 	case WP_SILENCER:
 		if ( altswitch ) {
 			switchtime = 1200;
+			altSwitchAnim = qtrue;
 		}
 		break;
 	case WP_FG42:
@@ -2207,13 +2306,13 @@ static void PM_BeginWeaponChange( int oldweapon, int newweapon, qboolean reload 
 		}
 		break;
 
-//		case WP_MAUSER:
-//		case WP_SNIPERRIFLE:
-//		case WP_GARAND:
-//		case WP_SNOOPERSCOPE:
-//			if(altswitch)
-//				switchtime  = 100;
-//			break;
+	}
+
+	// play an animation
+	if ( altSwitchAnim ) {
+		BG_AnimScriptEvent( pm->ps, ANIM_ET_UNDO_ALT_WEAPON_MODE, qfalse, qfalse );
+	} else {
+		BG_AnimScriptEvent( pm->ps, ANIM_ET_DROPWEAPON, qfalse, qfalse );
 	}
 
 	pm->ps->weaponTime += switchtime;
@@ -2227,6 +2326,8 @@ PM_FinishWeaponChange
 */
 static void PM_FinishWeaponChange( void ) {
 	int oldweapon, newweapon, switchtime;
+	qboolean altSwitchAnim = qfalse;
+	qboolean doSwitchAnim = qtrue;
 
 	newweapon = pm->cmd.weapon;
 	if ( newweapon < WP_NONE || newweapon >= WP_NUM_WEAPONS ) {
@@ -2274,17 +2375,36 @@ static void PM_FinishWeaponChange( void ) {
 	case WP_LUGER:
 		if ( newweapon == weapAlts[oldweapon] ) {
 			switchtime = 50;
+			altSwitchAnim = qtrue;
 		}
 		break;
 	case WP_SILENCER:
 		if ( newweapon == weapAlts[oldweapon] ) {
 			switchtime = 1190;
+			altSwitchAnim = qtrue;
 		}
 		break;
 	case WP_FG42:
 	case WP_FG42SCOPE:
 		if ( newweapon == weapAlts[oldweapon] ) {
 			switchtime = 50;        // fast
+		}
+		break;
+	case WP_M1GARAND:
+		if ( newweapon == weapAlts[oldweapon] ) {
+			if ( pm->ps->ammoclip[ BG_FindAmmoForWeapon( oldweapon ) ] ) {
+				switchtime = 1347;
+			} else {
+				switchtime = 0;
+				doSwitchAnim = qfalse;
+			}
+			altSwitchAnim = qtrue ;
+		}
+		break;
+	case WP_M7:
+		if ( newweapon == weapAlts[oldweapon] ) {
+			switchtime = 2350;
+			altSwitchAnim = qtrue ;
 		}
 		break;
 	}
@@ -2295,13 +2415,19 @@ static void PM_FinishWeaponChange( void ) {
 	BG_UpdateConditionValue( pm->ps->clientNum, ANIM_COND_WEAPON, newweapon, qtrue );
 
 	// play an animation
-	BG_AnimScriptEvent( pm->ps, ANIM_ET_RAISEWEAPON, qfalse, qfalse );
+	if ( doSwitchAnim ) {
+		if ( altSwitchAnim ) {
+			BG_AnimScriptEvent(pm->ps,ANIM_ET_DO_ALT_WEAPON_MODE, qfalse, qfalse );
+		} else {
+			BG_AnimScriptEvent( pm->ps, ANIM_ET_RAISEWEAPON, qfalse, qfalse );
+		}
 
-	// alt weapon switch was played when switching away, just go into idle
-	if ( weapAlts[oldweapon] == newweapon ) {
-		PM_StartWeaponAnim( WEAP_ALTSWITCHTO );
-	} else {
-		PM_StartWeaponAnim( WEAP_RAISE );
+		// alt weapon switch was played when switching away, just go into idle
+		if ( weapAlts[oldweapon] == newweapon ) {
+			PM_StartWeaponAnim( PM_AltSwitchToForWeapon( newweapon ) );
+		} else {
+			PM_StartWeaponAnim( PM_RaiseAnimForWeapon( newweapon ) );
+		}
 	}
 
 }
@@ -2354,6 +2480,7 @@ static void PM_FinishWeaponReload( void ) {
 
 	PM_ReloadClip( pm->ps->weapon );          // move ammo into clip
 	pm->ps->weaponstate = WEAPON_READY;     // ready to fire
+	PM_StartWeaponAnim( PM_IdleAnimForWeapon( pm->ps->weapon ) );
 }
 
 
@@ -2371,6 +2498,11 @@ void PM_CheckForReload( int weapon ) {
 	if ( pm->noWeapClips ) { // no need to reload
 		return;
 	}
+
+		if ( weapon == WP_M7 ) 
+		{
+		return;
+	    }
 
 	// user is forcing a reload (manual reload)
 	reloadRequested = (qboolean)( pm->cmd.wbuttons & WBUTTON_RELOAD );
@@ -3131,7 +3263,7 @@ static void PM_Weapon( void ) {
 
 	if ( pm->ps->weaponstate == WEAPON_RAISING ) {
 		pm->ps->weaponstate = WEAPON_READY;
-		PM_StartWeaponAnim( WEAP_IDLE1 );
+		PM_StartWeaponAnim( PM_IdleAnimForWeapon( pm->ps->weapon ) );
 		return;
 	} else if ( pm->ps->weaponstate == WEAPON_RAISING_TORELOAD ) {
 		pm->ps->weaponstate = WEAPON_READY;     // need to switch to READY so the reload will work
@@ -3182,7 +3314,7 @@ static void PM_Weapon( void ) {
 		pm->ps->weaponDelay = 0;
 
 		if ( weaponstateFiring ) {  // you were just firing, time to relax
-			PM_ContinueWeaponAnim( WEAP_IDLE1 );
+			PM_ContinueWeaponAnim( PM_IdleAnimForWeapon( pm->ps->weapon ) );
 		}
 
 		pm->ps->weaponstate = WEAPON_READY;
@@ -3252,6 +3384,7 @@ static void PM_Weapon( void ) {
 		}
 		break;
 	case WP_PANZERFAUST:
+	case WP_M7:
 	case WP_SILENCER:
 	case WP_LUGER:
 	case WP_REVOLVER:
@@ -3371,7 +3504,7 @@ static void PM_Weapon( void ) {
 			if ( reloadingW ) {
 				PM_ContinueWeaponAnim( WEAP_RELOAD1 );      //----(SA)
 			} else {
-				PM_ContinueWeaponAnim( WEAP_IDLE1 );
+			PM_ContinueWeaponAnim( PM_IdleAnimForWeapon( pm->ps->weapon ) );
 				pm->ps->weaponTime += 500;
 			}
 
@@ -3429,6 +3562,7 @@ static void PM_Weapon( void ) {
 	case WP_GRENADE_PINEAPPLE:
 	case WP_DYNAMITE:
 	case WP_M97:
+	case WP_M7:
 		PM_StartWeaponAnim( weapattackanim );
 		break;
 	case WP_VENOM:
@@ -3470,11 +3604,15 @@ static void PM_Weapon( void ) {
 	pm->ps->releasedFire = qfalse;
 	pm->ps->lastFireTime = pm->cmd.serverTime;
 
+	if ( ( pm->ps->weapon == WP_M7 ) && !pm->ps->ammo[ BG_FindAmmoForWeapon( pm->ps->weapon )] ) {
+		PM_AddEvent( EV_NOAMMO );
+	}
 
 	aimSpreadScaleAdd = 0;
 
 	switch ( pm->ps->weapon ) {
 	case WP_KNIFE:
+	case WP_M7:
 	case WP_DYNAMITE:
 	case WP_GRENADE_LAUNCHER:
 	case WP_POISON_GAS:

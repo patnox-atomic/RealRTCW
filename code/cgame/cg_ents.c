@@ -1209,14 +1209,30 @@ static void CG_Missile( centity_t *cent ) {
 
 //----(SA)	whoops, didn't mean to check it in with the missile flare
 
+
 	// add missile sound
 	if ( weapon->missileSound ) {
-		vec3_t velocity;
+		if ( cent->currentState.weapon == WP_M7 ) {
+			if ( !cent->currentState.effect1Time ) {
+				int flytime = cg.time - cent->currentState.pos.trTime;
 
-		BG_EvaluateTrajectoryDelta( &cent->currentState.pos, cg.time, velocity );
-		CG_S_AddLoopingSound( cent->currentState.number, cent->lerpOrigin, velocity, weapon->missileSound, 255 );
+				if ( flytime > 300 ) {
+					// have a quick fade in so we don't have a pop
+					vec3_t velocity;
+					int volume = flytime > 375 ? 255 : ( 75.f / ( (float)flytime - 300.f ) ) * 255;
+
+					BG_EvaluateTrajectoryDelta( &cent->currentState.pos, cg.time, velocity, qfalse, -1 );
+		CG_S_AddLoopingSound( cent->currentState.number, cent->lerpOrigin, velocity, weapon->missileSound, 0 );
+				}
+			}
+		} else {
+			vec3_t velocity;
+
+			BG_EvaluateTrajectoryDelta( &cent->currentState.pos, cg.time, velocity, qfalse, -1 );
+		    CG_S_AddLoopingSound( cent->currentState.number, cent->lerpOrigin, velocity, weapon->missileSound, 255 );
+		}
 	}
-
+	
 	// create the render entity
 	memset( &ent, 0, sizeof( ent ) );
 	VectorCopy( cent->lerpOrigin, ent.origin );

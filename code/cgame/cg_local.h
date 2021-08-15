@@ -648,6 +648,7 @@ typedef struct weaponInfo_s {
 
 	qhandle_t handsSkin; // eugeny
     qhandle_t legskin;
+
 //----(SA)	end
 
 	qhandle_t handsModel;               // the hands don't actually draw, they just position the weapon
@@ -659,6 +660,8 @@ typedef struct weaponInfo_s {
 	qhandle_t wpPartModels[W_NUM_TYPES][W_MAX_PARTS];
 	qhandle_t flashModel[W_NUM_TYPES];
 	qhandle_t modModel[W_NUM_TYPES];        // like the scope for the rifles
+
+
 //----(SA) end
 
 	pose_t position;                    // wolf locations (high, low, knife, pistol, shoulder, throw)  defines are WPOS_HIGH, WPOS_LOW, WPOS_KNIFE, WPOS_PISTOL, WPOS_SHOULDER, WPOS_THROW
@@ -671,7 +674,8 @@ typedef struct weaponInfo_s {
 	sfxHandle_t flashEchoSound[4];      //----(SA)	added - distant gun firing sound
 	sfxHandle_t lastShotSound[4];       // sound of the last shot can be different (mauser doesn't have bolt action on last shot for example)
 
-	sfxHandle_t switchSound[4];     //----(SA)	added
+	//sfxHandle_t switchSound[4];     //----(SA)	added
+	sfxHandle_t switchSound;
 
 	qhandle_t weaponIcon[2];            //----(SA)	[0] is weap icon, [1] is highlight icon
 	qhandle_t ammoIcon;

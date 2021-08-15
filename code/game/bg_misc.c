@@ -108,34 +108,35 @@ ammotable_t ammoTable[] = {
 	{   50,             1,      50,     1000,    DELAY_LOW,      0,     0,      0,      MOD_TESLA               },  //	WP_TESLA				// 10
 	{   MAX_AMMO_9MM,   1,      32,     3100,   DELAY_LOW,      105,    0,      0,      MOD_MP34                },  //	WP_MP34					// 11
 	{   MAX_AMMO_MAUSER,  1,    10,     1800,   DELAY_LOW,      300,    0,      0,      MOD_G43                 },  //	WP_G43				    // 12
-	{   MAX_AMMO_BARAMMO, 1,    8,      1650,   DELAY_LOW,      300,    0,      0,      MOD_M1GARAND            },  //	WP_M1GARAND				// 13
-	{   MAX_AMMO_BARAMMO, 1,    20,     2250,   DELAY_LOW,      160,    0,      0,      MOD_BAR                 },  //	WP_BAR					// 14
-	{   MAX_AMMO_44AMMO,  1,    30,     2600,   DELAY_LOW,      105,    0,      0,      MOD_MP44                },  //	WP_MP44					// 15
-	{   MAX_AMMO_MAUSER,  1,    100,    2600,   DELAY_LOW,      65,     2500,   350,    MOD_MG42M               },  //	WP_MG42M                // 16
-	{   MAX_AMMO_M97,     1,    6,      2000,   DELAY_LOW,      1250,   0,      0,      MOD_M97                 },  //	WP_M97                  // 17
-	{   MAX_AMMO_REVOLVER,1,    6,      1500,   DELAY_PISTOL,   500,    0,      0,      MOD_REVOLVER            },  //	WP_REVOLVER             // 18
-	{   MAX_AMMO_45,    1,      7,      1500,   DELAY_PISTOL,   300,    0,      0,      MOD_COLT                },  //	WP_COLT					// 19
-	{   MAX_AMMO_45,    1,      30,     2400,   DELAY_LOW,      90,     0,      0,      MOD_THOMPSON            },  //	WP_THOMPSON				// 20
-	{   MAX_AMMO_GARAND,1,      5,      2500,   DELAY_HIGH,     1200,   0,      0,      MOD_GARAND              },  //	WP_GARAND				// 21	
-	{   5,              1,      5,      1000,   DELAY_THROW,    1600,   0,      0,      MOD_GRENADE_PINEAPPLE   },  //	WP_GRENADE_PINEAPPLE	// 22
-	{   1,              1,      1,      0,      50,             0,      0,      0,      0                       },  //	WP_SMOKE_GRENADE		// 23
-	{   3,              1,      3,      1000,   DELAY_THROW,    1600,   0,      0,      MOD_POISON_GAS          },  //	WP_POISON_GAS		    // 24
+	{   MAX_AMMO_BARAMMO, 1,    8,      1650,   DELAY_LOW,      300,    0,      0,      MOD_M1GARAND            },  //	WP_M1GARAND		        // 13
+	{   5,                1,    1,      3000,   DELAY_LOW,      400,    0,      0,      MOD_M7                  },  //	WP_M7				    // 14
+	{   MAX_AMMO_BARAMMO, 1,    20,     2250,   DELAY_LOW,      160,    0,      0,      MOD_BAR                 },  //	WP_BAR					// 15
+	{   MAX_AMMO_44AMMO,  1,    30,     2600,   DELAY_LOW,      105,    0,      0,      MOD_MP44                },  //	WP_MP44					// 16
+	{   MAX_AMMO_MAUSER,  1,    100,    2600,   DELAY_LOW,      65,     2500,   350,    MOD_MG42M               },  //	WP_MG42M                // 17
+	{   MAX_AMMO_M97,     1,    6,      2000,   DELAY_LOW,      1250,   0,      0,      MOD_M97                 },  //	WP_M97                  // 18
+	{   MAX_AMMO_REVOLVER,1,    6,      1500,   DELAY_PISTOL,   500,    0,      0,      MOD_REVOLVER            },  //	WP_REVOLVER             // 19
+	{   MAX_AMMO_45,    1,      7,      1500,   DELAY_PISTOL,   300,    0,      0,      MOD_COLT                },  //	WP_COLT					// 20
+	{   MAX_AMMO_45,    1,      30,     2400,   DELAY_LOW,      90,     0,      0,      MOD_THOMPSON            },  //	WP_THOMPSON				// 21
+	{   MAX_AMMO_GARAND,1,      5,      2500,   DELAY_HIGH,     1200,   0,      0,      MOD_GARAND              },  //	WP_GARAND				// 22	
+	{   5,              1,      5,      1000,   DELAY_THROW,    1600,   0,      0,      MOD_GRENADE_PINEAPPLE   },  //	WP_GRENADE_PINEAPPLE	// 23
+	{   1,              1,      1,      0,      50,             0,      0,      0,      0                       },  //	WP_SMOKE_GRENADE		// 24
+	{   3,              1,      3,      1000,   DELAY_THROW,    1600,   0,      0,      MOD_POISON_GAS          },  //	WP_POISON_GAS		    // 25
 
-	{   MAX_AMMO_MAUSER,1,      5,      3000,   0,              1400,   0,      0,      MOD_SNIPERRIFLE         },  //	WP_SNIPER_GER			// 25
-	{   MAX_AMMO_GARAND,1,      5,      3000,   0,              1200,   0,      0,      MOD_SNOOPERSCOPE        },  //	WP_SNIPER_AM			// 26
+	{   MAX_AMMO_MAUSER,1,      5,      3000,   0,              1400,   0,      0,      MOD_SNIPERRIFLE         },  //	WP_SNIPER_GER			// 26
+	{   MAX_AMMO_GARAND,1,      5,      3000,   0,              1200,   0,      0,      MOD_SNOOPERSCOPE        },  //	WP_SNIPER_AM			// 27
 
-	{   MAX_AMMO_FG42,  1,      20,     2000,   DELAY_LOW,      180,    0,      0,      MOD_FG42SCOPE           },  //	WP_FG42SCOPE			// 27
-	{   MAX_AMMO_9MM,   1,      32,     3100,   DELAY_LOW,      115,    900,    500,    MOD_STEN                },  //	WP_STEN					// 28
-	{   MAX_AMMO_9MM,   1,      8,      1500,   DELAY_PISTOL,   300,    0,      0,      MOD_SILENCER            },  //	WP_SILENCER				// 29
-	{   MAX_AMMO_45,    1,      7,      2700,   DELAY_PISTOL,   200,    0,      0,      MOD_AKIMBO              },  //	WP_AKIMBO				// 30
+	{   MAX_AMMO_FG42,  1,      20,     2000,   DELAY_LOW,      180,    0,      0,      MOD_FG42SCOPE           },  //	WP_FG42SCOPE			// 28
+	{   MAX_AMMO_9MM,   1,      32,     3100,   DELAY_LOW,      115,    900,    500,    MOD_STEN                },  //	WP_STEN					// 29
+	{   MAX_AMMO_9MM,   1,      8,      1500,   DELAY_PISTOL,   300,    0,      0,      MOD_SILENCER            },  //	WP_SILENCER				// 30
+	{   MAX_AMMO_45,    1,      7,      2700,   DELAY_PISTOL,   200,    0,      0,      MOD_AKIMBO              },  //	WP_AKIMBO				// 31
 
-	{   3,              1,      3,      1000,   DELAY_THROW,    1600,   0,      0,      MOD_DYNAMITE            },  //	WP_DYNAMITE				// 31
+	{   3,              1,      3,      1000,   DELAY_THROW,    1600,   0,      0,      MOD_DYNAMITE            },  //	WP_DYNAMITE				// 32
 
 // stubs for some "not-real" weapons (so they always return "yes, you have enough ammo for that gauntlet", etc.)
-	{   999,            0,      999,    0,      50,             0,      0,      0,      0                       },  //	WP_MONSTER_ATTACK1		// 32
-	{   999,            0,      999,    0,      50,             0,      0,      0,      0                       },  //	WP_MONSTER_ATTACK2		// 33
-	{   999,            0,      999,    0,      50,             0,      0,      0,      0                       },  //	WP_MONSTER_ATTACK3		// 34
-	{   999,            0,      999,    0,      50,             0,      0,      0,      0                       }   //	WP_GAUNTLET				// 35
+	{   999,            0,      999,    0,      50,             0,      0,      0,      0                       },  //	WP_MONSTER_ATTACK1		// 33
+	{   999,            0,      999,    0,      50,             0,      0,      0,      0                       },  //	WP_MONSTER_ATTACK2		// 34
+	{   999,            0,      999,    0,      50,             0,      0,      0,      0                       },  //	WP_MONSTER_ATTACK3		// 35
+	{   999,            0,      999,    0,      50,             0,      0,      0,      0                       }   //	WP_GAUNTLET				// 36
 };
 
 
@@ -154,7 +155,8 @@ int weapAlts[] = {
 	WP_NONE,            // 10 WP_TESLA
 	WP_NONE,            // 11 WP_MP34
 	WP_NONE,            // 12 WP_G43
-	WP_NONE,            // 13 WP_M1GARAND
+	WP_M7,             // 13 WP_M1GARAND
+	WP_M1GARAND,        // WP_M7
 	WP_NONE,            // 14 WP_BAR
 	WP_NONE,            // 15 WP_MP44
 	WP_NONE,            // 16 WP_MG42M
@@ -1661,6 +1663,32 @@ model="models/multiplayer/m1_garand/m1_garand_3rd.md3"
 		{0,0,0,0,0}
 	},
 
+	/*QUAKED weapon_gpg40_allied (.3 .3 1) (-16 -16 -16) (16 16 16) suspended
+-------- MODEL FOR RADIANT ONLY - DO NOT SET THIS AS A KEY --------
+model="models/weapons2/mauser/mauser.md3"
+*/
+	{
+		"weapon_m7",
+		"sound/misc/w_pkup.wav",
+		{
+			"models/multiplayer/m1_garand/m1_garand_3rd.md3",
+			"models/multiplayer/m1_garand/v_m1_garand.md3",
+			"models/multiplayer/mauser/mauser_pickup.md3"
+		},
+
+		"icons/iconw_m1_garand_1",       // icon
+		"icons/ammo10",              // ammo icon
+		"m7",                // pickup
+		200,
+		IT_WEAPON,
+		WP_M7,
+		WP_M7,
+		WP_M7,
+		"",                          // precache
+		"",                          // sounds
+//		{0,0,0,0,0}
+	},
+
 /*QUAKED weapon_bar (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
 "stand" values:
 	no value:	laying in a default position on it's side (default)
@@ -1824,6 +1852,29 @@ model="models/weapons2/p38/luger.md3"
 	//
 
 // RealRTCW ammo
+
+	/*QUAKED weapon_gpg40_allied (.3 .3 1) (-16 -16 -16) (16 16 16) suspended
+-------- MODEL FOR RADIANT ONLY - DO NOT SET THIS AS A KEY --------
+model="models/weapons2/mauser/mauser.md3"
+*/
+	{
+		"ammo_m7",
+		"sound/misc/w_pkup.wav",
+		{ "models/powerups/ammo/m7ammo_bag.md3",
+		 0, 0, 0,    0 },
+
+		"icons/iconw_m1_garand_1",       // icon
+		"icons/ammo10",              // ammo icon
+		"m7_ammo",                // pickup
+		200,
+		IT_AMMO,
+		WP_M7,
+		WP_M7,
+		WP_M7,
+		"",                          // precache
+		"",                          // sounds
+		{5,4,3,2,2}
+	},
 
 
 /*QUAKED ammo_barammo (.3 .3 1) (-16 -16 -16) (16 16 16) SUSPENDED SPIN - RESPAWN
@@ -3421,7 +3472,7 @@ BG_EvaluateTrajectoryDelta
 For determining velocity at a given time
 ================
 */
-void BG_EvaluateTrajectoryDelta( const trajectory_t *tr, int atTime, vec3_t result ) {
+void BG_EvaluateTrajectoryDelta( const trajectory_t *tr, int atTime, vec3_t result, qboolean isAngle, int splineData ) {
 	float deltaTime;
 	float phase;
 
@@ -3473,6 +3524,7 @@ void BG_EvaluateTrajectoryDelta( const trajectory_t *tr, int atTime, vec3_t resu
 			return;
 		}
 		deltaTime = ( atTime - tr->trTime ) * 0.001;    // milliseconds to seconds
+		phase = deltaTime / (float)tr->trDuration;
 		VectorScale( tr->trDelta, deltaTime * deltaTime, result );
 		break;
 	case TR_DECCELERATE:    // trDelta is breaking force
@@ -3483,8 +3535,12 @@ void BG_EvaluateTrajectoryDelta( const trajectory_t *tr, int atTime, vec3_t resu
 		deltaTime = ( atTime - tr->trTime ) * 0.001;    // milliseconds to seconds
 		VectorScale( tr->trDelta, deltaTime, result );
 		break;
+	case TR_SPLINE:
+	case TR_LINEAR_PATH:
+		VectorClear( result );
+		break;
 	default:
-		Com_Error( ERR_DROP, "BG_EvaluateTrajectoryDelta: unknown trType: %i", tr->trType );
+		Com_Error( ERR_DROP, "BG_EvaluateTrajectoryDelta: unknown trType: %i", tr->trTime );
 		break;
 	}
 }
