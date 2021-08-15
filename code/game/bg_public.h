@@ -483,6 +483,7 @@ typedef enum {
 	WP_MP34,                // 11
 	WP_G43,                 // 12
 	WP_M1GARAND,            // 13
+	WP_M7,
 	WP_BAR,                 // 14
 	WP_MP44,                // 15
 	WP_MG42M,               // 16
@@ -913,14 +914,14 @@ typedef enum {
 	WEAP_IDLE2,
 	WEAP_ATTACK1,
 	WEAP_ATTACK2,
-	WEAP_ATTACK_LASTSHOT,   // used when firing the last round before having an empty clip.
+	WEAP_ATTACK_LASTSHOT, 
 	WEAP_DROP,
 	WEAP_RAISE,
 	WEAP_RELOAD1,
 	WEAP_RELOAD2,
 	WEAP_RELOAD3,
-	WEAP_ALTSWITCHFROM, // switch from alt fire mode weap (scoped/silencer/etc)
-	WEAP_ALTSWITCHTO,   // switch to alt fire mode weap
+	WEAP_ALTSWITCHFROM, 
+	WEAP_ALTSWITCHTO,   
 	WEAP_DROP2,
 	MAX_WP_ANIMATIONS
 } weapAnimNumber_t;
@@ -1037,6 +1038,7 @@ typedef enum {
 	MOD_MP34,
 	MOD_G43,
 	MOD_M1GARAND,
+	MOD_M7,
 	MOD_BAR,
 	MOD_MP44,
 	MOD_MG42M,
@@ -1266,7 +1268,7 @@ typedef enum {
 
 
 void    BG_EvaluateTrajectory( const trajectory_t *tr, int atTime, vec3_t result );
-void    BG_EvaluateTrajectoryDelta( const trajectory_t *tr, int atTime, vec3_t result );
+void    BG_EvaluateTrajectoryDelta( const trajectory_t *tr, int atTime, vec3_t result, qboolean isAngle, int splineData );
 void    BG_GetMarkDir( const vec3_t dir, const vec3_t normal, vec3_t out );
 
 void    BG_AddPredictableEventToPlayerstate( int newEvent, int eventParm, playerState_t *ps );
@@ -1410,6 +1412,8 @@ typedef enum
 	ANIM_ET_RELOAD_SG1, //RealRTCW
 	ANIM_ET_RELOAD_SG2,
 	ANIM_ET_RELOAD_SG3,
+	ANIM_ET_UNDO_ALT_WEAPON_MODE,
+	ANIM_ET_DO_ALT_WEAPON_MODE,
 
 	NUM_ANIM_EVENTTYPES
 } scriptAnimEventTypes_t;
@@ -1600,6 +1604,12 @@ int BG_GetAnimScriptEvent( playerState_t *ps, scriptAnimEventTypes_t event );
 void QDECL BG_AnimParseError( const char *msg, ... ) __attribute__ ((format (printf, 1, 2)));
 void BG_UpdateConditionValueStrings( int client, char *conditionStr, char *valueStr );
 float BG_AnimGetFootstepGap( playerState_t *ps, float xyspeed );
+
+int PM_IdleAnimForWeapon( int weapon );
+int PM_RaiseAnimForWeapon( int weapon );
+
+int PM_AltSwitchFromForWeapon( int weapon );
+int PM_AltSwitchToForWeapon( int weapon );
 
 extern animStringItem_t animStateStr[];
 extern animStringItem_t animBodyPartsStr[];

@@ -656,6 +656,7 @@ int G_GetWeaponDamage( int weapon, qboolean player ) {
 			case WP_MP44: return sk_plr_dmg_mp44.integer;
 			case WP_G43: return sk_plr_dmg_g43.integer;
 			case WP_M1GARAND: return sk_plr_dmg_m1garand.integer;
+			case WP_M7: return sk_plr_dmg_m7.integer;
 			case WP_BAR: return sk_plr_dmg_bar.integer;
 			case WP_MG42M: return sk_plr_dmg_mg42m.integer;
 			case WP_M97: return sk_plr_dmg_m97.integer;
@@ -695,6 +696,7 @@ int G_GetWeaponDamage( int weapon, qboolean player ) {
 			case WP_MP44: return sk_ai_dmg_mp44.integer;
 			case WP_G43: return sk_ai_dmg_g43.integer;
 			case WP_M1GARAND: return sk_ai_dmg_m1garand.integer;
+			case WP_M7: return sk_ai_dmg_m7.integer;
 			case WP_BAR: return sk_ai_dmg_bar.integer;
 			case WP_MG42M: return sk_ai_dmg_mg42m.integer;
 			case WP_M97: return sk_ai_dmg_m97.integer;
@@ -1226,6 +1228,48 @@ GRENADE LAUNCHER
 ======================================================================
 */
 extern void G_ExplodeMissilePoisonGas( gentity_t *ent );
+
+gentity_t *weapon_gpg40_fire( gentity_t *ent, int grenType ) {
+	gentity_t   *m /*, *te*/; // JPW NERVE
+	trace_t tr;
+	vec3_t viewpos;
+//	float		upangle = 0, pitch;			//	start with level throwing and adjust based on angle
+	vec3_t tosspos;
+	//bani - to prevent nade-through-teamdoor sploit
+	vec3_t orig_viewpos;
+
+	AngleVectors( ent->client->ps.viewangles, forward, NULL, NULL );
+
+	VectorCopy( muzzleEffect, tosspos );
+
+	// check for valid start spot (so you don't throw through or get stuck in a wall)
+	VectorCopy( ent->s.pos.trBase, viewpos );
+	viewpos[2] += ent->client->ps.viewheight;
+	VectorCopy( viewpos, orig_viewpos );    //bani - to prevent nade-through-teamdoor sploit
+	VectorMA( viewpos, 32, forward, viewpos );
+
+	//bani - to prevent nade-through-teamdoor sploit
+	trap_Trace( &tr, orig_viewpos, tv( -4.f, -4.f, 0.f ), tv( 4.f, 4.f, 6.f ), viewpos, ent->s.number, MASK_MISSILESHOT );
+	if ( tr.fraction < 1 ) { // oops, bad launch spot ) {
+		VectorCopy( tr.endpos, tosspos );
+		SnapVectorTowards( tosspos, orig_viewpos );
+	} else {
+		trap_Trace( &tr, viewpos, tv( -4.f, -4.f, 0.f ), tv( 4.f, 4.f, 6.f ), tosspos, ent->s.number, MASK_MISSILESHOT );
+		if ( tr.fraction < 1 ) { // oops, bad launch spot
+			VectorCopy( tr.endpos, tosspos );
+			SnapVectorTowards( tosspos, viewpos );
+		}
+	}
+
+	VectorScale( forward, 2000, forward );
+
+	m = fire_grenade( ent, tosspos, forward, grenType );
+
+	m->damage = 0;
+
+	// Ridah, return the grenade so we can do some prediction before deciding if we really want to throw it or not
+	return m;
+}
 
 gentity_t *weapon_crowbar_throw( gentity_t *ent ) {
 	gentity_t   *m;
@@ -2034,6 +2078,9 @@ void FireWeapon( gentity_t *ent ) {
 		Weapon_Gauntlet( ent );
 		break;
 
+	case WP_M7:
+		weapon_gpg40_fire( ent, ent->s.weapon );
+		break;
 	case WP_MONSTER_ATTACK1:
 		switch ( ent->aiCharacter ) {
 		case AICHAR_WARZOMBIE:

@@ -1070,7 +1070,7 @@ void CG_RegisterWeapon( int weaponNum ) {
 
 
 	// sniper scope model
-	if ( weaponNum == WP_MAUSER || weaponNum == WP_GARAND ) {
+	if ( weaponNum == WP_MAUSER || weaponNum == WP_GARAND || weaponNum == WP_M1GARAND || weaponNum == WP_M7 ) {
 
 		if ( !item->world_model[W_FP_MODEL] ) {
 			Q_strncpyz( path, comppath, sizeof(path) );
@@ -1151,7 +1151,7 @@ void CG_RegisterWeapon( int weaponNum ) {
 
 	case WP_LUGER:
 		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.6, 0.23 );
-		weaponInfo->switchSound[0] = trap_S_RegisterSound( "sound/weapons/luger/silencerremove.wav" );   //----(SA)	added
+		weaponInfo->switchSound = trap_S_RegisterSound( "sound/weapons/luger/silencerremove.wav" );   //----(SA)	added
 		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/luger/luger_fire.wav" );
 		weaponInfo->flashEchoSound[0] = trap_S_RegisterSound( "sound/weapons/luger/luger_far.wav" ); // RealRTCW new echo sound
 		weaponInfo->reloadSound = trap_S_RegisterSound( "sound/weapons/luger/luger_reload.wav" );
@@ -1160,7 +1160,7 @@ void CG_RegisterWeapon( int weaponNum ) {
 
 	case WP_SILENCER:   // luger mod
 		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.6, 0.23 );
-		weaponInfo->switchSound[0] = trap_S_RegisterSound( "sound/weapons/luger/silencerattatch.wav" );  //----(SA)	added
+		weaponInfo->switchSound = trap_S_RegisterSound( "sound/weapons/luger/silencerattatch.wav" );  //----(SA)	added
 		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/luger/silencer_fire.wav" );
 		weaponInfo->reloadSound = trap_S_RegisterSound( "sound/weapons/luger/luger_reload.wav" );
 		weaponInfo->ejectBrassFunc = CG_MachineGunEjectBrass;
@@ -1246,8 +1246,20 @@ void CG_RegisterWeapon( int weaponNum ) {
 		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/m1_garand/m1garand_fire.wav" );
 		weaponInfo->flashEchoSound[0] = trap_S_RegisterSound( "sound/weapons/m1_garand/m1garand_far.wav" );
 		weaponInfo->reloadSound = trap_S_RegisterSound( "sound/weapons/m1_garand/m1garand_reload.wav" );
+		weaponInfo->switchSound = trap_S_RegisterSound ("sound/weapons/m1_garand/m1_grenade_off.wav");
 		weaponInfo->lastShotSound[0] = trap_S_RegisterSound( "sound/weapons/m1_garand/m1garand_fire_last.wav" );
 		weaponInfo->ejectBrassFunc = CG_MachineGunEjectBrass;
+		break;
+
+	case WP_M7:
+		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.6, 0.23 );
+		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/m1_garand/m1_fire_grenade.wav" );
+		weaponInfo->flashEchoSound[0] = trap_S_RegisterSound( "sound/weapons/m1_garand/m1garand_far.wav" );
+		weaponInfo->reloadSound = trap_S_RegisterSound( "sound/weapons/m1_garand/m1_reload_grenade.wav" );
+		weaponInfo->missileModel = trap_R_RegisterModel( "models/multiplayer/m1_garand/projectile.md3" );
+		weaponInfo->missileSound        = trap_S_RegisterSound( "sound/weapons/m1_garand/m1_grenade_fly.wav" );
+		weaponInfo->switchSound = trap_S_RegisterSound( "sound/weapons/m1_garand/m1_grenade_on.wav" );
+		weaponInfo->missileTrailFunc    = CG_GrenadeTrail;
 		break;
 
 	case WP_BAR:
@@ -1719,6 +1731,8 @@ static void CG_CalculateWeaponPosition( vec3_t origin, vec3_t angles ) {
 		case WP_FLAMETHROWER:
 		case WP_TESLA:
 		case WP_MAUSER:
+		case WP_M1GARAND:
+		case WP_M7:
 			leanscale = 2.0f;
 			break;
 
@@ -2683,6 +2697,23 @@ void CG_AddPlayerWeapon( refEntity_t *parent, playerState_t *ps, centity_t *cent
 	}
 
 
+	
+	if ( isPlayer && !cg.renderingThirdPerson ) {        // (SA) for now just do it on the first person weapons
+		if ( weaponNum == WP_M1GARAND || weaponNum == WP_M7 ) {
+			if ( (  cg.snap->ps.ammo[BG_FindAmmoForWeapon( WP_M7 )] || cg.snap->ps.ammoclip[BG_FindAmmoForWeapon( WP_M7 )]  ) ) {
+				//int anim = cg.snap->ps.weapAnim & ~ANIM_TOGGLEBIT;
+				//if ( anim == PM_AltSwitchFromForWeapon( weaponNum ) || anim == PM_AltSwitchToForWeapon( weaponNum ) || anim == PM_IdleAnimForWeapon( weaponNum ) ) {
+					barrel.hModel = weapon->modModel[0];
+					if ( barrel.hModel ) {
+						CG_PositionEntityOnTag( &barrel, parent, "tag_scope", 0, NULL );
+						CG_AddWeaponWithPowerups( &barrel, cent->currentState.powerups, ps, cent );
+					}
+				//}
+			}
+		}
+	}
+
+
 	// make sure we aren't looking at cg.predictedPlayerEntity for LG
 	nonPredictedCent = &cg_entities[cent->currentState.clientNum];
 
@@ -2772,7 +2803,8 @@ void CG_AddPlayerWeapon( refEntity_t *parent, playerState_t *ps, centity_t *cent
 		 weaponNum == WP_GRENADE_PINEAPPLE ||
 		 weaponNum == WP_KNIFE ||
 		 weaponNum == WP_DYNAMITE ||
-		 weaponNum == WP_POISON_GAS ) {
+		 weaponNum == WP_POISON_GAS ||
+		 weaponNum == WP_M7 ) {
 		return;
 	}
 
@@ -3765,7 +3797,15 @@ void CG_PlaySwitchSound( int lastweap, int newweap ) {
 		switch ( newweap ) {
 		case WP_SILENCER:
 		case WP_LUGER:
-			switchsound = cg_weapons[newweap].switchSound[0];
+			switchsound = cg_weapons[newweap].switchSound;
+			break;
+		case WP_M7:
+			switchsound = cg_weapons[newweap].switchSound;
+			break;
+		case WP_M1GARAND:
+			if ( cg.predictedPlayerState.ammoclip[lastweap] ) {
+				switchsound = cg_weapons[newweap].switchSound;
+			}
 			break;
 		default:
 			break;
@@ -3891,6 +3931,14 @@ void CG_AltWeapon_f( void ) {
 //----(SA)	end
 		CG_FinishWeaponChange( original, num );
 	}
+
+
+		// Arnout: don't allow another weapon switch when we're still swapping the gpg40, to prevent animation breaking
+	if ( ( cg.snap->ps.weaponstate == WEAPON_RAISING || cg.snap->ps.weaponstate == WEAPON_DROPPING ) &&
+		 ( ( original == WP_M7 || num == WP_M7 ) ||
+		   ( original == WP_SILENCER || num == WP_SILENCER  ) ) ) {
+		return;
+	}
 }
 
 
@@ -3911,6 +3959,15 @@ void CG_NextWeap( qboolean switchBanks ) {
 
 	CG_WeaponIndex( curweap, &bank, &cycle );     // get bank/cycle of current weapon
 
+	switch ( num ) {
+	case WP_SILENCER:
+		curweap = num = WP_LUGER;
+		break;
+	case WP_M7:
+		curweap = num = WP_M1GARAND;
+		break;
+	}
+
 	// if you're using an alt mode weapon, try switching back to the parent first
 	if ( curweap >= WP_BEGINSECONDARY && curweap <= WP_LASTSECONDARY ) {
 		num = getAltWeapon( curweap );    // base any further changes on the parent
@@ -3919,6 +3976,8 @@ void CG_NextWeap( qboolean switchBanks ) {
 			return;
 		}
 	}
+
+
 
 
 //	if ( cg_cycleAllWeaps.integer || !switchBanks ) {
@@ -3942,6 +4001,19 @@ void CG_NextWeap( qboolean switchBanks ) {
 
 			if ( CG_WeaponSelectable( num ) ) {
 				break;
+			} else {
+				qboolean found = qfalse;
+				switch ( num ) {
+				case WP_M1GARAND:
+					if ( ( found = CG_WeaponSelectable( WP_M7 ) ) ) {
+						num = WP_M7;
+					}
+					break;
+				}
+
+				if ( found ) {
+					break;
+				}
 			}
 		}
 	} else {
@@ -3965,17 +4037,45 @@ void CG_NextWeap( qboolean switchBanks ) {
 				continue;
 			}
 
-			if ( CG_WeaponSelectable( num ) ) {  // first entry in bank was selectable, no need to scan the bank
+
+			if ( CG_WeaponSelectable( num ) ) { // first entry in bank was selectable, no need to scan the bank
 				break;
+			} else {
+				qboolean found = qfalse;
+				switch ( num ) {
+				case WP_M1GARAND:
+					if ( ( found = CG_WeaponSelectable( WP_M7 ) ) ) {
+						num = WP_M7;
+					}
+					break;
+				}
+
+				if ( found ) {
+					break;
+				}
 			}
 
 			CG_WeaponIndex( num, &newbank, &newcycle );   // get the bank of the new weap
 
-			for ( j = newcycle; j < maxWeapsInBank; j++ ) {
+			for ( j = newcycle; j < MAX_WEAPS_IN_BANK; j++ ) {
 				num = getNextWeapInBank( newbank, j );
 
-				if ( CG_WeaponSelectable( num ) ) {  // found selectable weapon
+
+				if ( CG_WeaponSelectable( num ) ) { // found selectable weapon
 					break;
+				} else {
+					qboolean found = qfalse;
+					switch ( num ) {
+					case WP_M1GARAND:
+						if ( ( found = CG_WeaponSelectable( WP_M7 ) ) ) {
+							num = WP_M7;
+						}
+						break;
+					}
+
+					if ( found ) {
+						break;
+					}
 				}
 
 				num = 0;
@@ -4006,6 +4106,15 @@ void CG_PrevWeap( qboolean switchBanks ) {
 	int i, j;
 
 	num = curweap = cg.weaponSelect;
+
+	switch ( num ) {
+	case WP_SILENCER:
+		curweap = num = WP_LUGER;
+		break;
+	case WP_M7:
+		curweap = num = WP_M1GARAND;
+		break;
+	}
 
 	CG_WeaponIndex( curweap, &bank, &cycle );     // get bank/cycle of current weapon
 
@@ -4044,9 +4153,21 @@ void CG_PrevWeap( qboolean switchBanks ) {
 
 			if ( CG_WeaponSelectable( num ) ) {
 				break;
+			} else {
+				qboolean found = qfalse;
+				switch ( num ) {
+				case WP_M1GARAND:
+					if ( ( found = CG_WeaponSelectable( WP_M7 ) ) ) {
+						num = WP_M7;
+					}
+					break;
+				}
+
+				if ( found ) {
+					break;
+				}
 			}
 		}
-//		}
 	} else {
 		prevbank = qtrue;
 	}
@@ -4057,9 +4178,8 @@ void CG_PrevWeap( qboolean switchBanks ) {
 	//			else: use base weap in bank
 
 	if ( prevbank ) {
-		for ( i = 0; i < maxWeapBanks; i++ ) {
-//			if ( cg_cycleAllWeaps.integer ) {
-			if ( 1 ) {
+		for ( i = 0; i < MAX_WEAP_BANKS; i++ ) {
+			if ( cg_cycleAllWeaps.integer ) {
 				num = getPrevBankWeap( bank - i, cycle, qfalse );   // cycling all weaps always starts the next bank at the bottom
 			} else {
 				num = getPrevBankWeap( bank - i, cycle, qtrue );
@@ -4069,23 +4189,49 @@ void CG_PrevWeap( qboolean switchBanks ) {
 				continue;
 			}
 
-			if ( CG_WeaponSelectable( num ) ) {  // first entry in bank was selectable, no need to scan the bank
+			if ( CG_WeaponSelectable( num ) ) { // first entry in bank was selectable, no need to scan the bank
 				break;
+			} else {
+				qboolean found = qfalse;
+				switch ( num ) {
+				case WP_M1GARAND:
+					if ( ( found = CG_WeaponSelectable( WP_M7 ) ) ) {
+						num = WP_M7;
+					}
+					break;
+				}
+
+				if ( found ) {
+					break;
+				}
 			}
 
 			CG_WeaponIndex( num, &newbank, &newcycle );   // get the bank of the new weap
 
-			for ( j = maxWeapsInBank; j > 0; j-- ) {
+			for ( j = MAX_WEAPS_IN_BANK; j > 0; j-- ) {
 				num = getPrevWeapInBank( newbank, j );
 
-				if ( CG_WeaponSelectable( num ) ) {  // found selectable weapon
+				if ( CG_WeaponSelectable( num ) ) { // found selectable weapon
 					break;
+				} else {
+					qboolean found = qfalse;
+					switch ( num ) {
+					case WP_M1GARAND:
+						if ( ( found = CG_WeaponSelectable( WP_M7 ) ) ) {
+							num = WP_M7;
+						}
+						break;
+					}
+
+					if ( found ) {
+						break;
+					}
 				}
 
 				num = 0;
 			}
 
-			if ( num ) {   // a selectable weapon was found in the current bank
+			if ( num ) { // a selectable weapon was found in the current bank
 				break;
 			}
 		}
@@ -4328,16 +4474,35 @@ void CG_WeaponBank_f( void ) {
 		}
 
 	}
-
-	for ( i = 0; i < maxWeapsInBank; i++ ) {
+	for ( i = 0; i < MAX_WEAPS_IN_BANK; i++ ) {
 		num = getNextWeapInBank( bank, cycle + i );
 
 		if ( CG_WeaponSelectable( num ) ) {
 			break;
+		} else {
+			qboolean found = qfalse;
+			switch ( num ) {
+			case WP_M1GARAND:
+				if ( ( found = CG_WeaponSelectable( WP_M7 ) ) ) {
+					num = WP_M7;
+				}
+				break;
+			}
+
+			if ( found ) {
+				break;
+			}
 		}
 	}
 
 	if ( i == maxWeapsInBank ) {
+		return;
+	}
+
+		// Arnout: don't allow another weapon switch when we're still swapping the gpg40, to prevent animation breaking
+	if ( ( cg.snap->ps.weaponstate == WEAPON_RAISING || cg.snap->ps.weaponstate == WEAPON_DROPPING ) &&
+		 ( (  curweap == WP_M7 || num == WP_M7 ) ||
+		   ( curweap == WP_SILENCER || num == WP_SILENCER ) ) ) {
 		return;
 	}
 
@@ -4779,6 +4944,12 @@ void CG_FireWeapon( centity_t *cent ) {
 				  ent->weapon == WP_SMOKE_GRENADE  ) { // JPW NERVE
 		if ( ent->apos.trBase[0] > 0 ) { // underhand
 			return;
+		}
+	}
+
+ if ( ent->weapon == WP_M7 ) {
+		if ( ent->clientNum == cg.snap->ps.clientNum ) {
+			cg.weaponSelect = WP_M1GARAND;
 		}
 	}
 
@@ -5440,6 +5611,7 @@ void CG_Shard(centity_t *cent, vec3_t origin, vec3_t dir)
 
 	case WP_GRENADE_LAUNCHER:
 	case WP_GRENADE_PINEAPPLE:
+	case WP_M7:
 	case WP_SMOKE_GRENADE: 
 //		mod = cgs.media.dishFlashModel;
 //		shader = cgs.media.grenadeExplosionShader;
