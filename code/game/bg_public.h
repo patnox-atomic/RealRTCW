@@ -483,33 +483,34 @@ typedef enum {
 	WP_MP34,                // 11
 	WP_G43,                 // 12
 	WP_M1GARAND,            // 13
-	WP_M7,
-	WP_BAR,                 // 14
-	WP_MP44,                // 15
-	WP_MG42M,               // 16
-	WP_M97,                 // 17
-	WP_REVOLVER,            // 18
-	WP_COLT,                // 19	
-	WP_THOMPSON,            // 20	
-	WP_GARAND,              // 21	
-	WP_GRENADE_PINEAPPLE,   // 22
-	WP_SMOKE_GRENADE,       // 23
-	WP_POISON_GAS,          // 24
-	WP_SNIPERRIFLE,         // 25
-	WP_SNOOPERSCOPE,        // 26
-	WP_FG42SCOPE,           // 27
-	WP_STEN,                // 28	
-	WP_SILENCER,            // 29	
-	WP_AKIMBO,              // 30	
-	WP_DYNAMITE,            // 31
-	WP_MONSTER_ATTACK1,     // 32	
-	WP_MONSTER_ATTACK2,     // 33	
-	WP_MONSTER_ATTACK3,     // 34	
-	WP_GAUNTLET,            // 35
-	WP_SNIPER,              // 36
-	WP_MORTAR,              // 37
-	VERYBIGEXPLOSION,       // 38	
-	WP_NUM_WEAPONS          // 39   NOTE: this cannot be larger than 64 for AI/player weapons!
+	WP_M7,                  // 14
+	WP_BAR,                 // 15
+	WP_MP44,                // 16
+	WP_MG42M,               // 17
+	WP_BROWNING,            // 18
+	WP_M97,                 // 19
+	WP_REVOLVER,            // 20
+	WP_COLT,                // 21	
+	WP_THOMPSON,            // 22	
+	WP_GARAND,              // 23	
+	WP_GRENADE_PINEAPPLE,   // 24
+	WP_SMOKE_GRENADE,       // 25
+	WP_POISON_GAS,          // 26
+	WP_SNIPERRIFLE,         // 27
+	WP_SNOOPERSCOPE,        // 28
+	WP_FG42SCOPE,           // 29
+	WP_STEN,                // 30	
+	WP_SILENCER,            // 31	
+	WP_AKIMBO,              // 32	
+	WP_DYNAMITE,            // 33
+	WP_MONSTER_ATTACK1,     // 34	
+	WP_MONSTER_ATTACK2,     // 35	
+	WP_MONSTER_ATTACK3,     // 36	
+	WP_GAUNTLET,            // 37
+	WP_SNIPER,              // 38
+	WP_MORTAR,              // 39
+	VERYBIGEXPLOSION,       // 40	
+	WP_NUM_WEAPONS          // 41   NOTE: this cannot be larger than 64 for AI/player weapons!
 } weapon_t;
 
 
@@ -546,7 +547,7 @@ extern int weapAlts[];
 		weapon == WP_THOMPSON || weapon == WP_STEN      || \
 		weapon == WP_MAUSER    || weapon == WP_SNIPERRIFLE       || weapon == WP_M1GARAND  || \
 		weapon == WP_FG42     || weapon == WP_G43           || weapon == WP_MG42M   || \
-		weapon == WP_SILENCER    || weapon == WP_VENOM      || \
+		weapon == WP_SILENCER    || weapon == WP_VENOM      || weapon == WP_BROWNING  || \
 		weapon == WP_GARAND      || weapon == WP_FG42SCOPE     || \
 		weapon == WP_BAR    || weapon == WP_MP44      || \
 		weapon == WP_M97   || weapon == WP_MP34      || \
@@ -1042,6 +1043,7 @@ typedef enum {
 	MOD_BAR,
 	MOD_MP44,
 	MOD_MG42M,
+	MOD_BROWNING,
 	MOD_M97,
 	MOD_REVOLVER,
 	MOD_GRENADE_PINEAPPLE,

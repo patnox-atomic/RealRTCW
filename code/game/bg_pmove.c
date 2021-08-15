@@ -524,8 +524,8 @@ if ( pm->ps->aiChar == AICHAR_ZOMBIE || pm->ps->aiChar == AICHAR_WARZOMBIE ) { /
 #endif
 if ( ! (pm->ps->aiChar))  // RealRTCW weapon weight does not affect AI now
 	{ 
-		if ( ( pm->ps->weapon == WP_VENOM ) || ( pm->ps->weapon == WP_PANZERFAUST ) || ( pm->ps->weapon == WP_FLAMETHROWER ) || ( pm->ps->weapon == WP_TESLA ) || ( pm->ps->weapon == WP_MG42M ) ) {
-			scale *= 0.90; 
+		if ( ( pm->ps->weapon == WP_VENOM ) || ( pm->ps->weapon == WP_PANZERFAUST ) || ( pm->ps->weapon == WP_FLAMETHROWER ) || ( pm->ps->weapon == WP_TESLA ) || ( pm->ps->weapon == WP_MG42M ) || ( pm->ps->weapon == WP_BROWNING ) ) {
+			scale *= 0.85; 
         }
 		if ( ( pm->ps->weapon == WP_MP40 ) || ( pm->ps->weapon == WP_THOMPSON ) || ( pm->ps->weapon == WP_STEN ) || ( pm->ps->weapon == WP_MP34 ) || ( pm->ps->weapon == WP_FG42 ) || ( pm->ps->weapon == WP_MAUSER ) || ( pm->ps->weapon == WP_MP44 ) || ( pm->ps->weapon == WP_GARAND ) || ( pm->ps->weapon == WP_G43 ) || ( pm->ps->weapon == WP_BAR )  || ( pm->ps->weapon == WP_M1GARAND ) || ( pm->ps->weapon == WP_M7 )   || (pm->ps->weapon == WP_M97) )  {
 			scale *= 0.90; 
@@ -2846,7 +2846,10 @@ void PM_AdjustAimSpreadScale( void ) {
 		wpnScale = 0.6f;
 		break;
 	case WP_MG42M:
-		wpnScale = 0.6f;        
+		wpnScale = 0.5f;        
+		break;
+	case WP_BROWNING:
+		wpnScale = 0.5f;        
 		break;
 	case WP_M97:  
 		wpnScale = 0.6f; // was 0.4f now jaymod values
@@ -3368,6 +3371,7 @@ static void PM_Weapon( void ) {
 	case WP_FG42:
 	case WP_MP44:
 	case WP_MG42M:
+	case WP_BROWNING:
 	case WP_FG42SCOPE:
 	case WP_M97:
 	case WP_SMOKE_GRENADE:
@@ -3572,6 +3576,7 @@ static void PM_Weapon( void ) {
 	case WP_BAR:
     case WP_MP44:
 	case WP_MG42M:
+	case WP_BROWNING:
 	case WP_THOMPSON:
 	case WP_STEN:
 	case WP_SMOKE_GRENADE:
@@ -3712,6 +3717,11 @@ static void PM_Weapon( void ) {
 	aimSpreadScaleAdd = 20;       
 	break;
 
+	case WP_BROWNING:
+	addTime = ammoTable[pm->ps->weapon].nextShotTime;
+	aimSpreadScaleAdd = 20;       
+	break;
+
 	case WP_M97: 
 		addTime = ammoTable[pm->ps->weapon].nextShotTime;
 		aimSpreadScaleAdd = 15 + rand() % 10;
@@ -3761,6 +3771,18 @@ case WP_MG42M:
 			pm->pmext->weapRecoilPitch = .25f * random() * .15f;
 		} else {
 			pm->pmext->weapRecoilDuration = 100;
+			pm->pmext->weapRecoilYaw = crandom() * .20f;
+			pm->pmext->weapRecoilPitch = .55f * random() * .2f;
+		}
+		break;
+	case WP_BROWNING:
+		pm->pmext->weapRecoilTime = pm->cmd.serverTime;
+		if ( pm->ps->pm_flags & PMF_DUCKED ) {
+			pm->pmext->weapRecoilDuration = 75;
+			pm->pmext->weapRecoilYaw = crandom() * .5f;
+			pm->pmext->weapRecoilPitch = .25f * random() * .15f;
+		} else {
+			pm->pmext->weapRecoilDuration = 95;
 			pm->pmext->weapRecoilYaw = crandom() * .20f;
 			pm->pmext->weapRecoilPitch = .55f * random() * .2f;
 		}

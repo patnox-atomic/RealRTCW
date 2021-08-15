@@ -313,6 +313,7 @@ static int weapIconDrawSize( int weap ) {
 	case WP_BAR:
     case WP_MP44:
 	case WP_MG42M:
+	case WP_BROWNING:
 	case WP_M97:
 		return 2;
 	}
