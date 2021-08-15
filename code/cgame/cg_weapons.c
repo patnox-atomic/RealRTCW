@@ -63,7 +63,7 @@ int weapBanks[MAX_WEAP_BANKS][MAX_WEAPS_IN_BANK] = {
 	{WP_FG42,               WP_MP44,                WP_BAR,       0,               0            },  //	6
 	{WP_M97,                0,                      0,            0,               0            },  //	7
 	{WP_GRENADE_LAUNCHER,   WP_GRENADE_PINEAPPLE,   WP_DYNAMITE,  WP_SMOKE_GRENADE,WP_POISON_GAS },  //	8
-	{WP_PANZERFAUST,        WP_FLAMETHROWER,        WP_MG42M,     0,               0            },  //	9
+	{WP_PANZERFAUST,        WP_FLAMETHROWER,        WP_MG42M,     WP_BROWNING,     0            },  //	9
 	{WP_VENOM,              WP_TESLA,               0,            0,               0            }  //	10
 };
 
@@ -1285,6 +1285,15 @@ void CG_RegisterWeapon( int weaponNum ) {
 		weaponInfo->flashEchoSound[0] = trap_S_RegisterSound( "sound/weapons/mg42m/mg42m_far.wav" );
 		weaponInfo->reloadSound = trap_S_RegisterSound( "sound/weapons/mg42m/mg42m_reload.wav" );
 		weaponInfo->overheatSound = trap_S_RegisterSound( "sound/weapons/mg42m/mg42m_heat.wav" );
+		weaponInfo->ejectBrassFunc = CG_MachineGunEjectBrass;
+		break;
+
+	case WP_BROWNING:
+		MAKERGB( weaponInfo->flashDlightColor, 1.0, 0.6, 0.23 );
+		weaponInfo->flashSound[0] = trap_S_RegisterSound( "sound/weapons/browning/browning_fire.wav" );
+		weaponInfo->flashEchoSound[0] = trap_S_RegisterSound( "sound/weapons/browning/browning_far.wav" );
+		weaponInfo->reloadSound = trap_S_RegisterSound( "sound/weapons/browning/browning_reload.wav" );
+		weaponInfo->overheatSound = trap_S_RegisterSound( "sound/weapons/browning/browning_heat.wav" );
 		weaponInfo->ejectBrassFunc = CG_MachineGunEjectBrass;
 		break;
 	
@@ -2757,7 +2766,7 @@ void CG_AddPlayerWeapon( refEntity_t *parent, playerState_t *ps, centity_t *cent
 #define BARREL_SMOKE_TIME 1000
 
 		if ( ps || cg.renderingThirdPerson || !isPlayer ) {
-			if ( weaponNum == WP_VENOM || weaponNum == WP_STEN || weaponNum == WP_MG42M ) {
+			if ( weaponNum == WP_VENOM || weaponNum == WP_STEN || weaponNum == WP_MG42M || weaponNum == WP_BROWNING ) {
 				if ( !cg_paused.integer ) {    // don't add while paused
 					// hot smoking gun
 					if ( cg.time - cent->overheatTime < 3000 ) {
@@ -3031,6 +3040,11 @@ void CG_AddViewWeapon( playerState_t *ps ) {
 		     gunoff[1] = 0;
 		     gunoff[2] = 2;
 		break;
+		case WP_BROWNING:
+			 gunoff[0] = -15;
+		     gunoff[1] = 6;
+		     gunoff[2] = 2;
+		break;
 		case WP_REVOLVER:
 			 gunoff[0] = -1;
 		     gunoff[1] = 1;
@@ -3222,6 +3236,7 @@ void CG_DrawWeaponSelect( void ) {
 		case WP_BAR:
 		case WP_MP44:
 		case WP_MG42M:
+		case WP_BROWNING:
 		case WP_M97:
 
 		case WP_STEN:
@@ -4825,6 +4840,7 @@ void CG_WeaponFireRecoil( int weapon ) {
 		yawRandom *= 0.5;
 	break;
 	case WP_MG42M:
+	case WP_BROWNING:
 		pitchRecoilAdd = pow(random(), 8) * (10 + VectorLength(cg.snap->ps.velocity) / 5);
 		pitchAdd = 5 + rand() % 3;
 		yawRandom = 2;
@@ -5308,6 +5324,7 @@ void CG_MissileHitWall( int weapon, int clientNum, vec3_t origin, vec3_t dir, in
 	case WP_BAR:
 	case WP_MP44:
 	case WP_MG42M:
+	case WP_BROWNING:
 	case WP_M97:
 	case WP_REVOLVER:
 	case WP_FG42:

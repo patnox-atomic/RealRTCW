@@ -25,11 +25,8 @@ extern vmCvar_t		sk_plr_dmg_pineapple;
 extern vmCvar_t		sk_plr_dmg_pineapple_radius;
 extern vmCvar_t		sk_plr_dmg_dynamite;
 extern vmCvar_t		sk_plr_dmg_dynamite_radius;
-
 extern vmCvar_t		sk_plr_dmg_smokegrenade;
 extern vmCvar_t		sk_plr_dmg_smokegrenade_radius;
-
-//RealRTCW weapons
 extern vmCvar_t		sk_plr_dmg_mp34;
 extern vmCvar_t		sk_plr_dmg_g43;
 extern vmCvar_t		sk_plr_dmg_m1garand;
@@ -39,6 +36,7 @@ extern vmCvar_t		sk_plr_dmg_mp44;
 extern vmCvar_t		sk_plr_dmg_m97;
 extern vmCvar_t		sk_plr_dmg_revolver;
 extern vmCvar_t		sk_plr_dmg_mg42m;
+extern vmCvar_t		sk_plr_dmg_browning;
 
 
 extern vmCvar_t		sk_ai_dmg_knife;
@@ -64,10 +62,8 @@ extern vmCvar_t		sk_ai_dmg_pineapple;
 extern vmCvar_t		sk_ai_dmg_pineapple_radius;
 extern vmCvar_t		sk_ai_dmg_dynamite;
 extern vmCvar_t		sk_ai_dmg_dynamite_radius;
-
 extern vmCvar_t		sk_ai_dmg_smokegrenade;
 extern vmCvar_t		sk_ai_dmg_smokegrenade_radius;
-
 extern vmCvar_t		sk_ai_dmg_mp34;
 extern vmCvar_t		sk_ai_dmg_g43;
 extern vmCvar_t		sk_ai_dmg_m1garand;
@@ -77,3 +73,4 @@ extern vmCvar_t		sk_ai_dmg_mp44;
 extern vmCvar_t		sk_ai_dmg_m97;
 extern vmCvar_t		sk_ai_dmg_revolver;
 extern vmCvar_t		sk_ai_dmg_mg42m;
+extern vmCvar_t		sk_ai_dmg_browning;

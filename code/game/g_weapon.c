@@ -659,6 +659,7 @@ int G_GetWeaponDamage( int weapon, qboolean player ) {
 			case WP_M7: return sk_plr_dmg_m7.integer;
 			case WP_BAR: return sk_plr_dmg_bar.integer;
 			case WP_MG42M: return sk_plr_dmg_mg42m.integer;
+		    case WP_BROWNING: return sk_plr_dmg_browning.integer;
 			case WP_M97: return sk_plr_dmg_m97.integer;
 			case WP_REVOLVER: return sk_plr_dmg_revolver.integer;	
 			case WP_MORTAR: return 100;
@@ -699,6 +700,7 @@ int G_GetWeaponDamage( int weapon, qboolean player ) {
 			case WP_M7: return sk_ai_dmg_m7.integer;
 			case WP_BAR: return sk_ai_dmg_bar.integer;
 			case WP_MG42M: return sk_ai_dmg_mg42m.integer;
+			case WP_BROWNING: return sk_ai_dmg_browning.integer;
 			case WP_M97: return sk_ai_dmg_m97.integer;
 			case WP_REVOLVER: return sk_ai_dmg_revolver.integer;		
 			case WP_MORTAR: return 100;
@@ -755,7 +757,8 @@ float G_GetWeaponSpread( int weapon ) {
 			case WP_M1GARAND:   return 350; 
 			case WP_BAR:        return 700;
 		    case WP_MP44:       return 800;  
-			case WP_MG42M:      return 1500;
+			case WP_MG42M:      return 1300;
+			case WP_BROWNING:   return 1300;
 			case WP_M97:        return 4500;
 			case WP_REVOLVER:   return 350; 
 			case WP_FG42SCOPE:  return 250;
@@ -841,6 +844,9 @@ float G_GetWeaponSpread( int weapon ) {
 
 #define MG42M_SPREAD     G_GetWeaponSpread( WP_MG42M )
 #define MG42M_DAMAGE(e)     G_GetWeaponDamage( WP_MG42M, e ) 
+
+#define BROWNING_SPREAD     G_GetWeaponSpread( WP_BROWNING )
+#define BROWNING_DAMAGE(e)     G_GetWeaponDamage( WP_BROWNING, e ) 
 
 #define M97_SPREAD     G_GetWeaponSpread( WP_M97 )
 #define M97_DAMAGE(e)     G_GetWeaponDamage( WP_M97, e ) 
@@ -1988,6 +1994,19 @@ void FireWeapon( gentity_t *ent ) {
 	case WP_MG42M: 
 		Bullet_Fire( ent, MG42M_SPREAD * 0.6f * aimSpreadScale, MG42M_DAMAGE(isPlayer) );
 		// RealRTCW added pushback for mg42
+		if (!ent->aiCharacter) {
+		vec3_t vec_forward, vec_vangle;
+		VectorCopy(ent->client->ps.viewangles, vec_vangle);
+		vec_vangle[PITCH] = 0;	
+		AngleVectors(vec_vangle, vec_forward, NULL, NULL);
+		if (ent->s.groundEntityNum == ENTITYNUM_NONE)
+			VectorMA(ent->client->ps.velocity, -8, vec_forward, ent->client->ps.velocity);
+		else
+			VectorMA(ent->client->ps.velocity, -24, vec_forward, ent->client->ps.velocity);
+		}
+		break;
+	case WP_BROWNING: 
+		Bullet_Fire( ent, BROWNING_SPREAD * 0.6f * aimSpreadScale, BROWNING_DAMAGE(isPlayer) );
 		if (!ent->aiCharacter) {
 		vec3_t vec_forward, vec_vangle;
 		VectorCopy(ent->client->ps.viewangles, vec_vangle);

@@ -1535,8 +1535,9 @@ void SetupWeaponsForSkill_EASY() // Easy
 	ammoTable[WP_G43].maxammo = 400;
 	ammoTable[WP_MG42M].maxammo = 400;
 	// barammo
-	ammoTable[WP_BAR].maxammo = 300;
-	ammoTable[WP_M1GARAND].maxammo = 300;
+	ammoTable[WP_BAR].maxammo = 400;
+	ammoTable[WP_M1GARAND].maxammo = 400;
+	ammoTable[WP_BROWNING].maxammo = 400;
 	ammoTable[WP_M7].maxammo = 10;
 	// mp44
 	ammoTable[WP_MP44].maxammo = 200;
@@ -1588,8 +1589,9 @@ void SetupWeaponsForSkill_MEDIUM() // Medium
 	ammoTable[WP_G43].maxammo = 300;
 	ammoTable[WP_MG42M].maxammo = 300;
 	// barammo
-	ammoTable[WP_BAR].maxammo = 200;
-	ammoTable[WP_M1GARAND].maxammo = 200;
+	ammoTable[WP_BAR].maxammo = 300;
+	ammoTable[WP_M1GARAND].maxammo = 300;
+	ammoTable[WP_BROWNING].maxammo = 300;
 	ammoTable[WP_M7].maxammo = 8;
 	// mp44
 	ammoTable[WP_MP44].maxammo = 180;
@@ -1640,8 +1642,9 @@ void SetupWeaponsForSkill_HARD() // Hard
 	ammoTable[WP_G43].maxammo = 200;
 	ammoTable[WP_MG42M].maxammo = 200;
 	// barammo
-	ammoTable[WP_BAR].maxammo = 180;
-	ammoTable[WP_M1GARAND].maxammo = 180;
+	ammoTable[WP_BAR].maxammo = 200;
+	ammoTable[WP_M1GARAND].maxammo = 200;
+	ammoTable[WP_BROWNING].maxammo = 200;
 	ammoTable[WP_M7].maxammo = 6;
 	// mp44
 	ammoTable[WP_MP44].maxammo = 150;
@@ -1694,8 +1697,9 @@ void SetupWeaponsForSkill_MAX() // Max
 	ammoTable[WP_G43].maxammo = 150;
 	ammoTable[WP_MG42M].maxammo = 150;
 	// barammo
-	ammoTable[WP_BAR].maxammo = 150;
-	ammoTable[WP_M1GARAND].maxammo = 150;
+	ammoTable[WP_BAR].maxammo = 200;
+	ammoTable[WP_M1GARAND].maxammo = 200;
+	ammoTable[WP_BROWNING].maxammo = 200;
 	ammoTable[WP_M7].maxammo = 5;
 	// mp44
 	ammoTable[WP_MP44].maxammo = 120;
@@ -1748,8 +1752,9 @@ void SetupWeaponsForSkill_REALISM() // Realism
 	ammoTable[WP_G43].maxammo = 150;
 	ammoTable[WP_MG42M].maxammo = 150;
 	// barammo
-	ammoTable[WP_BAR].maxammo = 150;
-	ammoTable[WP_M1GARAND].maxammo = 150;
+	ammoTable[WP_BAR].maxammo = 200;
+	ammoTable[WP_M1GARAND].maxammo = 200;
+	ammoTable[WP_BROWNING].maxammo = 200;
 	ammoTable[WP_M7].maxammo = 5;
 	// mp44
 	ammoTable[WP_MP44].maxammo = 120;
