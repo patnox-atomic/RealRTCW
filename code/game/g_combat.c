@@ -1643,7 +1643,7 @@ mutation of G_RadiusDamage which lets us selectively damage only clients or only
 */
 qboolean etpro_RadiusDamage( vec3_t origin, gentity_t *inflictor, gentity_t *attacker, float damage, float radius, gentity_t *ignore, int mod, RadiusScope scope ) {
 	float		points, dist;
-	gentity_t	*ent, *traceEnt;
+	gentity_t	*ent;
 	int			entityList[MAX_GENTITIES];
 	int			numListedEntities;
 	vec3_t		mins, maxs;
@@ -1659,13 +1659,6 @@ qboolean etpro_RadiusDamage( vec3_t origin, gentity_t *inflictor, gentity_t *att
 
 	if( radius < 1 ) {
 		radius = 1;
-	}
-
-	switch ( traceEnt->aiCharacter ) {
-	case AICHAR_VENOM:
-	case AICHAR_PROTOSOLDIER:
-	case AICHAR_SUPERSOLDIER:
-		return;
 	}
 
 	boxradius = 1.41421356 * radius; // radius * sqrt(2) for bounding box enlargement -- 
