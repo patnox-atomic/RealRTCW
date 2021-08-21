@@ -108,9 +108,9 @@ void AICast_Pain( gentity_t *targ, gentity_t *attacker, int damage, vec3_t point
 	cs = AICast_GetCastState( targ->s.number );
 
 	// print debugging message
-	if ( aicast_debug.integer == 2 && attacker->s.number == 0 ) {
+//	if ( aicast_debug.integer == 2 && attacker->s.number == 0 ) {
 		G_Printf( "hit %s %i\n", targ->aiName, targ->health );
-	}
+	//}
 
 	// if we are below alert mode, then go there immediately
 	if ( cs->aiState < AISTATE_ALERT ) {
@@ -168,9 +168,9 @@ void AICast_Die( gentity_t *self, gentity_t *inflictor, gentity_t *attacker, int
 	qboolean modStealthKnife = (meansOfDeath == MOD_DAGGER_STEALTH );
 
 	// print debugging message
-	if ( aicast_debug.integer == 2 && attacker->s.number == 0 ) {
+	//if ( aicast_debug.integer == 2 && attacker->s.number == 0 ) {
 		G_Printf( "killed %s\n", self->aiName );
-	}
+	//}
 
 	if (self->aiCharacter && !(self->aiCharacter == AICHAR_WARZOMBIE) && !(self->aiCharacter == AICHAR_ZOMBIE) && killerPlayer && modKnife ) // vampirism
 	{
@@ -211,7 +211,7 @@ void AICast_Die( gentity_t *self, gentity_t *inflictor, gentity_t *attacker, int
 		AICast_UpdateVisibility( self, attacker, qtrue, qtrue );
 	}
 
-	if ( self->aiCharacter == AICHAR_HEINRICH || self->aiCharacter == AICHAR_HELGA || self->aiCharacter == AICHAR_SUPERSOLDIER || self->aiCharacter == AICHAR_PROTOSOLDIER ) {
+	if ( self->aiCharacter == AICHAR_HEINRICH || self->aiCharacter == AICHAR_HELGA || self->aiCharacter == AICHAR_SUPERSOLDIER || self->aiCharacter == AICHAR_PROTOSOLDIER || self->aiCharacter == AICHAR_GHOST ) {
 		if ( self->health <= GIB_HEALTH ) {
 			self->health = -1;
 		}
