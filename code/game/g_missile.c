@@ -27,7 +27,6 @@ If you have questions concerning this license or the applicable additional terms
 */
 
 #include "g_local.h"
-#include "km_cvar.h"	// Knightmare added
 
 #define MISSILE_PRESTEP_TIME    50
 
@@ -967,12 +966,10 @@ gentity_t *fire_grenade( gentity_t *self, vec3_t start, vec3_t dir, int grenadeW
 	switch ( grenadeWPID ) {
 	case WP_GRENADE_LAUNCHER:
 		bolt->classname             = "grenade";
-//			bolt->damage				= 100;
-//			bolt->splashDamage			= 100;
 		if ( self->aiCharacter ) {
-			bolt->splashRadius          = sk_ai_dmg_grenade_radius.integer;		// Knightmare- was 150
+			bolt->splashRadius          = ammoTable[WP_GRENADE_LAUNCHER].aiSplashRadius;	
 		} else {
-			bolt->splashRadius          = sk_plr_dmg_grenade_radius.integer;	// Knightmare- was 150
+			bolt->splashRadius          = ammoTable[WP_GRENADE_LAUNCHER].playerSplashRadius;
 		}
 		bolt->methodOfDeath         = MOD_GRENADE;
 		bolt->splashMethodOfDeath   = MOD_GRENADE_SPLASH;
@@ -981,9 +978,9 @@ gentity_t *fire_grenade( gentity_t *self, vec3_t start, vec3_t dir, int grenadeW
 	case WP_GRENADE_PINEAPPLE:
 		bolt->classname             = "grenade";
 		if ( self->aiCharacter ) {
-			bolt->splashRadius          = sk_ai_dmg_pineapple_radius.integer;	// Knightmare- was 300
+			bolt->splashRadius          = ammoTable[WP_GRENADE_PINEAPPLE].aiSplashRadius;	
 		} else {
-			bolt->splashRadius          = sk_plr_dmg_pineapple_radius.integer;	// Knightmare- was 300
+			bolt->splashRadius          = ammoTable[WP_GRENADE_PINEAPPLE].playerSplashRadius;
 		}
 		bolt->methodOfDeath         = MOD_GRENADE;
 		bolt->splashMethodOfDeath   = MOD_GRENADE_SPLASH;
@@ -999,9 +996,9 @@ gentity_t *fire_grenade( gentity_t *self, vec3_t start, vec3_t dir, int grenadeW
 		break;
 	case WP_SMOKE_GRENADE:
 			if ( self->aiCharacter ) {
-			bolt->splashRadius          = sk_ai_dmg_smokegrenade_radius.integer;	// Knightmare- was 300
+			bolt->splashRadius          = ammoTable[WP_SMOKE_GRENADE].aiSplashRadius;	// Knightmare- was 300
 		} else {
-			bolt->splashRadius          = sk_plr_dmg_smokegrenade_radius.integer;	// Knightmare- was 300
+			bolt->splashRadius          = ammoTable[WP_SMOKE_GRENADE].playerSplashRadius;	// Knightmare- was 300
 		}
 		bolt->classname             = "grenade";
 		bolt->s.eFlags              = EF_BOUNCE_HALF | EF_BOUNCE;
@@ -1047,30 +1044,20 @@ gentity_t *fire_grenade( gentity_t *self, vec3_t start, vec3_t dir, int grenadeW
 		bolt->classname             = "dynamite";
 		bolt->damage                = 0;
 		if ( self->aiCharacter ) {
-			bolt->splashRadius          = sk_ai_dmg_dynamite_radius.integer;	// Knightmare- was 400
+			bolt->splashRadius          = ammoTable[WP_DYNAMITE].aiSplashRadius;
 		} else {
-			bolt->splashRadius          = sk_plr_dmg_dynamite_radius.integer;	// Knightmare- was 400
+			bolt->splashRadius          = ammoTable[WP_DYNAMITE].playerSplashRadius;
 		}
 		bolt->methodOfDeath         = MOD_DYNAMITE;
 		bolt->splashMethodOfDeath   = MOD_DYNAMITE_SPLASH;
 		bolt->s.eFlags              = ( EF_BOUNCE | EF_BOUNCE_HALF );   // EF_BOUNCE_HEAVY;
 
-		// dynamite is shootable
-// JPW NERVE only in single player
+
 		if ( g_gametype.integer == GT_SINGLE_PLAYER ) {
-//				bolt->health				= 5;
-//				bolt->takedamage			= qtrue;
-//
-//				// small target cube
-//				VectorSet(bolt->r.mins, -4, -4, 0);
-//				VectorCopy(bolt->r.mins, bolt->r.absmin);
-//				VectorSet(bolt->r.maxs, 4, 4, 8);
-//				VectorCopy(bolt->r.maxs, bolt->r.absmax);
 		} else {
 			bolt->health                = 5;
 			bolt->takedamage            = qfalse;
 		}
-// jpw
 		bolt->die                   = G_MissileDie;
 		bolt->r.contents            = CONTENTS_CORPSE;      // (player can walk through)
 
@@ -1111,7 +1098,7 @@ fire_rocket
 */
 gentity_t *fire_rocket( gentity_t *self, vec3_t start, vec3_t dir ) {
 	gentity_t   *bolt;
-qboolean	isPlayer = (self->client && !self->aiCharacter);	// Knightmare added
+//qboolean	isPlayer = (self->client && !self->aiCharacter);	// Knightmare added
 
 	VectorNormalize( dir );
 
@@ -1133,25 +1120,15 @@ qboolean	isPlayer = (self->client && !self->aiCharacter);	// Knightmare added
 	bolt->parent = self;
 
 	if ( self->aiCharacter ) { // ai keep the values they've been using
-		bolt->damage = sk_ai_dmg_panzerfaust.integer;					// Knightmare- was 100
-		bolt->splashDamage = sk_ai_dmg_panzerfaust_splash.integer;		// Knightmare- was 120
+		bolt->damage = ammoTable[WP_PANZERFAUST].aiDamage;						
+		bolt->splashDamage = ammoTable[WP_PANZERFAUST].aiDamage;		
+		bolt->splashRadius = ammoTable[WP_PANZERFAUST].aiSplashRadius;		
 	} else {
-		bolt->damage = G_GetWeaponDamage( WP_PANZERFAUST, isPlayer );
-		bolt->splashDamage = G_GetWeaponDamage( WP_PANZERFAUST, isPlayer );
+		bolt->damage = ammoTable[WP_PANZERFAUST].playerDamage;
+		bolt->splashDamage = ammoTable[WP_PANZERFAUST].playerDamage;
+		bolt->splashRadius = ammoTable[WP_PANZERFAUST].playerSplashRadius;	
 	}
 
-// JPW NERVE
-	if ( g_gametype.integer != GT_SINGLE_PLAYER ) {
-		bolt->splashRadius = G_GetWeaponDamage( WP_PANZERFAUST, isPlayer );
-	} else {
-		if ( self->aiCharacter ) {
-			bolt->splashRadius = sk_ai_dmg_panzerfaust_splash.integer;	// Knightmare- was 120
-		} else {
-			bolt->splashRadius = G_GetWeaponDamage( WP_PANZERFAUST, isPlayer );
-		}
-	}
-
-// jpw
 	bolt->methodOfDeath = MOD_ROCKET;
 	bolt->splashMethodOfDeath = MOD_ROCKET_SPLASH;
 //	bolt->clipmask = MASK_SHOT;
