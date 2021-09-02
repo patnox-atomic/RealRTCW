@@ -1134,7 +1134,7 @@ gentity_t *weapon_crowbar_throw( gentity_t *ent ) {
 }
 
 gentity_t *weapon_grenadelauncher_fire( gentity_t *ent, int grenType ) {
-	gentity_t   *m; 
+	gentity_t   *m, *te; 
 	float upangle = 0;                  //	start with level throwing and adjust based on angle
 	vec3_t tosspos;
 	qboolean underhand = 0;
