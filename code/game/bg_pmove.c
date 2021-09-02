@@ -3581,7 +3581,7 @@ static void PM_Weapon( void ) {
 	
 	// add randomness spread for SMGs
 
-	if ((pm->ps->weapon == WP_PPSH ) || (pm->ps->weapon == WP_MP40 ) || (pm->ps->weapon == WP_MP34 ) || (pm->ps->weapon == WP_THOMPSON ) || (pm->ps->weapon == WP_STEN ))
+	if ( (pm->ps->weapon == WP_MP40 ) || (pm->ps->weapon == WP_MP34 ) || (pm->ps->weapon == WP_THOMPSON ) || (pm->ps->weapon == WP_STEN ))
 	{
 	aimSpreadScaleAdd += rand() % 5;
 	}
