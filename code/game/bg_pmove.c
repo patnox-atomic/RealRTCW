@@ -4230,7 +4230,7 @@ void PmoveSingle( pmove_t *pmove ) {
 			// don't allow binocs if in the middle of throwing grenade
 			if ( ( pm->ps->weapon == WP_GRENADE_LAUNCHER || pm->ps->weapon == WP_GRENADE_PINEAPPLE || pm->ps->weapon == WP_DYNAMITE || pm->ps->weapon == WP_POISON_GAS ) && pm->ps->grenadeTimeLeft > 0 ) {
 				pm->ps->eFlags &= ~EF_ZOOMING;
-			}*/
+			}
 		
 //	}
 	//}

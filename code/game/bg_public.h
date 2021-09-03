@@ -550,7 +550,7 @@ extern ammotable_t ammoTable[WP_NUM_WEAPONS];
 #define WP_BEGINSECONDARY   WP_SNIPERRIFLE
 #define WP_LASTSECONDARY    WP_FG42SCOPE
 
-#define WEAPS_ONE_HANDED    ( ( 1 << WP_KNIFE ) | ( 1 << WP_LUGER ) | ( 1 << WP_COLT ) | ( 1 << WP_SILENCER ) | ( 1 << WP_GRENADE_LAUNCHER ) | ( 1 << WP_POISON_GAS ) | ( 1 << WP_GRENADE_PINEAPPLE ) | ( 1 << WP_SMOKE_GRENADE ) | ( 1 << WP_REVOLVER ) )
+#define WEAPS_ONE_HANDED    ( ( 1 << WP_KNIFE ) | ( 1 << WP_LUGER ) | ( 1 << WP_COLT ) | ( 1 << WP_SILENCER ) | ( 1 << WP_GRENADE_LAUNCHER ) | ( 1 << WP_POISON_GAS ) | ( 1 << WP_GRENADE_PINEAPPLE ) | ( 1 << WP_SMOKE_GRENADE ) | ( 1 << WP_REVOLVER ) | ( 1 << WP_BINOCULARS ) )
 
 
 
