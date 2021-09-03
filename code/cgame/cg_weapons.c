@@ -5731,7 +5731,6 @@ void CG_Shard(centity_t *cent, vec3_t origin, vec3_t dir)
 	case WP_GRENADE_LAUNCHER:
 	case WP_GRENADE_PINEAPPLE:
 	case WP_M7:
-	case WP_SMOKE_GRENADE: 
 //		mod = cgs.media.dishFlashModel;
 //		shader = cgs.media.grenadeExplosionShader;
 		shader = cgs.media.rocketExplosionShader;       // copied from RL
@@ -5770,6 +5769,7 @@ void CG_Shard(centity_t *cent, vec3_t origin, vec3_t dir)
 		break;
 	case VERYBIGEXPLOSION:
 	case WP_PANZERFAUST:
+	case WP_SMOKE_GRENADE: 
 //		mod = cgs.media.dishFlashModel;
 //		shader = cgs.media.rocketExplosionShader;
 		sfx = cgs.media.sfx_rockexp;
