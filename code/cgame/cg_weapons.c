@@ -3147,6 +3147,11 @@ void CG_AddViewWeapon( playerState_t *ps ) {
 		     gunoff[1] = 3;
 		     gunoff[2] = -1;
 		break;
+		case WP_BINOCULARS:
+			 gunoff[0] = 1;
+		     gunoff[1] = -1;
+		     gunoff[2] = -1;
+		break;
 		default:
 		    gunoff[0] = cg_gun_x.value;
 		    gunoff[1] = cg_gun_y.value;
