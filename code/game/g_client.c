@@ -1555,13 +1555,13 @@ void SetupWeaponsForSkill_EASY() // Easy
 	ammoTable[WP_GRENADE_PINEAPPLE].maxammo = 15;
 	ammoTable[WP_GRENADE_PINEAPPLE].maxclip = 15;
 	// heavy weapons
-	ammoTable[WP_PANZERFAUST].maxammo = 5;
-	ammoTable[WP_FLAMETHROWER].maxammo = 250;
-	ammoTable[WP_FLAMETHROWER].maxclip = 250;
-	ammoTable[WP_TESLA].maxammo = 150;
-	ammoTable[WP_TESLA].maxclip = 150;
+	ammoTable[WP_PANZERFAUST].maxammo = 15;
+	ammoTable[WP_FLAMETHROWER].maxammo = 500;
+	ammoTable[WP_FLAMETHROWER].maxclip = 500;
+	ammoTable[WP_TESLA].maxammo = 300;
+	ammoTable[WP_TESLA].maxclip = 300;
 	ammoTable[WP_VENOM].maxammo = 1500;
-	ammoTable[WP_MG42M].maxammo = 1000;
+	ammoTable[WP_MG42M].maxammo = 1500;
 	// snooper
 	ammoTable[WP_GARAND].maxammo = 100;
 	ammoTable[WP_SNOOPERSCOPE].maxammo = 100;
@@ -1582,11 +1582,11 @@ void SetupWeaponsForSkill_MEDIUM() // Medium
 	ammoTable[WP_AKIMBO].maxammo = 300;
 	ammoTable[WP_THOMPSON].maxammo = 300;
 	// mauserammo
-	ammoTable[WP_MAUSER].maxammo = 300;
-	ammoTable[WP_FG42].maxammo = 300;
-	ammoTable[WP_SNIPERRIFLE].maxammo = 300;
-	ammoTable[WP_FG42SCOPE].maxammo = 300;
-	ammoTable[WP_G43].maxammo = 300;
+	ammoTable[WP_MAUSER].maxammo = 400;
+	ammoTable[WP_FG42].maxammo = 400;
+	ammoTable[WP_SNIPERRIFLE].maxammo = 400;
+	ammoTable[WP_FG42SCOPE].maxammo = 400;
+	ammoTable[WP_G43].maxammo = 400;
 	// barammo
 	ammoTable[WP_BAR].maxammo = 300;
 	ammoTable[WP_M1GARAND].maxammo = 300;
@@ -1610,12 +1610,12 @@ void SetupWeaponsForSkill_MEDIUM() // Medium
 	ammoTable[WP_GRENADE_PINEAPPLE].maxclip = 15;
 	// heavy weapons
 	ammoTable[WP_PANZERFAUST].maxammo = 15;
-	ammoTable[WP_FLAMETHROWER].maxammo = 300;
-	ammoTable[WP_FLAMETHROWER].maxclip = 300;
+	ammoTable[WP_FLAMETHROWER].maxammo = 500;
+	ammoTable[WP_FLAMETHROWER].maxclip = 500;
 	ammoTable[WP_TESLA].maxammo = 300;
 	ammoTable[WP_TESLA].maxclip = 300;
-	ammoTable[WP_VENOM].maxammo = 1000;
-	ammoTable[WP_MG42M].maxammo = 1000;
+	ammoTable[WP_VENOM].maxammo = 1500;
+	ammoTable[WP_MG42M].maxammo = 1500;
 	// snooper
 	ammoTable[WP_GARAND].maxammo = 100;
 	ammoTable[WP_SNOOPERSCOPE].maxammo = 100;
@@ -1636,11 +1636,11 @@ void SetupWeaponsForSkill_HARD() // Hard
 	ammoTable[WP_AKIMBO].maxammo = 300;
 	ammoTable[WP_THOMPSON].maxammo = 300;
 	// mauserammo
-	ammoTable[WP_MAUSER].maxammo = 200;
-	ammoTable[WP_FG42].maxammo = 200;
-	ammoTable[WP_SNIPERRIFLE].maxammo = 200;
-	ammoTable[WP_FG42SCOPE].maxammo = 200;
-	ammoTable[WP_G43].maxammo = 200;
+	ammoTable[WP_MAUSER].maxammo = 400;
+	ammoTable[WP_FG42].maxammo = 400;
+	ammoTable[WP_SNIPERRIFLE].maxammo = 400;
+	ammoTable[WP_FG42SCOPE].maxammo = 400;
+	ammoTable[WP_G43].maxammo = 400;
 	// barammo
 	ammoTable[WP_BAR].maxammo = 300;
 	ammoTable[WP_M1GARAND].maxammo = 300;
@@ -1664,12 +1664,12 @@ void SetupWeaponsForSkill_HARD() // Hard
 	ammoTable[WP_GRENADE_PINEAPPLE].maxclip = 15;
 	// heavy weapons
 	ammoTable[WP_PANZERFAUST].maxammo = 15;
-	ammoTable[WP_FLAMETHROWER].maxammo = 300;
-	ammoTable[WP_FLAMETHROWER].maxclip = 300;
+	ammoTable[WP_FLAMETHROWER].maxammo = 500;
+	ammoTable[WP_FLAMETHROWER].maxclip = 500;
 	ammoTable[WP_TESLA].maxammo = 300;
 	ammoTable[WP_TESLA].maxclip = 300;
-	ammoTable[WP_VENOM].maxammo = 1000;
-	ammoTable[WP_MG42M].maxammo = 1000;
+	ammoTable[WP_VENOM].maxammo = 1500;
+	ammoTable[WP_MG42M].maxammo = 1500;
 	// snooper
 	ammoTable[WP_GARAND].maxammo = 100;
 	ammoTable[WP_SNOOPERSCOPE].maxammo = 100;
@@ -1689,11 +1689,11 @@ void SetupWeaponsForSkill_MAX() // Max
 	ammoTable[WP_AKIMBO].maxammo = 300;
 	ammoTable[WP_THOMPSON].maxammo = 300;
 	// mauserammo
-	ammoTable[WP_MAUSER].maxammo = 150;
-	ammoTable[WP_FG42].maxammo = 150;
-	ammoTable[WP_SNIPERRIFLE].maxammo = 150;
-	ammoTable[WP_FG42SCOPE].maxammo = 150;
-	ammoTable[WP_G43].maxammo = 150;
+	ammoTable[WP_MAUSER].maxammo = 400;
+	ammoTable[WP_FG42].maxammo = 400;
+	ammoTable[WP_SNIPERRIFLE].maxammo = 400;
+	ammoTable[WP_FG42SCOPE].maxammo = 400;
+	ammoTable[WP_G43].maxammo = 400;
 	// barammo
 	ammoTable[WP_BAR].maxammo = 300;
 	ammoTable[WP_M1GARAND].maxammo = 300;
@@ -1716,13 +1716,13 @@ void SetupWeaponsForSkill_MAX() // Max
 	ammoTable[WP_GRENADE_PINEAPPLE].maxammo = 15;
 	ammoTable[WP_GRENADE_PINEAPPLE].maxclip = 15;
 	// heavy weapons
-	ammoTable[WP_PANZERFAUST].maxammo = 3;
-	ammoTable[WP_FLAMETHROWER].maxammo = 100;
-	ammoTable[WP_FLAMETHROWER].maxclip = 100;
-	ammoTable[WP_TESLA].maxammo = 50;
-	ammoTable[WP_TESLA].maxclip = 50;
-	ammoTable[WP_VENOM].maxammo = 500;
-	ammoTable[WP_MG42M].maxammo = 500;
+	ammoTable[WP_PANZERFAUST].maxammo = 15;
+	ammoTable[WP_FLAMETHROWER].maxammo = 500;
+	ammoTable[WP_FLAMETHROWER].maxclip = 500;
+	ammoTable[WP_TESLA].maxammo = 300;
+	ammoTable[WP_TESLA].maxclip = 300;
+	ammoTable[WP_VENOM].maxammo = 1500;
+	ammoTable[WP_MG42M].maxammo = 1500;
 	// snooper
 	ammoTable[WP_GARAND].maxammo = 100;
 	ammoTable[WP_SNOOPERSCOPE].maxammo = 100;
@@ -1743,11 +1743,11 @@ void SetupWeaponsForSkill_REALISM() // Realism
 	ammoTable[WP_AKIMBO].maxammo = 300;
 	ammoTable[WP_THOMPSON].maxammo = 300;
 	// mauserammo
-	ammoTable[WP_MAUSER].maxammo = 150;
-	ammoTable[WP_FG42].maxammo = 150;
-	ammoTable[WP_SNIPERRIFLE].maxammo = 150;
-	ammoTable[WP_FG42SCOPE].maxammo = 150;
-	ammoTable[WP_G43].maxammo = 150;
+	ammoTable[WP_MAUSER].maxammo = 400;
+	ammoTable[WP_FG42].maxammo = 400;
+	ammoTable[WP_SNIPERRIFLE].maxammo = 400;
+	ammoTable[WP_FG42SCOPE].maxammo = 400;
+	ammoTable[WP_G43].maxammo = 400;
 	// barammo
 	ammoTable[WP_BAR].maxammo = 300;
 	ammoTable[WP_M1GARAND].maxammo = 300;
@@ -1770,13 +1770,13 @@ void SetupWeaponsForSkill_REALISM() // Realism
 	ammoTable[WP_GRENADE_PINEAPPLE].maxammo = 15;
 	ammoTable[WP_GRENADE_PINEAPPLE].maxclip = 15;
 	// heavy weapons
-	ammoTable[WP_PANZERFAUST].maxammo = 3;
-	ammoTable[WP_FLAMETHROWER].maxammo = 100;
-	ammoTable[WP_FLAMETHROWER].maxclip = 100;
-	ammoTable[WP_TESLA].maxammo = 50;
-	ammoTable[WP_TESLA].maxclip = 50;
-	ammoTable[WP_VENOM].maxammo = 500;
-	ammoTable[WP_MG42M].maxammo = 500;
+	ammoTable[WP_PANZERFAUST].maxammo = 15;
+	ammoTable[WP_FLAMETHROWER].maxammo = 500;
+	ammoTable[WP_FLAMETHROWER].maxclip = 500;
+	ammoTable[WP_TESLA].maxammo = 300;
+	ammoTable[WP_TESLA].maxclip = 300;
+	ammoTable[WP_VENOM].maxammo = 1500;
+	ammoTable[WP_MG42M].maxammo = 1500;
 	// snooper
 	ammoTable[WP_GARAND].maxammo = 100;
 	ammoTable[WP_SNOOPERSCOPE].maxammo = 100;
