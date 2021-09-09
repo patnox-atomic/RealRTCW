@@ -1561,7 +1561,7 @@ void SetupWeaponsForSkill_EASY() // Easy
 	ammoTable[WP_TESLA].maxammo = 150;
 	ammoTable[WP_TESLA].maxclip = 150;
 	ammoTable[WP_VENOM].maxammo = 1500;
-	ammoTable[WP_MG42M].maxammo = 1000;
+	ammoTable[WP_MG42M].maxammo = 400;
 	// snooper
 	ammoTable[WP_GARAND].maxammo = 15;
 	ammoTable[WP_SNOOPERSCOPE].maxammo = 15;
@@ -1614,7 +1614,7 @@ void SetupWeaponsForSkill_MEDIUM() // Medium
 	ammoTable[WP_TESLA].maxammo = 100;
 	ammoTable[WP_TESLA].maxclip = 100;
 	ammoTable[WP_VENOM].maxammo = 1000;
-	ammoTable[WP_MG42M].maxammo = 1000;
+	ammoTable[WP_MG42M].maxammo = 300;
 	// snooper
 	ammoTable[WP_GARAND].maxammo = 10;
 	ammoTable[WP_SNOOPERSCOPE].maxammo = 10;
@@ -1666,7 +1666,7 @@ void SetupWeaponsForSkill_HARD() // Hard
 	ammoTable[WP_TESLA].maxammo = 100;
 	ammoTable[WP_TESLA].maxclip = 100;
 	ammoTable[WP_VENOM].maxammo = 1000;
-	ammoTable[WP_MG42M].maxammo = 1000;
+	ammoTable[WP_MG42M].maxammo = 200;
 	// snooper
 	ammoTable[WP_GARAND].maxammo = 10;
 	ammoTable[WP_SNOOPERSCOPE].maxammo = 10;
@@ -1719,7 +1719,7 @@ void SetupWeaponsForSkill_MAX() // Max
 	ammoTable[WP_TESLA].maxammo = 50;
 	ammoTable[WP_TESLA].maxclip = 50;
 	ammoTable[WP_VENOM].maxammo = 500;
-	ammoTable[WP_MG42M].maxammo = 500;
+	ammoTable[WP_MG42M].maxammo = 150;
 	// snooper
 	ammoTable[WP_GARAND].maxammo = 5;
 	ammoTable[WP_SNOOPERSCOPE].maxammo = 5;
@@ -1773,7 +1773,7 @@ void SetupWeaponsForSkill_REALISM() // Realism
 	ammoTable[WP_TESLA].maxammo = 50;
 	ammoTable[WP_TESLA].maxclip = 50;
 	ammoTable[WP_VENOM].maxammo = 500;
-	ammoTable[WP_MG42M].maxammo = 500;
+	ammoTable[WP_MG42M].maxammo = 150;
 	// snooper
 	ammoTable[WP_GARAND].maxammo = 5;
 	ammoTable[WP_SNOOPERSCOPE].maxammo = 5;
