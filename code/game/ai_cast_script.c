@@ -120,6 +120,7 @@ qboolean AICast_ScriptAction_AIScriptName( cast_state_t *cs, char *params );
 qboolean AICast_ScriptAction_SetHealth( cast_state_t *cs, char *params );
 qboolean AICast_ScriptAction_NoTarget( cast_state_t *cs, char *params );
 qboolean AICast_ScriptAction_Cvar( cast_state_t *cs, char *params );
+qboolean AICast_ScriptAction_decoy( cast_state_t *cs, char *params );
 
 qboolean AICast_ScriptAction_MusicStart( cast_state_t *cs, char *params );		//----(SA)
 qboolean AICast_ScriptAction_MusicPlay( cast_state_t *cs, char *params );		//----(SA)
@@ -208,7 +209,26 @@ cast_script_stack_action_t scriptActions[] =
 	{"sethealth",        AICast_ScriptAction_SetHealth},
 	{"notarget",     AICast_ScriptAction_NoTarget},
 	{"cvar",         AICast_ScriptAction_Cvar},
-
+	{"achievement_map_siwa",      AICast_ScriptAction_decoy},
+	{"achievement_map_seawall",      AICast_ScriptAction_decoy},
+	{"achievement_map_goldrush",      AICast_ScriptAction_decoy},
+	{"achievement_map_radar",     AICast_ScriptAction_decoy},
+	{"achievement_map_railgun",      AICast_ScriptAction_decoy},
+	{"achievement_map_fueldump",      AICast_ScriptAction_decoy},
+	{"achievement_allgoldsiwa",      AICast_ScriptAction_decoy},
+	{"achievement_chestsiwa",      AICast_ScriptAction_decoy},
+	{"achievement_speedbattery",      AICast_ScriptAction_decoy},
+	{"achievement_roombattery",      AICast_ScriptAction_decoy},
+	{"achievement_safe",      AICast_ScriptAction_decoy},
+	{"achievement_heist",      AICast_ScriptAction_decoy},
+	{"achievement_kellys",      AICast_ScriptAction_decoy},
+	{"achievement_mansiongold",      AICast_ScriptAction_decoy},
+	{"achievement_panther",      AICast_ScriptAction_decoy},
+	{"achievement_depot",      AICast_ScriptAction_decoy},
+	{"achievement_dora",      AICast_ScriptAction_decoy},
+	{"achievement_fuel1",      AICast_ScriptAction_decoy},
+	{"achievement_allgoldfuel",      AICast_ScriptAction_decoy},
+	{"achievement_etbonus",      AICast_ScriptAction_decoy},
 //----(SA)	added some music interface
 	{"mu_start",     AICast_ScriptAction_MusicStart},			// (char *new_music, int time)	// time to fade in
 	{"mu_play",          AICast_ScriptAction_MusicPlay},		// (char *new_music)
