@@ -35,6 +35,7 @@ If you have questions concerning this license or the applicable additional terms
 
 
 #include "g_local.h"
+#include "../steam/steam.h"
 
 static float s_quadFactor;
 static vec3_t forward, right, up;
@@ -1948,6 +1949,10 @@ void FireWeapon( gentity_t *ent ) {
 		}
 
 	case WP_MORTAR:
+		break;
+	
+	case WP_BINOCULARS:
+		steamSetAchievement("ACH_BINOCS");
 		break;
 
 	default:

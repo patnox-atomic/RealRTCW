@@ -4188,6 +4188,7 @@ void PmoveSingle( pmove_t *pmove ) {
 		}
 	}
 
+
 	// set the firing flag for continuous beam weapons
 
 	pm->ps->eFlags &= ~( EF_FIRING | EF_ZOOMING );

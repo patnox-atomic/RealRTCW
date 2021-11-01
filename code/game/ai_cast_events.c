@@ -165,6 +165,10 @@ void AICast_Die( gentity_t *self, gentity_t *inflictor, gentity_t *attacker, int
 	char mapname[MAX_QPATH];
 	
 	qboolean modPanzerfaust = (meansOfDeath == MOD_ROCKET || meansOfDeath == MOD_ROCKET_SPLASH);
+	qboolean modGL = (meansOfDeath == MOD_M7 );
+	qboolean modBr = (meansOfDeath == MOD_BROWNING );
+	qboolean modAir = (meansOfDeath == MOD_AIRSTRIKE );
+	qboolean modGas = (meansOfDeath == MOD_POISON_GAS );
 	qboolean modKicked = (meansOfDeath == MOD_KICKED);
 	qboolean modKnife = (meansOfDeath == MOD_KNIFE);
 	qboolean modCrush = (meansOfDeath == MOD_CRUSH);
@@ -181,46 +185,40 @@ void AICast_Die( gentity_t *self, gentity_t *inflictor, gentity_t *attacker, int
 	}*/
 	
 	
-	if(self->aiCharacter == AICHAR_LOPER && killerPlayer && modPanzerfaust)
+	if(self->aiCharacter && killerPlayer && modGL)
 	{
 		if ( !g_cheats.integer )
 		{
-		steamSetAchievement("ACH_LOPER_ROCKET");
+		steamSetAchievement("ACH_GL");
 		}
 	}
 
-	if(self->aiCharacter == AICHAR_PROTOSOLDIER && killerEnv && modFalling)
+	if(self->aiCharacter == AICHAR_VENOM && killerPlayer && modBr)
 	{
 		if ( !g_cheats.integer ) 
 		{
-		steamSetAchievement("ACH_PROTO_FALL");
+		steamSetAchievement("ACH_BROWNING");
 		}
 	}
 
-		
-	if(self->aiCharacter == AICHAR_ELITEGUARD && killerPlayer && modKicked)
+		if(self->aiCharacter && killerPlayer && modAir)
 	{
 		if ( !g_cheats.integer ) 
 		{
-		steamSetAchievement("ACH_ELITE_FOOT");
+		steamSetAchievement("ACH_AIR");
 		}
 	}
 
-	if(self->aiCharacter == AICHAR_PROTOSOLDIER && killerPlayer && modKnife)
+		if(self->aiCharacter && killerPlayer && modGas)
 	{
 		if ( !g_cheats.integer ) 
 		{
-		steamSetAchievement("ACH_PROTO_KNIFE");
+		steamSetAchievement("ACH_GAS");
 		}
 	}
 
-		if(self->aiCharacter == AICHAR_HEINRICH && killerEnv && modCrush)
-	{
-		if ( !g_cheats.integer ) 
-		{
-		steamSetAchievement("ACH_HEIN_NOSHOT");
-		}
-	}
+
+
 
 
 
