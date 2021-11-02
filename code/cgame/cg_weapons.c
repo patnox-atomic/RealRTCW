@@ -4004,11 +4004,12 @@ void CG_AltWeapon_f( void ) {
 		if ( cg.snap->ps.eFlags & EF_ZOOMING ) {
 			trap_SendConsoleCommand( "-zoom\n" );
 			cg.binocTime = -cg.time;
-		} else {
+		/*} else {
 			if ( !cg.binocTime ) {
 				cg.binocTime = cg.time;
 			}
-		}
+		}*/
+	}
 	}
 
 	if ( CG_WeaponSelectable( num ) ) {   // new weapon is valid
@@ -4991,6 +4992,19 @@ void CG_FireWeapon( centity_t *cent ) {
 	sfxHandle_t     *fireEchosound;
 
 	ent = &cent->currentState;
+
+		if ( ent->weapon == WP_BINOCULARS ) {
+		if ( cg.snap->ps.eFlags & EF_ZOOMING ) {
+			trap_SendConsoleCommand( "-zoom\n" );
+			cg.binocTime = -cg.time;
+		} else {
+			if ( !cg.binocTime ) {
+				cg.binocTime = cg.time;
+			}
+		}
+	}
+
+	
 
 	// Rafael - mg42
 //	if ( (cent->currentState.clientNum == cg.snap->ps.clientNum && cg.snap->ps.persistant[PERS_HWEAPON_USE] ) ||
