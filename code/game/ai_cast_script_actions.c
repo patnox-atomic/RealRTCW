@@ -2651,7 +2651,7 @@ AICast_ScriptAction_Achievement_ETBONUS
 ==================
 */
 qboolean AICast_ScriptAction_Achievement_ETBONUS( cast_state_t *cs, char *params ) {
-	if ( !g_cheats.integer ) 
+	if ( !g_cheats.integer && (g_decaychallenge.integer || g_ironchallenge.integer || g_nohudchallenge.integer || g_nopickupchallenge.integer ))
 	{
     steamSetAchievement("ACH_ETBONUS");
 	}
